@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="FoodDiary.Main.Views.AddNewProduct"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FoodDiary.Main.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             x:Name="NewProductControl"
+             d:DesignHeight="600" d:DesignWidth="829">
+    <Grid Background="Ivory">
+        <ListView Width="829" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left"  Foreground="Black" HorizontalContentAlignment="Center" FontSize="17" FontFamily="Century Gothic" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListViewItem HorizontalAlignment="Left" Height="50">
+                <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="225" VerticalAlignment="Center" Text="Название продукта"></TextBlock>
+                        <TextBox Width="250" VerticalAlignment="Center" Foreground="Black" Text="{Binding product.NameProduct}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </ListViewItem>
+            <ListViewItem HorizontalAlignment="Left" Height="50">
+                <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="225" VerticalAlignment="Center" Text="Калории"></TextBlock>
+                        <TextBox Width="250" VerticalAlignment="Center" Foreground="Black" Text="{Binding product.Calories}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </ListViewItem>
+            <ListViewItem HorizontalAlignment="Left" Height="50">
+                <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="225" VerticalAlignment="Center" Text="Энергетическая ценность"></TextBlock>
+                        <TextBox Width="250" VerticalAlignment="Center" Foreground="Black" Text="{Binding product.EnergyValue}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </ListViewItem>
+            <ListViewItem HorizontalAlignment="Left" Height="50">
+                <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="225" VerticalAlignment="Center" Text="Белки"></TextBlock>
+                        <TextBox Width="250" VerticalAlignment="Center" Foreground="Black" Text="{Binding product.Proteins}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </ListViewItem>
+            <ListViewItem HorizontalAlignment="Left" Height="50">
+                <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="225" VerticalAlignment="Center" Text="Жиры"></TextBlock>
+                        <TextBox Width="250" VerticalAlignment="Center" Foreground="Black" Text="{Binding product.Fats}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </ListViewItem>
+            <ListViewItem HorizontalAlignment="Left" Height="50">
+                <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="225" VerticalAlignment="Center" Text="Углеводы"></TextBlock>
+                        <TextBox Width="250" VerticalAlignment="Center" Foreground="Black" Text="{Binding product.Carbohydrates}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </ListViewItem>
+            <ListViewItem HorizontalAlignment="Center">
+                <Border CornerRadius="15">
+                    <Button Command="{Binding NewProductCommand}" CommandParameter="{Binding}" BorderBrush="Black" BorderThickness="0.1" Background="Transparent" Content="Сохранить" Foreground="Black" FontSize="20"/>
+                </Border>
+            </ListViewItem>
+        </ListView>
+    </Grid>
+</UserControl>

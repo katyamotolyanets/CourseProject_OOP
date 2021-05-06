@@ -1,0 +1,66 @@
+﻿<Window x:Class="FoodDiary.Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodDiary.Main" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"        
+        x:Name="MainView"
+        Title="FoodDiary" Height="600" Width="1080" 
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        SizeChanged="MainWindow_SizeChanged"
+        Icon="D:\2 курс\4 сем\OOP\courseproject\food.jpg">
+    <Canvas x:Name="myCanvas" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1080">
+        <Grid Height="600" Width="1080" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="251"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="GridMenu" Grid.Column="0" Width="251" HorizontalAlignment="Left" Background="White" Margin="0,0,0,-0.4" Grid.ColumnSpan="2">
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <StackPanel>
+                        <Image Source="D:\2 курс\4 сем\OOP\courseproject\back.jpg" Stretch="Fill" />
+                        <ListView Margin="0" BorderBrush="White" Foreground="#FF313131" FontFamily="Champagne &amp; Limousines" FontSize="18" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                            <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite" Command="{Binding UpdateViewCommand}" CommandParameter="Diary" Width="251">
+                                <StackPanel Orientation="Horizontal" Width="251" >
+                                    <materialDesign:PackIcon Kind="Restaurant" Width="20" Height="20" Foreground="IndianRed" Margin="5" VerticalAlignment="Center"/>
+                                    <TextBlock Margin="10" Foreground="Black" FontFamily="Century Gothic">Дневник питания</TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Height="50" Padding="0" BorderThickness="0"  HorizontalContentAlignment="Left" Background="WHite"  Command="{Binding DataContext.UpdateViewCommand, ElementName=MainView}" CommandParameter="Filtering" Width="251" >
+                                <StackPanel Orientation="Horizontal" Width="251">
+                                    <materialDesign:PackIcon Kind="Calendar" Width="20" Height="20" Foreground="#FFF08033" Margin="5" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Календарь" Margin="10" Foreground="Black" FontFamily="Century Gothic" />
+                                </StackPanel>
+                            </Button>
+                            <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Balance" Width="251" >
+                                <StackPanel Orientation="Horizontal" Width="251" >
+                                    <materialDesign:PackIcon Kind="TrendingUp" Width="20" Height="20" Foreground="#1ABC9C " Margin="5" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Отчёты" Margin="10" Foreground="Black" FontFamily="Century Gothic" />
+                                </StackPanel>
+                            </Button>
+                            <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Balance" Width="251">
+                                <StackPanel Orientation="Horizontal" Width="251" >
+                                    <materialDesign:PackIcon Kind="ChartBarStacked" Width="20" Height="20" Foreground="#F1C40F" Margin="5" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Контроль веса" Margin="10" Foreground="Black" FontFamily="Century Gothic" />
+                                </StackPanel>
+                            </Button>
+                        </ListView>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Canvas>
+</Window>

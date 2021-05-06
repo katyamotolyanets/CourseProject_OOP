@@ -1,0 +1,33 @@
+﻿                  <Application x:Class="FoodDiary.Main.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FoodDiary.Main" 
+             xmlns:views="clr-namespace:FoodDiary.Main.Views"
+             xmlns:viewmodels="clr-namespace:FoodDiary.Main.ViewModels"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type viewmodels:DiaryViewModel}">
+                <views:Diary/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:FilteringViewModel}">
+                <views:Filtering/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ProductViewModel}">
+                <views:Product/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:AddNewProductViewModel}">
+                <views:AddNewProduct/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:EditProductSetViewModel}">
+                <views:EditProductSet/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
