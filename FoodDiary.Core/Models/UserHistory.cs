@@ -12,5 +12,7 @@ namespace FoodDiary.Core.Models
         public User User { get; set; }
         public Guid IDProductSet { get; set; }
         public ProductSet ProductSet { get; set; } 
+        public Guid IDActivity { get; set; }
+        public Activity Activity { get; set; }
     }
 }

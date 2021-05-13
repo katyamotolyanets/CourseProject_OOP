@@ -4,14 +4,16 @@ using FoodDiary.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodDiary.Infrastructure.Migrations
 {
     [DbContext(typeof(FoodDiaryContext))]
-    partial class FoodDiaryContextModelSnapshot : ModelSnapshot
+    [Migration("20210512112012_addition")]
+    partial class addition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,20 +133,17 @@ namespace FoodDiary.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IDLifestyle")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserAge")
                         .HasColumnType("int");
 
-                    b.Property<double>("UserCalories")
-                        .HasColumnType("float");
+                    b.Property<float>("UserCalories")
+                        .HasColumnType("real");
 
-                    b.Property<double>("UserHeight")
-                        .HasColumnType("float");
+                    b.Property<float>("UserHeight")
+                        .HasColumnType("real");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
@@ -152,12 +151,10 @@ namespace FoodDiary.Infrastructure.Migrations
                     b.Property<string>("UserSex")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("UserWeight")
-                        .HasColumnType("float");
+                    b.Property<float>("UserWeight")
+                        .HasColumnType("real");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("IDLifestyle");
 
                     b.ToTable("Users");
                 });
@@ -188,23 +185,6 @@ namespace FoodDiary.Infrastructure.Migrations
                     b.ToTable("UsersHistories");
                 });
 
-            modelBuilder.Entity("FoodDiary.Core.Models.UserLifestyle", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("Coefficient")
-                        .HasColumnType("float");
-
-                    b.Property<string>("LifestyleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("UserLifestyles");
-                });
-
             modelBuilder.Entity("FoodDiary.Core.Models.Activity", b =>
                 {
                     b.HasOne("FoodDiary.Core.Models.ActivityType", "ActivityType")
@@ -225,15 +205,6 @@ namespace FoodDiary.Infrastructure.Migrations
                     b.HasOne("FoodDiary.Core.Models.MealType", "MealType")
                         .WithMany("ProductSets")
                         .HasForeignKey("IDType")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FoodDiary.Core.Models.User", b =>
-                {
-                    b.HasOne("FoodDiary.Core.Models.UserLifestyle", "UserLifestyle")
-                        .WithMany("Users")
-                        .HasForeignKey("IDLifestyle")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

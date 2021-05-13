@@ -1,4 +1,5 @@
-﻿using FoodDiary.Core.RepositoryInterfaces.AuthenticationRepository;
+﻿using FoodDiary.Core.Models;
+using FoodDiary.Core.RepositoryInterfaces;
 using FoodDiary.Infrastructure.Repositories;
 using FoodDiary.Main.States.Accounts;
 using FoodDiary.Main.States.Authenticators;
@@ -48,11 +49,11 @@ namespace FoodDiary.Main.Commands
             }
             else if (parameter.ToString() == "Login")
             {
-                viewModel.CurrentViewModel = (new LoginViewModel(new Authenticator(new AuthenticationRepository(new AccountRepository(), new Microsoft.AspNetCore.Identity.PasswordHasher()), new AccountStore())));
+                viewModel.CurrentViewModel = (new LoginViewModel(new Authenticator(new AuthenticationRepository(new AccountRepository(), new Microsoft.AspNet.Identity.PasswordHasher()), new AccountStore())));
             }
             else if (parameter.ToString() == "Register")
             {
-                viewModel.CurrentViewModel = (new RegisterViewModel(new Authenticator(new AuthenticationRepository(new AccountRepository(), new Microsoft.AspNetCore.Identity.PasswordHasher()), new AccountStore())));
+                viewModel.CurrentViewModel = (new RegisterViewModel(new Authenticator(new AuthenticationRepository(new AccountRepository(), new Microsoft.AspNet.Identity.PasswordHasher()), new AccountStore())));
             }
         }
     }

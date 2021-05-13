@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNet.Identity;
 using FoodDiary.Core.RepositoryIntarfaces.AuthenticationRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace FoodDiary.Infrastructure.Repositories
 {
@@ -37,7 +38,8 @@ namespace FoodDiary.Infrastructure.Repositories
                 throw new AccountNotFoundException(name);
             }
 
-            PasswordVerificationResult passwordResult = _passwordHasher.VerifyHashedPassword(storedAccount.Password, password);
+            PasswordVerificationResult passwordResult = _passwordHasher.VerifyHashedPassword(storedAccount.Password,
+                                                                                             password);
 
             if (passwordResult != PasswordVerificationResult.Success)
             {
@@ -46,7 +48,7 @@ namespace FoodDiary.Infrastructure.Repositories
             return storedAccount;
         }
 
-        public RegistrationResult Register(string username, float weight, float height, string sex, string password, string confirmPassword)
+        public RegistrationResult Register(string username, double weight, double height, int age, string sex, string lifestyle, string password, string confirmPassword)
         {
             RegistrationResult result = RegistrationResult.Success;
 
@@ -68,12 +70,14 @@ namespace FoodDiary.Infrastructure.Repositories
                 Guid guid = new Guid();
                 User user = new User()
                 {
+
                     ID = guid,
                     UserName = username,
                     UserWeight = weight,
                     UserHeight = height,
+                    UserAge = age,
                     UserSex = sex,
-                    Password = hashedPassword,
+                    Password = hashedPassword,                      
                 };
                 _accountRepository.Create(user);
             }

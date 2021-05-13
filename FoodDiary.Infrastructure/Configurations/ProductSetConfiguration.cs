@@ -15,6 +15,7 @@ namespace FoodDiary.Infrastructure.Configurations
         {
             builder.HasKey(e => e.ID);
             builder.Property(e => e.ProductWeight);
+            builder.Property(e => e.Date);
             builder.HasOne(e => e.MealType).WithMany(e => e.ProductSets).HasForeignKey(e => e.IDType);
             builder.HasOne(e => e.Product).WithMany(e => e.ProductSets).HasForeignKey(e => e.IDProduct);
         }

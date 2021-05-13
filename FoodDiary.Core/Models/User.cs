@@ -9,10 +9,13 @@ namespace FoodDiary.Core.Models
     public class User: Entity<Guid>
     {
         public string UserName { get; set; }
-        public float UserWeight { get; set; }
-        public float UserHeight { get; set; }
+        public double UserWeight { get; set; }
+        public double UserHeight { get; set; }
+        public int UserAge { get; set; }
         public string UserSex { get; set; }
-        public float UserCalories { get; set; }
+        public Guid IDLifestyle { get; set; }
+        public UserLifestyle UserLifestyle { get; set; }
+        public double UserCalories { get; set; }
         public string Password { get; set; }
         public ICollection<UserHistory> UserHistories { get; set; }
 

@@ -1,4 +1,6 @@
-﻿using FoodDiary.Main.Commands;
+﻿using FoodDiary.Core.Models;
+using FoodDiary.Main.Commands;
+using FoodDiary.Main.States.Accounts;
 using System;
 using System.Globalization;
 using System.Windows.Data;
@@ -23,19 +25,33 @@ namespace FoodDiary.Main.ViewModels
         }
 
         public ICommand UpdateViewCommand { get; set; }
+        public User CurrentAccount { get; set; }
 
+        public bool _isLoggin { get; set; }
+        public bool IsLoggin
+        {
+            get { return _isLoggin; }
+            set
+            {
+                _isLoggin = value;
+
+                OnPropertyChanged(nameof(IsLoggin));
+            }
+        }
         public MainViewModel()
         {
             UpdateViewCommand = new UpdateViewCommand(this);
+            CheckLoggin();
         }
-        
-        //public bool OnMoveBack(object obj)
-        //{
 
-        //}
-        //public bool OnCanMoveBack(object obj)
-        //{
-
-        //}
+        public void CheckLoggin()
+        {
+            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+            CurrentAccount = currentAccount.Account;
+            if (CurrentAccount.UserName == null)
+                IsLoggin = false;
+            else
+                IsLoggin = true;
+        }
     }
 }

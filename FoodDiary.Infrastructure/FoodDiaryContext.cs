@@ -11,11 +11,14 @@ namespace FoodDiary.Infrastructure
 {
     public class FoodDiaryContext : DbContext
     {
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<ActivityType> ActivityTypes { get; set; }
         public DbSet<MealType> MealTypes { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductSet> ProductSets { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserHistory> UsersHistories { get; set; }
+        public DbSet<UserLifestyle> UserLifestyles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,11 +27,14 @@ namespace FoodDiary.Infrastructure
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new ActivityConfiguration());
+            modelBuilder.ApplyConfiguration(new ActivityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new MealTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductSetConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new UserHistoryConfiguration());
+            modelBuilder.ApplyConfiguration(new UserLifestyleConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

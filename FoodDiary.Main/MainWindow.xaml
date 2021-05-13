@@ -7,31 +7,32 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"        
         x:Name="MainView"
-        Title="FoodDiary" Height="600" Width="1080" 
+        Title="FoodDiary" Height="750" Width="1080" 
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         SizeChanged="MainWindow_SizeChanged"
         Icon="D:\2 курс\4 сем\OOP\courseproject\food.jpg">
     <Canvas x:Name="myCanvas" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1080">
-        <Grid Height="600" Width="1080" >
+        <Grid Height="750" Width="1080" >
             <Grid>
+                
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="251"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="251*"/>
+                    <ColumnDefinition Width="829*"/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid x:Name="GridMenu" Grid.Column="0" Width="251" HorizontalAlignment="Left" Background="White" Margin="0,0,0,-0.4" Grid.ColumnSpan="2">
-                    <Grid.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Grid.RenderTransform>
+               
+                <Grid x:Name="GridMenu" Grid.Column="0" Width="251" HorizontalAlignment="Left" Margin="0,0,0,-0.4" Grid.ColumnSpan="2">
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsLoggin}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+
+                    </Grid.Style>
+                    
                     <StackPanel>
-                        <Image Source="D:\2 курс\4 сем\OOP\courseproject\back.jpg" Stretch="Fill" />
                         <ListView Margin="0" BorderBrush="White" Foreground="#FF313131" FontFamily="Champagne &amp; Limousines" FontSize="18" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
                             <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite" Command="{Binding UpdateViewCommand}" CommandParameter="Diary" Width="251">
                                 <StackPanel Orientation="Horizontal" Width="251" >
@@ -59,6 +60,10 @@
                             </Button>
                         </ListView>
                     </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1" Margin="1,0,-4.4,-0.4" Width="829" HorizontalAlignment="Left">
+                    <ContentControl Content="{Binding CurrentViewModel}"/>
+                    
                 </Grid>
             </Grid>
         </Grid>

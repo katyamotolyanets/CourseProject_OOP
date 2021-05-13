@@ -17,8 +17,11 @@ namespace FoodDiary.Infrastructure.Configurations
             builder.Property(e => e.UserName);
             builder.Property(e => e.UserWeight);
             builder.Property(e => e.UserHeight);
-            builder.Property(e => e.UserCalories);
+            builder.Property(e => e.UserAge);
+            builder.Property(e => e.UserSex);
             builder.Property(e => e.Password);
+            builder.Property(e => e.UserCalories);
+            builder.HasOne(e => e.UserLifestyle).WithMany(e => e.Users).HasForeignKey(e => e.IDLifestyle);
         }
     }
 }

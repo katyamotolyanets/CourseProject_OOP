@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static FoodDiary.Infrastructure.Repositories.AuthenticationRepository.AuthenticationRepository;
+using static FoodDiary.Infrastructure.Repositories.AuthenticationRepository;
 
 namespace FoodDiary.Main.States.Authenticators
 {
@@ -14,7 +14,7 @@ namespace FoodDiary.Main.States.Authenticators
         bool IsLoggedIn { get; }
 
         event Action StateChanged;
-        RegistrationResult Register(string email, string username, string password, string confirmPassword, double balance);
+        RegistrationResult Register(string username, double weight, double height, int age, string sex, string lifestyle, string password, string confirmPassword);
         bool Login(string username, string password);
         void Logout();
     }

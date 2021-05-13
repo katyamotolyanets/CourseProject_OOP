@@ -1,10 +1,14 @@
-﻿using FoodDiary.Main.Commands;
+﻿using FoodDiary.Core.Models;
+using FoodDiary.Infrastructure.Repositories;
+using FoodDiary.Main.Commands;
 using FoodDiary.Main.States.Authenticators;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace FoodDiary.Main.ViewModels
@@ -26,8 +30,8 @@ namespace FoodDiary.Main.ViewModels
             }
         }
 
-        private string _weight;
-        public string Weight
+        private double _weight;
+        public double Weight
         {
             get
             {
@@ -41,8 +45,8 @@ namespace FoodDiary.Main.ViewModels
             }
         }
 
-        private string _height;
-        public string Height
+        private double _height;
+        public double Height
         {
             get
             {
@@ -52,6 +56,21 @@ namespace FoodDiary.Main.ViewModels
             {
                 _height = value;
                 OnPropertyChanged(nameof(Height));
+                OnPropertyChanged(nameof(CanRegister));
+            }
+        }
+
+        private int _age;
+        public int Age
+        {
+            get
+            {
+                return _age;
+            }
+            set
+            {
+                _age = value;
+                OnPropertyChanged(nameof(Age));
                 OnPropertyChanged(nameof(CanRegister));
             }
         }
@@ -67,6 +86,36 @@ namespace FoodDiary.Main.ViewModels
             {
                 _sex = value;
                 OnPropertyChanged(nameof(Sex));
+                OnPropertyChanged(nameof(CanRegister));
+            }
+        }
+
+        private string _lifestyle;
+        public string Lifestyle
+        {
+            get
+            {
+                return _lifestyle;
+            }
+            set
+            {
+                _lifestyle = value;
+                OnPropertyChanged(nameof(Lifestyle));
+                OnPropertyChanged(nameof(CanRegister));
+            }
+        }
+
+        private float _calories;
+        public float Calories
+        {
+            get
+            {
+                return _calories;
+            }
+            set
+            {
+                _calories = value;
+                OnPropertyChanged(nameof(Age));
                 OnPropertyChanged(nameof(CanRegister));
             }
         }
@@ -102,9 +151,11 @@ namespace FoodDiary.Main.ViewModels
         }
 
         public bool CanRegister => !string.IsNullOrEmpty(UserName) &&
-            !string.IsNullOrEmpty(Weight) &&
-            !string.IsNullOrEmpty(Height) &&
+            !string.IsNullOrEmpty(Convert.ToString(Weight)) &&
+            !string.IsNullOrEmpty(Convert.ToString(Height)) &&
+            !string.IsNullOrEmpty(Convert.ToString(Age)) &&
             !string.IsNullOrEmpty(Sex) &&
+            //!string.IsNullOrEmpty(Convert.ToString(Lifestyle)) &&
             !string.IsNullOrEmpty(Password) &&
             !string.IsNullOrEmpty(ConfirmPassword);
 
@@ -120,16 +171,25 @@ namespace FoodDiary.Main.ViewModels
             set => ErrorMessageViewModel.Message = value;
         }
 
+        public List<UserLifestyle> Lifestyles { get; set; } 
+        public LifestyleRepository LifestyleRepository { get; set; }
+        public Guid lifestyle { get; set; }
         public RegisterViewModel(IAuthenticator authenticator)
         {
+            Lifestyles = new List<UserLifestyle>();
+            LifestyleRepository = new LifestyleRepository();
+            GetLifestyles();
+
             ErrorMessageViewModel = new MessageViewModel();
 
             RegisterCommand = new RegisterCommand(this, authenticator);
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MyMainView);
-
         }
 
-
+        public void GetLifestyles()
+        {
+            Lifestyles = (List<UserLifestyle>)LifestyleRepository.List();
+        }
     }
 }
 

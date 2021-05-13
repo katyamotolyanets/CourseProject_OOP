@@ -1,6 +1,8 @@
 ﻿using FoodDiary.Main.ViewModels;
+using FoodDiary.Main.Commands;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace FoodDiary.Main
@@ -13,10 +15,15 @@ namespace FoodDiary.Main
         public static MainViewModel MyMainView { get; set; }
         public MainWindow()
         {
-            InitializeComponent();
             MyMainView = new MainViewModel();
-            MyMainView.CurrentViewModel = new DiaryViewModel();
-            DataContext =  MyMainView;
+            ICommand UpdateViewCommand = new UpdateViewCommand(MyMainView);
+            DataContext = MyMainView;
+            MyMainView.CheckLoggin();
+            if (MyMainView.IsLoggin == false)
+                UpdateViewCommand.Execute("Login");
+            else
+                UpdateViewCommand.Execute("Diary");
+
         }
         private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {

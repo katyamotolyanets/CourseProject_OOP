@@ -11,17 +11,17 @@ namespace FoodDiary.Main.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-		private string _name = "Аноним";
-		public string Name
+		private string _username = "Аноним";
+		public string UserName
 		{
 			get
 			{
-				return _name;
+				return _username;
 			}
 			set
 			{
-				_name = value;
-				OnPropertyChanged(nameof(Name));
+				_username = value;
+				OnPropertyChanged(nameof(UserName));
 				OnPropertyChanged(nameof(CanLogin));
 			}
 		}
@@ -41,7 +41,7 @@ namespace FoodDiary.Main.ViewModels
 			}
 		}
 		public ICommand UpdateViewCommand { get; set; }
-		public bool CanLogin => !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Password);
+		public bool CanLogin => !string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password);
 
 		public MessageViewModel ErrorMessageViewModel { get; }
 

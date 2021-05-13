@@ -39,7 +39,9 @@ namespace FoodDiary.Main.Commands
             _loginViewModel.ErrorMessage = string.Empty;
 
             bool success = _authenticator.Login(_loginViewModel.UserName, _loginViewModel.Password);
+
             if (success)
+                MainWindow.MyMainView.IsLoggin = true;
                 updateViewCommand.Execute("Diary");
 
         }
@@ -57,4 +59,4 @@ namespace FoodDiary.Main.Commands
         }
     }
 }
-}
+

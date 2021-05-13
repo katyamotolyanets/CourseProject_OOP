@@ -13,7 +13,6 @@ namespace FoodDiary.Infrastructure.Repositories
     {
         public User Find(Guid id) => DbSet.SingleOrDefault(x => x.ID == id);
 
-
         public User GetByName(string name) => DbSet.SingleOrDefault(x => x.UserName == name);
 
         public IEnumerable<User> List(Expression<Func<User, bool>> predicate = null)
@@ -27,6 +26,10 @@ namespace FoodDiary.Infrastructure.Repositories
         }
         public void Create(User account)
         {
+            if (account.UserSex == "женский")
+                account.UserCalories = (447.6 + 9.2 * account.UserWeight + 4.8 * account.UserHeight - 5.7 * account.UserAge) * account.UserLifestyle.Coefficient;
+            else
+                account.UserCalories = (88.36 + 13.4 * account.UserWeight + 3.1 * account.UserHeight - 4.3 * account.UserAge) * account.UserLifestyle.Coefficient;
             DbSet.Add(account);
             Context.SaveChanges();
         }

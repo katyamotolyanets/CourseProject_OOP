@@ -1,14 +1,13 @@
 ﻿using FoodDiary.Core.Models;
 using FoodDiary.Core.RepositoryIntarfaces.AuthenticationRepository;
-using FoodDiary.Core.RepositoryInterfaces.AuthenticationRepository;
+using FoodDiary.Infrastructure.Repositories;
 using FoodDiary.Main.States.Accounts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static FoodDiary.Core.RepositoryInterfaces.AuthenticationRepository.AuthenticationRepository.AuthenticationRepository;
-using static FoodDiary.Infrastructure.Repositories.AuthenticationRepository.AuthenticationRepository;
+using static FoodDiary.Infrastructure.Repositories.AuthenticationRepository;
 
 namespace FoodDiary.Main.States.Authenticators
 {
@@ -58,9 +57,9 @@ namespace FoodDiary.Main.States.Authenticators
             CurrentAccount = null;
         }
 
-        public RegistrationResult Register(string username, float weight, float height, string sex, string password, string confirmPassword)
+        public RegistrationResult Register(string username, double weight, double height, int age, string sex, string lifestyle, string password, string confirmPassword)
         {
-            return _authenticationRepository.Register(username, weight, height, sex, password, confirmPassword);
+            return _authenticationRepository.Register(username, weight, height, age, sex, lifestyle, password, confirmPassword);
         }
     }
 }

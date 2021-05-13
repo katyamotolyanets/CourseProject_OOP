@@ -2,10 +2,12 @@
 using FoodDiary.Main.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using static FoodDiary.Infrastructure.Repositories.AuthenticationRepository;
 
 namespace FoodDiary.Main.Commands
 {
@@ -39,10 +41,13 @@ namespace FoodDiary.Main.Commands
             {
                 RegistrationResult registrationResult = _authenticator.Register(
                        _registerViewModel.UserName,
-                       _registerViewModel.UserWeight,
-                       _registerViewModel.UserHeight,
+                       _registerViewModel.Weight,
+                       _registerViewModel.Height,
+                       _registerViewModel.Age,
+                       _registerViewModel.Sex,
+                       _registerViewModel.Lifestyle,
                        _registerViewModel.Password,
-                       _registerViewModel.ConfirmPassword,
+                       _registerViewModel.ConfirmPassword
                        );
 
                 switch (registrationResult)
@@ -54,7 +59,7 @@ namespace FoodDiary.Main.Commands
                         _registerViewModel.ErrorMessage = "Password does not match confirm password.";
                         break;
                     case RegistrationResult.EmailAlreadyExist:
-                        _registerViewModel.ErrorMessage = "An account for this email already exists.";
+                        _registerViewModel.ErrorMessage = "An account for this name already exists.";
                         break;
 
                     default:
@@ -82,4 +87,4 @@ namespace FoodDiary.Main.Commands
         }
     }
 }
-}
+

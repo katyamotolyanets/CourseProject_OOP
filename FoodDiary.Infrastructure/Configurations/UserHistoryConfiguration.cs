@@ -16,6 +16,7 @@ namespace FoodDiary.Infrastructure.Configurations
             builder.HasKey(e => e.ID);
             builder.HasOne(e => e.User).WithMany(e => e.UserHistories).HasForeignKey(e => e.IDUser);
             builder.HasOne(e => e.ProductSet).WithMany(e => e.UserHistories).HasForeignKey(e => e.IDProductSet);
+            builder.HasOne(e => e.Activity).WithMany(e => e.UserHistories).HasForeignKey(e => e.IDActivity);
         }
     }
 }
