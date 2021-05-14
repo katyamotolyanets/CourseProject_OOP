@@ -48,7 +48,7 @@ namespace FoodDiary.Infrastructure.Repositories
             return storedAccount;
         }
 
-        public RegistrationResult Register(string username, double weight, double height, int age, string sex, string lifestyle, string password, string confirmPassword)
+        public RegistrationResult Register(string username, double weight, double height, int age, string sex, UserLifestyle lifestyle, string password, string confirmPassword)
         {
             RegistrationResult result = RegistrationResult.Success;
 
@@ -68,15 +68,17 @@ namespace FoodDiary.Infrastructure.Repositories
             {
                 string hashedPassword = _passwordHasher.HashPassword(password);
                 Guid guid = new Guid();
+                Guid IDLifestyle = lifestyle.ID;
+
                 User user = new User()
                 {
-
                     ID = guid,
                     UserName = username,
                     UserWeight = weight,
                     UserHeight = height,
                     UserAge = age,
                     UserSex = sex,
+                    IDLifestyle = IDLifestyle,
                     Password = hashedPassword,                      
                 };
                 _accountRepository.Create(user);

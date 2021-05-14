@@ -7,22 +7,21 @@ using System.Windows.Input;
 
 namespace FoodDiary.Main.Commands
 {
-    public class AddProductCommand : ICommand
+    public class AddActCommand : ICommand
     {
-        public ProductSet ProductSet { get; set; }
-        public ProductSetRepository productSetRepository = new ProductSetRepository();
+        public Activity Activity { get; set; }
+        public ActivityRepository activityRepository = new ActivityRepository();
         public UserHistory History { get; set; }
         public HistoryRepository historyRepository = new HistoryRepository();
-        public Product product { get; set; }
-        public Guid mealType { get; set; }
-        public ProductViewModel productViewModel { get; set; }
+        public ActivityType activityType { get; set; }
+        public ActivityViewModel activityViewModel { get; set; }
         public DiaryViewModel diaryViewModel { get; set; }
         public User CurrentAccount { get; set; }
 
-        
-        public AddProductCommand(ProductSet productSet, UserHistory history)
+
+        public AddActCommand(Activity activity, UserHistory history)
         {
-            ProductSet = productSet;
+            Activity = activity;
             History = history;
         }
 
@@ -37,25 +36,23 @@ namespace FoodDiary.Main.Commands
         {
             SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
             CurrentAccount = currentAccount.Account;
-            mealType = LinkToAddCommand.MealType;
-            productViewModel = new ProductViewModel();
+            activityType = LinkToActCommand.activityType;
+            activityViewModel = new ActivityViewModel();
 
 
-            product = ProductViewModel.product;
-            ProductSet.ID = Guid.NewGuid();
-            ProductSet.IDProduct = product.ID;
-            ProductSet.IDType = mealType;
-            ProductSet.Date = DateTime.Now;
+            Activity = ActivityViewModel.activity;
+            Activity.ID = Guid.NewGuid();
+            Activity.IDActivityType = activityType.ID;
 
-            productSetRepository.Create(ProductSet);
-             
+            activityRepository.Create(Activity);
+
             History.ID = Guid.NewGuid();
-            History.IDProductSet = ProductSet.ID;
+            History.IDActivity = Activity.ID;
             History.IDUser = CurrentAccount.ID;
 
             historyRepository.Create(History);
 
-            productViewModel.UpdateViewCommand.Execute("Filtering");
+            activityViewModel.UpdateViewCommand.Execute("Activities");
         }
     }
 }

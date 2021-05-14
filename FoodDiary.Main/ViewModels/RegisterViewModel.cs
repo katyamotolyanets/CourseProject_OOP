@@ -90,8 +90,8 @@ namespace FoodDiary.Main.ViewModels
             }
         }
 
-        private string _lifestyle;
-        public string Lifestyle
+        private UserLifestyle _lifestyle;
+        public UserLifestyle Lifestyle
         {
             get
             {
@@ -191,5 +191,34 @@ namespace FoodDiary.Main.ViewModels
             Lifestyles = (List<UserLifestyle>)LifestyleRepository.List();
         }
     }
+    public class IntConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!int.TryParse(value.ToString(), out int d))
+                return Binding.DoNothing;
+            return d;
+        }
+    }
+    public class DoubleConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!double.TryParse(value.ToString(), out double d))
+                return Binding.DoNothing;
+            return d;
+        }
+    }
+
 }
 

@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:FoodDiary.Main.Views"
              mc:Ignorable="d" 
              x:Name="ProductControl"
-             d:DesignHeight="600" d:DesignWidth="829">
+             d:DesignHeight="680" d:DesignWidth="829">
     <Grid Background="Wheat">
         <ListView Margin="0 20 0 0" Width="829" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left"  Foreground="Black" HorizontalContentAlignment="Center" FontSize="17" FontFamily="Century Gothic" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListViewItem >

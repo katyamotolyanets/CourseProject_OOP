@@ -212,6 +212,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryInterfaces\AuthenticationRepository\IAuthenticationRepository.cs" />
     <Compile Include="RepositoryInterfaces\IAccountRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IActivityRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IActivityTypeRepository.cs" />
     <Compile Include="RepositoryInterfaces\IHistoryRepository.cs" />
     <Compile Include="RepositoryInterfaces\ILifestyleRepository.cs" />
     <Compile Include="RepositoryInterfaces\IMealTypeRepository.cs" />

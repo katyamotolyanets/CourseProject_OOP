@@ -4,11 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FoodDiary.Main.Views"
-             xmlns:viewmodel="clr-namespace:FoodDiary.Main"
+             xmlns:converter="clr-namespace:FoodDiary.Main.ViewModels"
              xmlns:components="clr-namespace:FoodDiary.Main.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="750" d:DesignWidth="800">
-    <Border Margin="25" Padding="50"
+             x:Name="RegisterControl">
+    <UserControl.Resources>
+        <converter:IntConverter x:Key="IntConverter" />
+        <converter:DoubleConverter x:Key="DoubleConverter" />
+    </UserControl.Resources>
+    <Border Padding="50"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         Background="White"
@@ -61,7 +65,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock FontFamily="Century Gothic" Grid.Column="0" Text="Ваш вес" />
                     <TextBox FontFamily="Century Gothic" Grid.Column="1" Margin="20,0,0,0"
-                        Text="{Binding Weight, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" />
+                        Text="{Binding Weight, Converter={StaticResource DoubleConverter}, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" />
                 </Grid>
 
                 <Grid Grid.Row="2" Margin="0,10">
@@ -71,7 +75,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock FontFamily="Century Gothic" Grid.Column="0" Text="Ваш рост" />
                     <TextBox FontFamily="Century Gothic" Grid.Column="1" Margin="20,0,0,0"
-                        Text="{Binding Height, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" />
+                        Text="{Binding Height, Converter={StaticResource DoubleConverter}, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" />
                 </Grid>
 
                 <Grid Grid.Row="3" Margin="0,10">
@@ -81,7 +85,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock FontFamily="Century Gothic" Grid.Column="0" Text="Ваш возраст" />
                     <TextBox FontFamily="Century Gothic" Grid.Column="1" Margin="20,0,0,0" 
-                        Text="{Binding Age, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                        Text="{Binding Age, Converter={StaticResource IntConverter}, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
                 </Grid>
 
                 <Grid Grid.Row="4" Margin="0,10">
@@ -102,11 +106,11 @@
                         <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
                     <TextBlock FontFamily="Century Gothic" Grid.Column="0" Text="Ваш образ жизни" />
-                    <ComboBox FontFamily="Century Gothic" Grid.Column="1" Margin="20,0,0,0" ItemsSource="{Binding Lifestyles}" Text="{Binding Lifestyle, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}">
+                    <ComboBox FontFamily="Century Gothic" Grid.Column="1" Margin="20,0,0,0" ItemsSource="{Binding Lifestyles}" SelectedItem="{Binding DataContext.Lifestyle, ElementName=RegisterControl, Mode=TwoWay}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding LifestyleName}"/>
+                                    <TextBlock Text="{Binding Path=LifestyleName}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>

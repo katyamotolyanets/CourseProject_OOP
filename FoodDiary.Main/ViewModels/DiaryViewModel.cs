@@ -101,6 +101,8 @@ namespace FoodDiary.Main.ViewModels
         public List<UserHistory> UserHistories { get; set; }
         public HistoryRepository HistoryRepository { get; set; }
         public UserHistory History { get; set; }
+        public List<ActivityType> ActivityTypes { get; set; }
+        public ActivityTypeRepository ActivityTypeRepository { get; set; }
         public DiaryViewModel()
         {
             SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
@@ -114,6 +116,9 @@ namespace FoodDiary.Main.ViewModels
             UserHistories = new List<UserHistory>();
             HistoryRepository = new HistoryRepository();
 
+            ActivityTypes = new List<ActivityType>();
+            ActivityTypeRepository = new ActivityTypeRepository();
+
             Breakfasts = new List<ProductSet>();
             Lunches = new List<ProductSet>();
             Dinners = new List<ProductSet>();
@@ -126,6 +131,7 @@ namespace FoodDiary.Main.ViewModels
             EditCommand = new EditCommand(ProductSet);
 
             GetSets();
+            GetActivityTypes();
             GetHistories();
             RefreshMeals();
         }
@@ -136,6 +142,11 @@ namespace FoodDiary.Main.ViewModels
             GetLunches();
             GetDinners();
             GetSnacks();
+        }
+
+        public void GetActivityTypes()
+        {
+            ActivityTypes = (List<ActivityType>)ActivityTypeRepository.List(); 
         }
 
         public void GetSets()

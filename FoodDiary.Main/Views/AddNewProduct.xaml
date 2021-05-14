@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              x:Name="NewProductControl"
-             d:DesignHeight="600" d:DesignWidth="829">
+             d:DesignHeight="680" d:DesignWidth="829">
     <Grid Background="Ivory">
         <ListView Width="829" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left"  Foreground="Black" HorizontalContentAlignment="Center" FontSize="17" FontFamily="Century Gothic" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListViewItem HorizontalAlignment="Left" Height="50">

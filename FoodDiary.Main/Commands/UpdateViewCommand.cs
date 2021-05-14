@@ -47,6 +47,10 @@ namespace FoodDiary.Main.Commands
             {
                 viewModel.CurrentViewModel = new EditProductSetViewModel();
             }
+            else if (parameter.ToString() == "Activities")
+            {
+                viewModel.CurrentViewModel = new ActivitiesViewModel();
+            }
             else if (parameter.ToString() == "Login")
             {
                 viewModel.CurrentViewModel = (new LoginViewModel(new Authenticator(new AuthenticationRepository(new AccountRepository(), new Microsoft.AspNet.Identity.PasswordHasher()), new AccountStore())));

@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              x:Name="DiaryView"
-             d:DesignHeight="600" d:DesignWidth="829">
+             d:DesignHeight="680" d:DesignWidth="829">
     <UserControl.Resources>
         <Style x:Key="Buttons">
             <Setter Property="ItemsControl.Background" Value="Transparent"/>
@@ -22,7 +22,7 @@
         <Grid Height="100" VerticalAlignment="Top">
             <DatePicker IsTodayHighlighted="True" Margin="40 -100 0 0" Width="200" SelectedDate="{Binding Date}" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="22"/>
         </Grid>
-        <Grid Margin="40 100 0 0">
+        <Grid Margin="0 100 0 0">
             <ListView>
                 <Expander FontFamily="Century Gothic" FontSize="25" Width="599" HorizontalAlignment="Center" Margin="115 30 0 0">
                     <Expander.Header>
@@ -178,6 +178,52 @@
                       DisplayMemberBinding="{Binding Path=Product.NameProduct}"/>
                                 <GridViewColumn Width="50"
                       DisplayMemberBinding="{Binding Path=ProductWeight}"/>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Margin="50 0 0 0" Style="{StaticResource Buttons}" Command="{Binding DataContext.LinkToEditCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="Редактировать">
+                                                <Button.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="5"/>
+                                                    </Style>
+                                                </Button.Resources>
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource Buttons}" Command="{Binding DataContext.DeleteCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="Удалить">
+                                                <Button.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="5"/>
+                                                    </Style>
+                                                </Button.Resources>
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Expander>
+                <Expander FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="599" HorizontalAlignment="Center" Margin="115 10 0 0" >
+                    <Expander.Header>
+                        <DockPanel>
+                            <TextBlock VerticalAlignment="Center" Text="Сон/упражнения"/>
+                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.UpdateViewCommand, ElementName=DiaryView}" CommandParameter="Activities">
+                                <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="Black" Margin="-15 0" VerticalAlignment="Center"/>
+                            </Button>
+                        </DockPanel>
+                    </Expander.Header>
+                    <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding DataContext.ActivityTypes, Mode=TwoWay, ElementName=DiaryView, UpdateSourceTrigger=PropertyChanged}" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="200"
+                      DisplayMemberBinding="{Binding Path=ActivityName}"/>
+                                <GridViewColumn Width="50"
+                      DisplayMemberBinding="{Binding Path=Calories}"/>
                                 <GridViewColumn>
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
