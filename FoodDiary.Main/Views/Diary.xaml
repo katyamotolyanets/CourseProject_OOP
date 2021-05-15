@@ -28,7 +28,7 @@
                     <Expander.Header>
                         <DockPanel>
                             <TextBlock VerticalAlignment="Center" Text="Завтрак"/>
-                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="ef1a9d00-2e52-46d3-8e61-6e06553d8e95">
+                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="83765D9E-2273-4F26-BF9E-3B426AC88F60">
                                 <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="Black" Margin="-15 0" VerticalAlignment="Center"/>
                             </Button>
                         </DockPanel>
@@ -74,7 +74,7 @@
                     <Expander.Header>
                         <DockPanel>
                             <TextBlock VerticalAlignment="Center" Text="Обед"/>
-                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="eb571bbc-462c-4098-8826-fad31a3cb6d3">
+                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="638F50E6-3B50-4431-A1CB-C098B9DA68C5">
                                 <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="Black" Margin="-15 0" VerticalAlignment="Center"/>
                             </Button>
                         </DockPanel>
@@ -120,7 +120,7 @@
                     <Expander.Header>
                         <DockPanel>
                             <TextBlock VerticalAlignment="Center" Text="Ужин"/>
-                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="e76f357c-b4a0-4f64-a74f-ac0b0f5c815d">
+                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="6854F579-3151-4BDB-B12D-A7B68A9B4498">
                                 <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="Black" Margin="-15 0" VerticalAlignment="Center"/>
                             </Button>
                         </DockPanel>
@@ -166,7 +166,7 @@
                     <Expander.Header>
                         <DockPanel>
                             <TextBlock VerticalAlignment="Center" Text="Перекус/другое"/>
-                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="000205a2-e914-4469-853e-90eb8b17210d">
+                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="22CF6056-F288-42BF-B11B-CB7FE7ACB5CE">
                                 <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="Black" Margin="-15 0" VerticalAlignment="Center"/>
                             </Button>
                         </DockPanel>
@@ -208,7 +208,7 @@
                         </ListView.View>
                     </ListView>
                 </Expander>
-                <Expander FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="599" HorizontalAlignment="Center" Margin="115 10 0 0" >
+                <!--<Expander FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="599" HorizontalAlignment="Center" Margin="115 10 0 0" >
                     <Expander.Header>
                         <DockPanel>
                             <TextBlock VerticalAlignment="Center" Text="Сон/упражнения"/>
@@ -223,7 +223,7 @@
                                 <GridViewColumn Width="200"
                       DisplayMemberBinding="{Binding Path=ActivityName}"/>
                                 <GridViewColumn Width="50"
-                      DisplayMemberBinding="{Binding Path=Calories}"/>
+                      DisplayMemberBinding="{Binding Path=ActivityCalories}"/>
                                 <GridViewColumn>
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
@@ -253,7 +253,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </Expander>
+                </Expander>-->
             </ListView>
         </Grid>
 

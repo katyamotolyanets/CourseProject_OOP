@@ -15,11 +15,13 @@ namespace FoodDiary.Main.ViewModels
     public class ActivitiesViewModel : BaseViewModel
     {
         public List<ActivityType> ActivityTypes { get; set; }
-        public ICommand LinkToActCommand { get; set; }
+        public LinkToActCommand LinkToActCommand { get; set; }
         public ActivityTypeRepository activityTypeRepository { get; set; }
-        public UpdateViewCommand UpdateViewCommand { get; set; }
         public ICollectionView ActivityTypesCollectionView { get; set; }
+
         private string _activityTypeFilter = string.Empty;
+        public UserHistory history { get; set; }
+
         public string ActivityTypeFilter
         {
             get
@@ -33,13 +35,34 @@ namespace FoodDiary.Main.ViewModels
                 ActivityTypesCollectionView.Refresh();
             }
         }
+        private Activity _activity { get; set; }
+        public Activity Activity
+        {
+            get { return _activity; }
+            set
+            {
+                _activity = value;
+                OnPropertyChanged(nameof(Activity));
+            }
+        }
+        private ActivityType _activityType { get; set; }
+        public ActivityType ActivityType
+        {
+            get { return _activityType; }
+            set
+            {
+                _activityType = value;
+                OnPropertyChanged(nameof(ActivityType));
+            }
+        }
         public ActivitiesViewModel()
         {
+            Activity = new Activity();
             ActivityTypes = new List<ActivityType>();
             activityTypeRepository = new ActivityTypeRepository();
-            UpdateViewCommand = new UpdateViewCommand(MainWindow.MyMainView);
             GetActivities();
-            LinkToActCommand = new LinkToActCommand(this);
+            LinkToActCommand = new LinkToActCommand();
+            ActivityType = new ActivityType();
             ActivityTypesCollectionView = CollectionViewSource.GetDefaultView(ActivityTypes);
             ActivityTypesCollectionView.Filter = FilterActivities;
         }
@@ -58,5 +81,7 @@ namespace FoodDiary.Main.ViewModels
         {
             ActivityTypes = (List<ActivityType>)activityTypeRepository.List();
         }
+
+
     }
 }

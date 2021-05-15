@@ -1,18 +1,18 @@
 ﻿using FoodDiary.Core.Models;
 using FoodDiary.Main.ViewModels;
+using FoodDiary.Main.Views;
+using MaterialDesignThemes.Wpf;
 using System;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace FoodDiary.Main.Commands
 {
     public class LinkToActCommand : ICommand
     {
-        ActivitiesViewModel activitiesViewModel { get; set; }
-        public static ActivityType activityType { get; set; }
-        public LinkToActCommand(ActivitiesViewModel activitiesViewModel)
-        {
-            this.activitiesViewModel = activitiesViewModel;
-        }
+        public static ActivityType activityType = new ActivityType();
+        public LinkToActCommand()
+        {        }
 
         public event EventHandler CanExecuteChanged;
 
@@ -23,9 +23,8 @@ namespace FoodDiary.Main.Commands
 
         public void Execute(object parameter)
         {
-            activitiesViewModel.UpdateViewCommand.Execute("Activity");
-
             activityType = (ActivityType)parameter;
         }
+
     }
 }

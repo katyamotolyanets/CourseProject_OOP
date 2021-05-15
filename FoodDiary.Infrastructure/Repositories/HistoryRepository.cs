@@ -48,7 +48,6 @@ namespace FoodDiary.Infrastructure.Repositories
         }
         public void Create(UserHistory history)
         {
-            //Context.Histories.Add(history);
             DbSet.Add(history);
 
             Context.SaveChanges();

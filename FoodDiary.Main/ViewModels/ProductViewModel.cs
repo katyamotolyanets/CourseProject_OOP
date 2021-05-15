@@ -8,8 +8,7 @@ namespace FoodDiary.Main.ViewModels
     public class ProductViewModel : BaseViewModel
     {
         public static Product product { get; set; }
-        
-        public new UpdateViewCommand UpdateViewCommand { get; set; }
+        public UpdateViewCommand UpdateViewCommand { get; set; }
         public ProductSet productSet { get; set; }
         public UserHistory history { get; set; }
         public ICommand AddProductCommand { get; set; }

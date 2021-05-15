@@ -212,7 +212,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\AddActCommand.cs" />
     <Compile Include="Commands\AddProductCommand.cs" />
     <Compile Include="Commands\BackCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
@@ -233,7 +232,6 @@
     <Compile Include="States\Authenticators\Authenticator.cs" />
     <Compile Include="States\Authenticators\IAuthenticator.cs" />
     <Compile Include="ViewModels\ActivitiesViewModel.cs" />
-    <Compile Include="ViewModels\ActivityViewModel.cs" />
     <Compile Include="ViewModels\AddNewProductViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DiaryViewModel.cs" />
@@ -247,9 +245,6 @@
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="Views\Activities.xaml.cs">
       <DependentUpon>Activities.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Activity.xaml.cs">
-      <DependentUpon>Activity.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddNewProduct.xaml.cs">
       <DependentUpon>AddNewProduct.xaml</DependentUpon>
@@ -292,10 +287,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Activities.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Activity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

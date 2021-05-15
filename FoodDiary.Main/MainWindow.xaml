@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         SizeChanged="MainWindow_SizeChanged"
         Icon="D:\2 курс\4 сем\OOP\courseproject\food.jpg">
-    <Canvas x:Name="myCanvas">
+    <Canvas x:Name="myCanvas" >
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>

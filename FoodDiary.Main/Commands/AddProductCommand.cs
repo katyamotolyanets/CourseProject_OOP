@@ -40,7 +40,6 @@ namespace FoodDiary.Main.Commands
             mealType = LinkToAddCommand.MealType;
             productViewModel = new ProductViewModel();
 
-
             product = ProductViewModel.product;
             ProductSet.ID = Guid.NewGuid();
             ProductSet.IDProduct = product.ID;

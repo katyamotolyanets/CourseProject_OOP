@@ -9,34 +9,44 @@
              x:Name="ActivitiesControl"
              d:DesignHeight="680" d:DesignWidth="829">
     <Grid Background="Bisque" ScrollViewer.CanContentScroll="True">
+        
         <Grid Height="70" VerticalAlignment="Top">
             <!--<Button Content="Добавить" Command="{Binding UpdateViewCommand}" CommandParameter="AddNewProduct" Height="30" Width="100" FontSize="15" HorizontalAlignment="Left" Padding="5" Margin="90 20 0 0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontFamily="Century Gothic"/>-->
             <Border CornerRadius="50">
                 <TextBox Text="{Binding ActivityTypeFilter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Margin="70 30 0 0" Padding="5" 
                          FontFamily="Century Gothic" FontSize="15" HorizontalAlignment="Center" BorderThickness="0" Background="WHite"
-                         Width="400" materialDesign:HintAssist.Hint="Введите продукт"/>
+                         Width="400" materialDesign:HintAssist.Hint="Введите упражнение"/>
             </Border>
         </Grid>
         <Grid Margin="0,70,-0.2,0">
-            <ListView ItemsSource="{Binding ActivityTypes}" >
+            <ListView ItemsSource="{Binding ActivityTypes}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Command="{Binding DataContext.LinkToActCommand, ElementName=ActivitiesControl}" CommandParameter="{Binding}"
-                                        BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontFamily="Century Gothic">
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding ActivityName}"/>
-                                            <local:Activity/>
-                                        </StackPanel>
-                                    </Button>
+                                    <StackPanel>
+                                        <Button x:Name="but" Command="{Binding DataContext.LinkToActCommand, ElementName=ActivitiesControl}" CommandParameter="{Binding}"
+                                                Click="ShowCanvas"
+                                        BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontFamily="Century Gothic"
+                                                Content="{Binding Path=ActivityName}"/>
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        
                     </GridView>
                 </ListView.View>
             </ListView>
         </Grid>
+        <Canvas x:Name="ActivityCanvas" Panel.ZIndex="1" Width="200" Height="200" Background="Beige" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid>
+                <StackPanel>
+                    <TextBlock Foreground="Black" Text="{Binding ActivityType.ActivityName}" Height="50"/>
+                    <TextBox Width="50" Text="{Binding Activity.ActivityTime}" Height="50"/>
+                    <Button Content="Сохранить" Click="AddAct"/>
+                </StackPanel>
+            </Grid>
+        </Canvas>
     </Grid>
 </UserControl>
