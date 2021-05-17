@@ -4,14 +4,16 @@ using FoodDiary.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodDiary.Infrastructure.Migrations
 {
     [DbContext(typeof(FoodDiaryContext))]
-    partial class FoodDiaryContextModelSnapshot : ModelSnapshot
+    [Migration("20210516104935_addPhotoSource")]
+    partial class addPhotoSource
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,28 +55,6 @@ namespace FoodDiary.Infrastructure.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("ActivityTypes");
-                });
-
-            modelBuilder.Entity("FoodDiary.Core.Models.ChangeWeight", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("IDUser")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("UserWeight")
-                        .HasColumnType("float");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("IDUser");
-
-                    b.ToTable("ChangesWeight");
                 });
 
             modelBuilder.Entity("FoodDiary.Core.Models.MealType", b =>
@@ -235,15 +215,6 @@ namespace FoodDiary.Infrastructure.Migrations
                     b.HasOne("FoodDiary.Core.Models.ActivityType", "ActivityType")
                         .WithMany("Activities")
                         .HasForeignKey("IDActivityType")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FoodDiary.Core.Models.ChangeWeight", b =>
-                {
-                    b.HasOne("FoodDiary.Core.Models.User", "User")
-                        .WithMany("ChangesWeight")
-                        .HasForeignKey("IDUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

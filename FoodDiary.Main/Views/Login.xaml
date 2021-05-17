@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:FoodDiary.Main.Views"
              xmlns:components="clr-namespace:FoodDiary.Main.Components"
              mc:Ignorable="d" 
-             MinHeight="600">
+             MinHeight="600"
+             Width="1080">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>

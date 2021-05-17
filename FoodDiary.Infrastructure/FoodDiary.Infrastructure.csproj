@@ -262,6 +262,7 @@
   <ItemGroup>
     <Compile Include="Configurations\ActivityConfiguration.cs" />
     <Compile Include="Configurations\ActivityTypeConfiguration.cs" />
+    <Compile Include="Configurations\ChangeWeightConfiguration.cs" />
     <Compile Include="Configurations\MealTypeConfiguration.cs" />
     <Compile Include="Configurations\ProductConfiguration.cs" />
     <Compile Include="Configurations\ProductSetConfiguration.cs" />
@@ -296,12 +297,21 @@
     <Compile Include="Migrations\20210512200928_addLifestyles.designer.cs">
       <DependentUpon>20210512200928_addLifestyles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210516104935_addPhotoSource.cs" />
+    <Compile Include="Migrations\20210516104935_addPhotoSource.designer.cs">
+      <DependentUpon>20210516104935_addPhotoSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210517110551_addChangeWeight.cs" />
+    <Compile Include="Migrations\20210517110551_addChangeWeight.designer.cs">
+      <DependentUpon>20210517110551_addChangeWeight.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\FoodDiaryContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\ActivityRepository.cs" />
     <Compile Include="Repositories\ActivityTypeRepository.cs" />
     <Compile Include="Repositories\AuthenticationRepository.cs" />
+    <Compile Include="Repositories\ChangeWeightRepository.cs" />
     <Compile Include="Repositories\HistoryRepository.cs" />
     <Compile Include="Repositories\LifestyleRepository.cs" />
     <Compile Include="Repositories\MealTypesRepositoty.cs" />

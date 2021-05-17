@@ -21,6 +21,7 @@ namespace FoodDiary.Infrastructure.Configurations
             builder.Property(e => e.UserSex);
             builder.Property(e => e.Password);
             builder.Property(e => e.UserCalories);
+            builder.Property(e => e.PhotoSource);
             builder.HasOne(e => e.UserLifestyle).WithMany(e => e.Users).HasForeignKey(e => e.IDLifestyle);
         }
     }

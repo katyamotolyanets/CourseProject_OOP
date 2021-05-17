@@ -47,7 +47,8 @@ namespace FoodDiary.Main.Commands
                        _registerViewModel.Sex,
                        _registerViewModel.Lifestyle,
                        _registerViewModel.Password,
-                       _registerViewModel.ConfirmPassword
+                       _registerViewModel.ConfirmPassword,
+                       _registerViewModel.Photo
                        );
 
                 switch (registrationResult)
@@ -58,7 +59,7 @@ namespace FoodDiary.Main.Commands
                     case RegistrationResult.PasswordDoNotMatch:
                         _registerViewModel.ErrorMessage = "Password does not match confirm password.";
                         break;
-                    case RegistrationResult.EmailAlreadyExist:
+                    case RegistrationResult.NameAlreadyExist:
                         _registerViewModel.ErrorMessage = "An account for this name already exists.";
                         break;
 
@@ -69,6 +70,7 @@ namespace FoodDiary.Main.Commands
             }
             catch (Exception)
             {
+                
                 _registerViewModel.ErrorMessage = "Registration failed.";
             }
         }

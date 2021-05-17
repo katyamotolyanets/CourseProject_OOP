@@ -12,10 +12,10 @@
         SizeChanged="MainWindow_SizeChanged"
         Icon="D:\2 курс\4 сем\OOP\courseproject\food.jpg">
     <Canvas x:Name="myCanvas" >
-        <Grid>
+        <Grid Width="1080">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="1080"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="680"></RowDefinition>
@@ -44,13 +44,13 @@
                                 <TextBlock Text="Календарь" Margin="10" Foreground="Black" FontFamily="Century Gothic" />
                             </StackPanel>
                         </Button>
-                        <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Balance" Width="251" >
+                        <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Weight" Width="251" >
                             <StackPanel Orientation="Horizontal" Width="251" >
                                 <materialDesign:PackIcon Kind="TrendingUp" Width="20" Height="20" Foreground="#1ABC9C " Margin="5" VerticalAlignment="Center"/>
                                 <TextBlock Text="Отчёты" Margin="10" Foreground="Black" FontFamily="Century Gothic" />
                             </StackPanel>
                         </Button>
-                        <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Balance" Width="251">
+                        <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}" CommandParameter="Profile" Width="251">
                             <StackPanel Orientation="Horizontal" Width="251" >
                                 <materialDesign:PackIcon Kind="ChartBarStacked" Width="20" Height="20" Foreground="#F1C40F" Margin="5" VerticalAlignment="Center"/>
                                 <TextBlock Text="Контроль веса" Margin="10" Foreground="Black" FontFamily="Century Gothic" />

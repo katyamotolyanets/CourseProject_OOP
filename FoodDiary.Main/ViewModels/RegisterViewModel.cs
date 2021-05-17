@@ -149,13 +149,26 @@ namespace FoodDiary.Main.ViewModels
                 OnPropertyChanged(nameof(CanRegister));
             }
         }
-
+        private string _photo;
+        public string Photo
+        {
+            get
+            {
+                return _photo;
+            }
+            set
+            {
+                _photo = value;
+                OnPropertyChanged(nameof(Photo));
+                OnPropertyChanged(nameof(CanRegister));
+            }
+        }
         public bool CanRegister => !string.IsNullOrEmpty(UserName) &&
             !string.IsNullOrEmpty(Convert.ToString(Weight)) &&
             !string.IsNullOrEmpty(Convert.ToString(Height)) &&
             !string.IsNullOrEmpty(Convert.ToString(Age)) &&
             !string.IsNullOrEmpty(Sex) &&
-            //!string.IsNullOrEmpty(Convert.ToString(Lifestyle)) &&
+            !string.IsNullOrEmpty(Convert.ToString(Lifestyle)) &&
             !string.IsNullOrEmpty(Password) &&
             !string.IsNullOrEmpty(ConfirmPassword);
 

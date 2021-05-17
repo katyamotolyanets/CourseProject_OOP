@@ -57,9 +57,9 @@ namespace FoodDiary.Main.States.Authenticators
             CurrentAccount = null;
         }
 
-        public RegistrationResult Register(string username, double weight, double height, int age, string sex, UserLifestyle lifestyle, string password, string confirmPassword)
+        public RegistrationResult Register(string username, double weight, double height, int age, string sex, UserLifestyle lifestyle, string password, string confirmPassword, string photo)
         {
-            return _authenticationRepository.Register(username, weight, height, age, sex, lifestyle, password, confirmPassword);
+            return _authenticationRepository.Register(username, weight, height, age, sex, lifestyle, password, confirmPassword, photo);
         }
     }
 }

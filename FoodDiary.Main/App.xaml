@@ -40,6 +40,9 @@
             <DataTemplate DataType="{x:Type viewmodels:ActivitiesViewModel}">
                 <views:Activities/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:WeightViewModel}">
+                <views:Weight/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

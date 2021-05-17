@@ -13,6 +13,7 @@ namespace FoodDiary.Infrastructure
     {
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
+        public DbSet<ChangeWeight> ChangesWeight { get; set; }
         public DbSet<MealType> MealTypes { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductSet> ProductSets { get; set; }
@@ -29,6 +30,7 @@ namespace FoodDiary.Infrastructure
         {
             modelBuilder.ApplyConfiguration(new ActivityConfiguration());
             modelBuilder.ApplyConfiguration(new ActivityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ChangeWeightConfiguration());
             modelBuilder.ApplyConfiguration(new MealTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductSetConfiguration());

@@ -202,6 +202,7 @@
     <Compile Include="Exceptions\InvalidPasswordException.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\ActivityType.cs" />
+    <Compile Include="Models\ChangeWeight.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\MealType.cs" />
     <Compile Include="Models\Product.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="RepositoryInterfaces\IAccountRepository.cs" />
     <Compile Include="RepositoryInterfaces\IActivityRepository.cs" />
     <Compile Include="RepositoryInterfaces\IActivityTypeRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IChangeWeightRepository.cs" />
     <Compile Include="RepositoryInterfaces\IHistoryRepository.cs" />
     <Compile Include="RepositoryInterfaces\ILifestyleRepository.cs" />
     <Compile Include="RepositoryInterfaces\IMealTypeRepository.cs" />

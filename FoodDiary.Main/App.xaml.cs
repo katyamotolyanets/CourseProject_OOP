@@ -26,7 +26,7 @@ namespace FoodDiary.Main
         protected override void OnStartup(StartupEventArgs e)
         {
             SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            currentAccount.Account = new AccountRepository().GetByName("katya21");
+            currentAccount.Account = new AccountRepository().GetByName("sveta");
             base.OnStartup(e);
         }
     }

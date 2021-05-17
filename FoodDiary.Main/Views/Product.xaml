@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              x:Name="ProductControl"
              d:DesignHeight="680" d:DesignWidth="829">
-    <Grid Background="Wheat">
+    <Grid Background="Wheat" Width="829">
         <ListView Margin="0 20 0 0" Width="829" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left"  Foreground="Black" HorizontalContentAlignment="Center" FontSize="17" FontFamily="Century Gothic" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListViewItem >
                 <ScrollViewer HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" Grid.Row="1">

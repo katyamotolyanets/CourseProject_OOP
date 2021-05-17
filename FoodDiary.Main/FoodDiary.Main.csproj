@@ -213,7 +213,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\AddProductCommand.cs" />
-    <Compile Include="Commands\BackCommand.cs" />
+    <Compile Include="Commands\AddPhotoCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Commands\EditCommand.cs" />
     <Compile Include="Commands\LinkToActCommand.cs" />
@@ -243,6 +243,7 @@
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\WeightViewModel.cs" />
     <Compile Include="Views\Activities.xaml.cs">
       <DependentUpon>Activities.xaml</DependentUpon>
     </Compile>
@@ -269,6 +270,9 @@
     </Compile>
     <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Weight.xaml.cs">
+      <DependentUpon>Weight.xaml</DependentUpon>
     </Compile>
     <Page Include="Components\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
@@ -319,6 +323,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Register.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Weight.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

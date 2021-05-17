@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              x:Name="ActivitiesControl"
              d:DesignHeight="680" d:DesignWidth="829">
-    <Grid Background="Bisque" ScrollViewer.CanContentScroll="True">
+    <Grid Background="Bisque" ScrollViewer.CanContentScroll="True" Width="829">
         
         <Grid Height="70" VerticalAlignment="Top">
             <!--<Button Content="Добавить" Command="{Binding UpdateViewCommand}" CommandParameter="AddNewProduct" Height="30" Width="100" FontSize="15" HorizontalAlignment="Left" Padding="5" Margin="90 20 0 0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontFamily="Century Gothic"/>-->

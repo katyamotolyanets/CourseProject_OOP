@@ -20,7 +20,7 @@ namespace FoodDiary.Infrastructure.Repositories
         public enum RegistrationResult
         {
             Success,
-            EmailAlreadyExist,
+            NameAlreadyExist,
             PasswordDoNotMatch
         }
 
@@ -48,7 +48,7 @@ namespace FoodDiary.Infrastructure.Repositories
             return storedAccount;
         }
 
-        public RegistrationResult Register(string username, double weight, double height, int age, string sex, UserLifestyle lifestyle, string password, string confirmPassword)
+        public RegistrationResult Register(string username, double weight, double height, int age, string sex, UserLifestyle lifestyle, string password, string confirmPassword, string photo)
         {
             RegistrationResult result = RegistrationResult.Success;
 
@@ -61,7 +61,7 @@ namespace FoodDiary.Infrastructure.Repositories
 
             if (potentiallyExistedUser != null)
             {
-                result = RegistrationResult.EmailAlreadyExist;
+                result = RegistrationResult.NameAlreadyExist;
             }
 
             if (result == RegistrationResult.Success)
@@ -69,7 +69,7 @@ namespace FoodDiary.Infrastructure.Repositories
                 string hashedPassword = _passwordHasher.HashPassword(password);
                 Guid guid = new Guid();
                 Guid IDLifestyle = lifestyle.ID;
-
+                photo = @"D:\2 курс\4 сем\OOP\courseproject\FoodDiary.Main\Assets\brain.jpg";
                 User user = new User()
                 {
                     ID = guid,
@@ -79,9 +79,20 @@ namespace FoodDiary.Infrastructure.Repositories
                     UserAge = age,
                     UserSex = sex,
                     IDLifestyle = IDLifestyle,
-                    Password = hashedPassword,                      
+                    Password = hashedPassword,  
+                    PhotoSource = photo,
                 };
                 _accountRepository.Create(user);
+
+                ChangeWeight changeWeight = new ChangeWeight();
+                ChangeWeightRepository changeWeightRepository = new ChangeWeightRepository();
+
+                changeWeight.ID = Guid.NewGuid();
+                changeWeight.IDUser = user.ID;
+                changeWeight.UserWeight = user.UserWeight;
+                changeWeight.Date = DateTime.Now;
+
+                changeWeightRepository.Create(changeWeight);
             }
             return result;
         }
