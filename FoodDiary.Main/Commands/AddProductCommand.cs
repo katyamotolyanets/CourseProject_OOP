@@ -9,10 +9,8 @@ namespace FoodDiary.Main.Commands
 {
     public class AddProductCommand : ICommand
     {
-        public ProductSet ProductSet { get; set; }
-        public ProductSetRepository productSetRepository = new ProductSetRepository();
-        public UserHistory History { get; set; }
-        public HistoryRepository historyRepository = new HistoryRepository();
+        public ProductSetProducts ProductSetProducts { get; set; }
+        public ProductSetProductsRepository productSetProductsRepository = new ProductSetProductsRepository();
         public Product product { get; set; }
         public Guid mealType { get; set; }
         public ProductViewModel productViewModel { get; set; }
@@ -20,10 +18,9 @@ namespace FoodDiary.Main.Commands
         public User CurrentAccount { get; set; }
 
         
-        public AddProductCommand(ProductSet productSet, UserHistory history)
+        public AddProductCommand(ProductSetProducts productSetProducts)
         {
-            ProductSet = productSet;
-            History = history;
+            ProductSetProducts = productSetProducts;
         }
 
         public event EventHandler CanExecuteChanged;
@@ -41,18 +38,13 @@ namespace FoodDiary.Main.Commands
             productViewModel = new ProductViewModel();
 
             product = ProductViewModel.product;
-            ProductSet.ID = Guid.NewGuid();
-            ProductSet.IDProduct = product.ID;
-            ProductSet.IDType = mealType;
-            ProductSet.Date = DateTime.Now;
 
-            productSetRepository.Create(ProductSet);
+            ProductSetProducts.ID = Guid.NewGuid();
+            ProductSetProducts.Product = product;
+            //ProductSetProducts.ProductSet = 
+            //ProductSet.IDProduct = product.ID;
+            //ProductSet.IDType = mealType;
              
-            History.ID = Guid.NewGuid();
-            History.IDProductSet = ProductSet.ID;
-            History.IDUser = CurrentAccount.ID;
-
-            historyRepository.Create(History);
 
             productViewModel.UpdateViewCommand.Execute("Filtering");
         }

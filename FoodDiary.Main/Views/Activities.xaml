@@ -7,30 +7,45 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              x:Name="ActivitiesControl"
-             d:DesignHeight="680" d:DesignWidth="829">
-    <Grid Background="Bisque" ScrollViewer.CanContentScroll="True" Width="829">
+             d:DesignHeight="680" d:DesignWidth="850">
+    <Grid Background="White" ScrollViewer.CanContentScroll="True" Width="850">
         
         <Grid Height="70" VerticalAlignment="Top">
             <!--<Button Content="Добавить" Command="{Binding UpdateViewCommand}" CommandParameter="AddNewProduct" Height="30" Width="100" FontSize="15" HorizontalAlignment="Left" Padding="5" Margin="90 20 0 0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontFamily="Century Gothic"/>-->
             <Border CornerRadius="50">
                 <TextBox Text="{Binding ActivityTypeFilter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Margin="70 30 0 0" Padding="5" 
-                         FontFamily="Century Gothic" FontSize="15" HorizontalAlignment="Center" BorderThickness="0" Background="WHite"
-                         Width="400" materialDesign:HintAssist.Hint="Введите упражнение"/>
+                         FontFamily="Century Gothic" FontSize="15" HorizontalAlignment="Center" BorderThickness="0" Background="#edf8f2"
+                         Width="400" materialDesign:HintAssist.Hint="Введите упражнение" materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"/>
             </Border>
         </Grid>
-        <Grid Margin="0,70,-0.2,0">
+            <materialDesign:DialogHost BorderBrush="{DynamicResource MaterialDesignDivider}">
+                <materialDesign:DialogHost.DialogContent>
+                    <Grid Width="300" Height="150" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="15">
+                        <TextBlock Foreground="Black" Text="{Binding ActivityType.ActivityName}" Height="50"/>
+                        <TextBox Width="50" Text="{Binding Activity.ActivityTime}" Height="50"
+                                 materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"/>
+                        <Button Content="Сохранить" Name="act" Click="AddAct">
+                            <Button.Resources>
+                                <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#59bd8b"/>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                    </Grid>
+                </materialDesign:DialogHost.DialogContent>
+        <Grid Margin="0,70,0,0">
             <ListView ItemsSource="{Binding ActivityTypes}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
-                                        <Button x:Name="but" Command="{Binding DataContext.LinkToActCommand, ElementName=ActivitiesControl}" CommandParameter="{Binding}"
-                                                Click="ShowCanvas"
+                                    <WrapPanel Width="850">
+                                        <Image Source="{Binding IconSource}" Width="30" Height="30"/>
+                                        <Button Margin="10 0 0 0" x:Name="but" FontSize="20" Click="but_Click"
                                         BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontFamily="Century Gothic"
                                                 Content="{Binding Path=ActivityName}"/>
-                                    </StackPanel>
+                                    </WrapPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -39,14 +54,23 @@
                 </ListView.View>
             </ListView>
         </Grid>
-        <Canvas x:Name="ActivityCanvas" Panel.ZIndex="1" Width="200" Height="200" Background="Beige" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Grid>
+        </materialDesign:DialogHost>
+
+        <!--<Canvas x:Name="ActivityCanvas" Panel.ZIndex="1" Width="200" Height="200" Background="Beige" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border Name="Mask"
+                        Background="White"
+                        BorderBrush="#edf8f2"
+                        BorderThickness=".5"
+                        CornerRadius="13"/>
                 <StackPanel>
                     <TextBlock Foreground="Black" Text="{Binding ActivityType.ActivityName}" Height="50"/>
                     <TextBox Width="50" Text="{Binding Activity.ActivityTime}" Height="50"/>
                     <Button Content="Сохранить" Click="AddAct"/>
+                    <StackPanel.OpacityMask>
+                        <VisualBrush Visual="{Binding ElementName=Mask}" />
+                    </StackPanel.OpacityMask>
                 </StackPanel>
-            </Grid>
-        </Canvas>
+        </Canvas>-->
+        
     </Grid>
 </UserControl>

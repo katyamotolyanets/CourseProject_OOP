@@ -22,5 +22,7 @@ namespace FoodDiary.Infrastructure.Repositories
             }
             return query.ToList();
         }
+        private IQueryable<UserLifestyle> MakeInclusions() =>
+            DbSet;
     }
 }

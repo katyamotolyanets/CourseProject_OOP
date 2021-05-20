@@ -16,7 +16,7 @@ namespace FoodDiary.Infrastructure.Repositories
 
         public IEnumerable<ChangeWeight> List(Expression<Func<ChangeWeight, bool>> predicate = null)
         {
-            var query = MakeInclusions().AsQueryable();
+            var query = MakeInclusions().OrderBy(x => x.Date).AsQueryable();
             if (predicate != null)
             {
                 query = query.Where(predicate);
@@ -24,7 +24,7 @@ namespace FoodDiary.Infrastructure.Repositories
             return query.ToList();
         }
         private IQueryable<ChangeWeight> MakeInclusions() =>
-            DbSet;
+            DbSet.Include(x => x.User);
         public void Create(ChangeWeight changeWeight)
         {
             DbSet.Add(changeWeight);

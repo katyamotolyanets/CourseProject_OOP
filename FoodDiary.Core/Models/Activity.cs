@@ -10,8 +10,7 @@ namespace FoodDiary.Core.Models
     {
         public Guid IDActivityType { get; set; }
         public ActivityType ActivityType { get; set; }
-        public float ActivityTime { get; set; }
-        public ICollection<UserHistory> UserHistories { get; set; }
-
+        public int ActivityTime { get; set; }
+        public ICollection<UserHistoryActivities> UserHistoryActivities { get; set; }
     }
 }

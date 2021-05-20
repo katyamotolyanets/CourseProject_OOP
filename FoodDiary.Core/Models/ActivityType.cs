@@ -10,6 +10,7 @@ namespace FoodDiary.Core.Models
     {
         public string ActivityName { get; set; }
         public float ActivityCalories { get; set; }
+        public string IconSource { get; set; }
         public ICollection<Activity> Activities { get; set; }
     }
 }

@@ -26,6 +26,5 @@ namespace FoodDiary.Main.Views
             InitializeComponent();
             DataContext = new DiaryViewModel();
         }
-
     }
 }

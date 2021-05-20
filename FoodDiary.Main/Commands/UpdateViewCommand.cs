@@ -57,7 +57,7 @@ namespace FoodDiary.Main.Commands
             }
             else if (parameter.ToString() == "Weight")
             {
-                viewModel.CurrentViewModel = new WeightViewModel();
+                viewModel.CurrentViewModel = WeightViewModel.LoadViewModel();
             }
             else if (parameter.ToString() == "Login")
             {

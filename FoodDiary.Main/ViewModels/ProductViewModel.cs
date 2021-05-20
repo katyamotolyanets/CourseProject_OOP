@@ -9,17 +9,16 @@ namespace FoodDiary.Main.ViewModels
     {
         public static Product product { get; set; }
         public UpdateViewCommand UpdateViewCommand { get; set; }
-        public ProductSet productSet { get; set; }
+        public ProductSetProducts productSetProducts { get; set; }
         public UserHistory history { get; set; }
         public ICommand AddProductCommand { get; set; }
         public ProductViewModel()
         {
             product = new Product();
             product = MediatorCommand.product;
-            productSet = new ProductSet();
-            history = new UserHistory();
+            productSetProducts = new ProductSetProducts();
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MyMainView);
-            AddProductCommand = new AddProductCommand(productSet, history);
+            AddProductCommand = new AddProductCommand(productSetProducts);
         }
     }
 }

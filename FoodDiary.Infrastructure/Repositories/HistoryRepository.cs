@@ -13,6 +13,7 @@ namespace FoodDiary.Infrastructure.Repositories
     public class HistoryRepository : Repository<UserHistory>, IHistoryRepository
     {
         public UserHistory Find(Guid id) => MakeInclusions().SingleOrDefault(x => x.ID == id);
+        public UserHistory GetByDate(DateTime date) => MakeInclusions().SingleOrDefault(x => x.Date == date);
 
         public IEnumerable<UserHistory> List(Expression<Func<UserHistory, bool>> predicate = null)
         {
@@ -34,16 +35,7 @@ namespace FoodDiary.Infrastructure.Repositories
         public void Edit(UserHistory history)
         {
             UserHistory History = DbSet.Find(history.ID);
-            /*            History.AccountId = history.Account.Id;
-                        History.ActivityId = history.Activity.Id;
-                        History.Amount = history.Amount;
-                        History.Date = history.Date;
-                        History.Description = history.Description;
-                        History.IsRepeat = History.IsRepeat;*/
             Context.Entry(History).CurrentValues.SetValues(history);
-            /*Delete(history.Id);
-            
-            Create(history);*/
             Context.SaveChanges();
         }
         public void Create(UserHistory history)
@@ -53,7 +45,7 @@ namespace FoodDiary.Infrastructure.Repositories
             Context.SaveChanges();
         }
         private IQueryable<UserHistory> MakeInclusions() =>
-            DbSet.Include(x => x.User).Include(x => x.ProductSet);
+            DbSet.Include(x => x.User).ThenInclude(x => x.UserLifestyle);
     }
 }
 

@@ -37,7 +37,7 @@ namespace FoodDiary.Main.ViewModels
             product = new Product();
 
             ProductSet = LinkToEditCommand.ProductSet;
-            product = ProductSet.Product;
+            //product = ProductSet.Product;
             EditCommand = new EditCommand(ProductSet);
 
         }

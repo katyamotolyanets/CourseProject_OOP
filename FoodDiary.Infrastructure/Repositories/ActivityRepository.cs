@@ -24,7 +24,7 @@ namespace FoodDiary.Infrastructure.Repositories
             return query.ToList();
         }
         private IQueryable<Activity> MakeInclusions() =>
-            DbSet.Include(x => x.UserHistories);
+            DbSet.Include(x => x.ActivityType);
         public void Create(Activity activity)
         {
             DbSet.Add(activity);

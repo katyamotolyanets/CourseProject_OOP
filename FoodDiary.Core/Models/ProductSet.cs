@@ -10,10 +10,7 @@ namespace FoodDiary.Core.Models
     {
         public Guid IDType { get; set; }
         public MealType MealType { get; set; }
-        public Guid IDProduct { get; set; }
-        public Product Product { get; set; }
-        public float ProductWeight { get; set; }
-        public DateTime Date { get; set; }
-        public ICollection<UserHistory> UserHistories { get; set; }
+        public ICollection<UserHistoryProductSets> UserHistoryProductSets { get; set; }
+        public ICollection<ProductSetProducts> ProductSetProducts { get; set; }
     }
 }

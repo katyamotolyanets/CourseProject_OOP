@@ -7,9 +7,9 @@
              xmlns:local="clr-namespace:FoodDiary.Main.Views"
              mc:Ignorable="d" 
              x:Name="ProductControl"
-             d:DesignHeight="680" d:DesignWidth="829">
-    <Grid Background="Wheat" Width="829">
-        <ListView Margin="0 20 0 0" Width="829" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left"  Foreground="Black" HorizontalContentAlignment="Center" FontSize="17" FontFamily="Century Gothic" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+             d:DesignHeight="680" d:DesignWidth="850">
+    <Grid Background="Wheat" Width="850">
+        <ListView Margin="0 20 0 0" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left"  Foreground="Black" HorizontalContentAlignment="Center" FontSize="17" FontFamily="Century Gothic" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListViewItem >
                 <ScrollViewer HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" Grid.Row="1">
                     <StackPanel Orientation="Horizontal">
@@ -58,7 +58,8 @@
                 </ScrollViewer>
             </ListViewItem>
             <ListViewItem HorizontalAlignment="Left">
-                <TextBox Foreground="Black" Width="200" Height="50" materialDesign:HintAssist.Hint="100 г" Text="{Binding productSet.ProductWeight}"></TextBox>
+                <TextBox Foreground="Black" Width="200" Height="50" materialDesign:HintAssist.Hint="100 г" 
+                         Text="{Binding productSet.ProductWeight}" materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"></TextBox>
             </ListViewItem>
             <ListViewItem HorizontalAlignment="Center">
                 <Border CornerRadius="15">

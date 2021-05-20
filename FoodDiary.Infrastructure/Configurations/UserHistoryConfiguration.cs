@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FoodDiary.Core.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using FoodDiary.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +15,7 @@ namespace FoodDiary.Infrastructure.Configurations
         {
             builder.HasKey(e => e.ID);
             builder.HasOne(e => e.User).WithMany(e => e.UserHistories).HasForeignKey(e => e.IDUser);
-            builder.HasOne(e => e.ProductSet).WithMany(e => e.UserHistories).HasForeignKey(e => e.IDProductSet);
-            builder.HasOne(e => e.Activity).WithMany(e => e.UserHistories).HasForeignKey(e => e.IDActivity);
+            builder.Property(e => e.Date);
         }
     }
 }

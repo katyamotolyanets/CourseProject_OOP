@@ -10,9 +10,9 @@ namespace FoodDiary.Core.Models
     {
         public Guid IDUser { get; set; }
         public User User { get; set; }
-        public Guid IDProductSet { get; set; }
-        public ProductSet ProductSet { get; set; } 
-        public Guid IDActivity { get; set; }
-        public Activity Activity { get; set; }
+        public DateTime Date { get; set; }
+        public ICollection<UserHistoryActivities> UserHistoryActivities { get; set; }
+        public ICollection<UserHistoryProductSets> UserHistoryProductSets { get; set; }
+
     }
 }

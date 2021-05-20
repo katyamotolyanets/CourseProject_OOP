@@ -17,7 +17,10 @@ namespace FoodDiary.Infrastructure
         public DbSet<MealType> MealTypes { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductSet> ProductSets { get; set; }
+        //public DbSet<ProductSetProducts> ProductSetProducts { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserHistoryActivities> UserHistoryActivities { get; set; }
+        //public DbSet<UserHistoryProductSets> UserHistoryProductSets { get; set; }
         public DbSet<UserHistory> UsersHistories { get; set; }
         public DbSet<UserLifestyle> UserLifestyles { get; set; }
 
@@ -34,8 +37,11 @@ namespace FoodDiary.Infrastructure
             modelBuilder.ApplyConfiguration(new MealTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductSetConfiguration());
+            //modelBuilder.ApplyConfiguration(new ProductSetProductsConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new UserHistoryConfiguration());
+            //modelBuilder.ApplyConfiguration(new UserHistoryProductSetsConfiguration());
+            modelBuilder.ApplyConfiguration(new UserHistoryActivitiesConfiguration());
             modelBuilder.ApplyConfiguration(new UserLifestyleConfiguration());
 
             base.OnModelCreating(modelBuilder);

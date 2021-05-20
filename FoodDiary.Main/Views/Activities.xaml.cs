@@ -57,28 +57,32 @@ namespace FoodDiary.Main.Views
             activityRepository.Create(activity);
 
             history.ID = Guid.NewGuid();
-            history.IDActivity = activity.ID;
+            //history.IDActivity = activity.ID;
             history.IDUser = CurrentAccount.ID;
 
             historyRepository.Create(history);
+            act.Command.Execute(DialogHost.CloseDialogCommand);
         }
 
-        private void ShowCanvas(object sender, RoutedEventArgs e)
+        private void but_Click(object sender, RoutedEventArgs e)
         {
             var btn = sender as Button;
-            btn.Command.Execute(btn.CommandParameter);
-            activityType = (ActivityType)btn.CommandParameter;
-            activitiesViewModel = (ActivitiesViewModel)this.DataContext;
-            activitiesViewModel.ActivityType = activityType;
-            ActivityCanvas.Visibility = Visibility.Visible;
+            //btn.Command.Execute(LinkToActCommand);
         }
 
-
-
-        //private void Button_Mouse(object sender, RoutedEventArgs e)
+        //private void ShowCanvas(object sender, RoutedEventArgs e)
         //{
-        //    myPop.IsOpen = true;
+        //    var btn = sender as Button;
+        //    btn.Command.Execute(btn.CommandParameter);
+        //    activityType = (ActivityType)btn.CommandParameter;
+        //    activitiesViewModel = (ActivitiesViewModel)this.DataContext;
+        //    activitiesViewModel.ActivityType = activityType;
+        //    ActivityCanvas.Visibility = Visibility.Visible;
         //}
+
+
+
+
 
         //private void Close(object sender, RoutedEventArgs e)
         //{

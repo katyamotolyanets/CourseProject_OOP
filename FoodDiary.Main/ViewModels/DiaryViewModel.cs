@@ -14,13 +14,12 @@ namespace FoodDiary.Main.ViewModels
 {
     public class DiaryViewModel : BaseViewModel
     {
+        public User CurrentAccount { get; set; }
         public UpdateViewCommand UpdateViewCommand { get; set; }
         public LinkToAddCommand LinkToAddCommand { get; set; }
         public DeleteCommand DeleteCommand { get; set; }
         public EditCommand EditCommand { get; set; }
         public LinkToEditCommand LinkToEditCommand { get; set; }
-        public ProductSetRepository ProductSetRepository { get; set; }
-
         private ICollectionView _productSetCollectionView { get; set; }
         public ICollectionView ProductSetCollectionView
         {
@@ -42,6 +41,7 @@ namespace FoodDiary.Main.ViewModels
                 RefreshProductSetCollectionView();
             }
         }
+
         private List<ProductSet> _breakfast { get; set; }
         public List<ProductSet> Breakfasts
         {
@@ -82,6 +82,7 @@ namespace FoodDiary.Main.ViewModels
                 OnPropertyChanged(nameof(Snacks));
             }
         }
+
         public ProductSet ProductSet { get; set; }
 
         public DateTime date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
@@ -92,50 +93,86 @@ namespace FoodDiary.Main.ViewModels
             {
                 date = value;
                 OnPropertyChanged(nameof(ProductSets));
-                GetSets();
-                RefreshMeals();
+                CheckHistory(Date);
             }
         }
-        public User CurrentAccount { get; set; }
         public List<UserHistory> Histories { get; set; }
         public List<UserHistory> UserHistories { get; set; }
-        public HistoryRepository HistoryRepository { get; set; }
+        public UnitOfWork UnitOfWork { get; set; }
         public UserHistory History { get; set; }
         public List<ActivityType> ActivityTypes { get; set; }
-        public ActivityTypeRepository ActivityTypeRepository { get; set; }
+
         public DiaryViewModel()
         {
-            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            CurrentAccount = currentAccount.Account;
             ProductSets = new List<ProductSet>();
-            ProductSetRepository = new ProductSetRepository();
             ProductSet = new ProductSet();
-
+            CurrentAccount =  SingleCurrentAccount.GetInstance().Account;
             History = new UserHistory();
             Histories = new List<UserHistory>();
             UserHistories = new List<UserHistory>();
-            HistoryRepository = new HistoryRepository();
 
-            ActivityTypes = new List<ActivityType>();
-            ActivityTypeRepository = new ActivityTypeRepository();
+            UnitOfWork = new UnitOfWork();
 
             Breakfasts = new List<ProductSet>();
             Lunches = new List<ProductSet>();
             Dinners = new List<ProductSet>();
             Snacks = new List<ProductSet>();
 
+            GetHistory(Date);
+            BindProductSets();
+            GetSets();
+            RefreshMeals();
+
+            ActivityTypes = new List<ActivityType>();
+       
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MyMainView);
             LinkToAddCommand = new LinkToAddCommand(this);
             LinkToEditCommand = new LinkToEditCommand(this);
             DeleteCommand = new DeleteCommand(this);
             EditCommand = new EditCommand(ProductSet);
-
-            GetSets();
+            RefreshProductSetCollectionView();
             GetActivityTypes();
-            GetHistories();
-            RefreshMeals();
+            //забиндить продактсеты к этой хистори
         }
+        //проверка хистори на этот день, если нет, то создать
+        public void CheckHistory(DateTime date)
+        {
+            History = UnitOfWork.HistoryRepository.GetByDate(date);
+            if (History == null)
+            {
+                UserHistory history = new UserHistory();
 
+                history.IDUser = CurrentAccount.ID;
+                history.Date = date;
+                history.ID = Guid.NewGuid();
+                UnitOfWork.HistoryRepository.Create(history);
+                List<MealType> mealTypes = new List<MealType>();
+                mealTypes = (List<MealType>)UnitOfWork.MealTypesRepository.List();
+                //заполнение четырёх продуктсетов
+                List<ProductSet> productSets = new List<ProductSet>();
+
+                foreach (MealType mealType in mealTypes)
+                {
+                    ProductSet productSet = new ProductSet();
+                    productSet.ID = Guid.NewGuid();
+                    productSet.IDType = mealType.ID;
+                    UnitOfWork.ProductSetRepository.Create(productSet);
+                    productSets.Add(productSet);
+                }
+                //заполнение промежуточной бд
+                foreach(ProductSet ProductSet in productSets)
+                {
+                    UserHistoryProductSets userHistoryProductSets = new UserHistoryProductSets();
+
+                    userHistoryProductSets.ID = Guid.NewGuid();
+                    userHistoryProductSets.UserHistoryID = history.ID;
+                    userHistoryProductSets.ProductSetID = ProductSet.ID;
+                    UnitOfWork.UserHistoryProductSetsRepository.Create(userHistoryProductSets);
+                    ProductSets.Add(ProductSet);
+                }
+                
+            }
+        }
         public void RefreshMeals()
         {
             GetBreakfasts();
@@ -143,56 +180,60 @@ namespace FoodDiary.Main.ViewModels
             GetDinners();
             GetSnacks();
         }
-
         public void GetActivityTypes()
         {
-            ActivityTypes = (List<ActivityType>)ActivityTypeRepository.List(); 
+            ActivityTypes = (List<ActivityType>)UnitOfWork.ActivityTypeRepository.List(); 
         }
 
         public void GetSets()
         {
-            ProductSets = (List<ProductSet>)ProductSetRepository.List();
+            List<UserHistoryProductSets> UserHistoryProductSets = new List<UserHistoryProductSets>();
+            UserHistoryProductSets = (List<UserHistoryProductSets>)UnitOfWork.UserHistoryProductSetsRepository.List(x => x.UserHistoryID == History.ID);
+            foreach (UserHistoryProductSets userHistoryProductSet in UserHistoryProductSets)
+            {
+                ProductSets.Add(userHistoryProductSet.ProductSet);
+            }
         }
-        public void GetHistories()
+        public void GetHistory(DateTime date) //преобразовать дату 
         {
-            Histories = (List<UserHistory>)HistoryRepository.List();
-            UserHistories = Histories.Where(x => x.IDUser == CurrentAccount.ID).ToList();
+            CheckHistory(date);
+            History = UnitOfWork.HistoryRepository.GetByDate(date);
+/*            Histories = (List<UserHistory>)HistoryRepository.List();
+            UserHistories = Histories.Where(x => x.IDUser == CurrentAccount.ID).ToList();*/
         }
+        public void BindProductSets()
+        {
+            List<UserHistoryProductSets> UserHistoryProductSets = new List<UserHistoryProductSets>();
+
+            UserHistoryProductSets = (List<UserHistoryProductSets>)UnitOfWork.UserHistoryProductSetsRepository.List(x => x.UserHistoryID == History.ID);
+            ProductSets = new List<ProductSet>();
+
+            foreach (UserHistoryProductSets userHistoryProductSet in UserHistoryProductSets)
+            {
+                ProductSets.Add(userHistoryProductSet.ProductSet);// вохможно будет нулл
+            }
+        }
+
         public void GetBreakfasts()
         {
-            Breakfasts = (List<ProductSet>)ProductSetRepository.List();
-            if (UserHistories.Count != 0)
-                foreach (UserHistory history in UserHistories)
-                    Breakfasts = ProductSets.Where(x => x.MealType.MealName == "Завтрак" && x.Date.ToString("MM/dd/yyyy") == Date.ToString("MM/dd/yyyy") && x.ID == history.IDProductSet).ToList();
-            else
-                Breakfasts = null;
+            Breakfasts = (List<ProductSet>)UnitOfWork.ProductSetRepository.List();
+            Breakfasts = ProductSets.Where(x => x.MealType.MealName == "Завтрак").ToList();
         }
         public void GetLunches()
         {
-            Lunches = (List<ProductSet>)ProductSetRepository.List();
-            if (UserHistories.Count != 0)
-                foreach (UserHistory history in UserHistories)
-                    Lunches = ProductSets.Where(x => x.MealType.MealName == "Обед" && x.Date.ToString("MM/dd/yyyy") == Date.ToString("MM/dd/yyyy") && x.ID == history.IDProductSet).ToList();
-            else
-                Lunches = null;
+            Lunches = (List<ProductSet>)UnitOfWork.ProductSetRepository.List();
+            Lunches = ProductSets.Where(x => x.MealType.MealName == "Обед").ToList();
         }
         public void GetDinners()
         {
-            Dinners = (List<ProductSet>)ProductSetRepository.List();
-            if (UserHistories.Count != 0)
-                foreach (UserHistory history in UserHistories)
-                    Dinners = ProductSets.Where(x => x.MealType.MealName == "Ужин" && x.Date.ToString("MM/dd/yyyy") == Date.ToString("MM/dd/yyyy") && x.ID == history.IDProductSet).ToList();
-             else
-                Dinners = null;
+            Dinners = (List<ProductSet>)UnitOfWork.ProductSetRepository.List();
+            Dinners = ProductSets.Where(x => x.MealType.MealName == "Ужин").ToList();
+
         }
         public void GetSnacks()
         {
-            Snacks = (List<ProductSet>)ProductSetRepository.List();
-            if (UserHistories.Count != 0)
-                foreach (UserHistory history in UserHistories)
-                    Snacks = Snacks.Where(x => x.MealType.MealName == "Перекус/другое" && x.Date.ToString("MM/dd/yyyy") == Date.ToString("MM/dd/yyyy") && x.ID == history.IDProductSet).ToList();
-             else
-                Snacks = null;
+            Snacks = (List<ProductSet>)UnitOfWork.ProductSetRepository.List();
+            Snacks = ProductSets.Where(x => x.MealType.MealName == "Перекус/другое").ToList();
         }
 
         public class DateTimeConverter : IValueConverter

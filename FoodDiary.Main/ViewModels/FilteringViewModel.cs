@@ -37,6 +37,7 @@ namespace FoodDiary.Main.ViewModels
             GetProducts();
             MediatorCommand = new MediatorCommand(this);
             ProductsCollectionView = CollectionViewSource.GetDefaultView(Products);
+            ProductsCollectionView.Refresh();
             ProductsCollectionView.Filter = FilterProducts;
         }
 

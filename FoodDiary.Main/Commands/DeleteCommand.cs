@@ -30,10 +30,10 @@ namespace FoodDiary.Main.Commands
             ProductSet = (ProductSet)parameter;
             ProductSetRepository.Delete(ProductSet);
             diaryViewModel.GetSets();
-            diaryViewModel.GetBreakfasts();
+/*            diaryViewModel.GetBreakfasts();
             diaryViewModel.GetDinners();
             diaryViewModel.GetLunches();
-            diaryViewModel.GetSnacks();
+            diaryViewModel.GetSnacks();*/
         }
     }
 }

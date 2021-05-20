@@ -25,8 +25,8 @@ namespace FoodDiary.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float>("ActivityTime")
-                        .HasColumnType("real");
+                    b.Property<int>("ActivityTime")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("IDActivityType")
                         .HasColumnType("uniqueidentifier");
@@ -48,6 +48,9 @@ namespace FoodDiary.Infrastructure.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("ActivityName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IconSource")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -126,25 +129,38 @@ namespace FoodDiary.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("IDProduct")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("IDType")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float>("ProductWeight")
-                        .HasColumnType("real");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("IDProduct");
 
                     b.HasIndex("IDType");
 
                     b.ToTable("ProductSets");
+                });
+
+            modelBuilder.Entity("FoodDiary.Core.Models.ProductSetProducts", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductSetID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("ProductWeight")
+                        .HasColumnType("float");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ProductID");
+
+                    b.HasIndex("ProductSetID");
+
+                    b.ToTable("ProductSetProducts");
                 });
 
             modelBuilder.Entity("FoodDiary.Core.Models.User", b =>
@@ -193,24 +209,59 @@ namespace FoodDiary.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IDActivity")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IDProductSet")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("IDUser")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("IDActivity");
-
-                    b.HasIndex("IDProductSet");
-
                     b.HasIndex("IDUser");
 
                     b.ToTable("UsersHistories");
+                });
+
+            modelBuilder.Entity("FoodDiary.Core.Models.UserHistoryActivities", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ActivityID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserHistoryID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ActivityID");
+
+                    b.HasIndex("UserHistoryID");
+
+                    b.ToTable("UserHistoryActivities");
+                });
+
+            modelBuilder.Entity("FoodDiary.Core.Models.UserHistoryProductSets", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductSetID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserHistoryID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ProductSetID");
+
+                    b.HasIndex("UserHistoryID");
+
+                    b.ToTable("UserHistoryProductSets");
                 });
 
             modelBuilder.Entity("FoodDiary.Core.Models.UserLifestyle", b =>
@@ -250,15 +301,24 @@ namespace FoodDiary.Infrastructure.Migrations
 
             modelBuilder.Entity("FoodDiary.Core.Models.ProductSet", b =>
                 {
-                    b.HasOne("FoodDiary.Core.Models.Product", "Product")
-                        .WithMany("ProductSets")
-                        .HasForeignKey("IDProduct")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FoodDiary.Core.Models.MealType", "MealType")
                         .WithMany("ProductSets")
                         .HasForeignKey("IDType")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FoodDiary.Core.Models.ProductSetProducts", b =>
+                {
+                    b.HasOne("FoodDiary.Core.Models.Product", "Product")
+                        .WithMany("ProductSetProducts")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FoodDiary.Core.Models.ProductSet", "ProductSet")
+                        .WithMany("ProductSetProducts")
+                        .HasForeignKey("ProductSetID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -274,21 +334,39 @@ namespace FoodDiary.Infrastructure.Migrations
 
             modelBuilder.Entity("FoodDiary.Core.Models.UserHistory", b =>
                 {
-                    b.HasOne("FoodDiary.Core.Models.Activity", "Activity")
-                        .WithMany("UserHistories")
-                        .HasForeignKey("IDActivity")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FoodDiary.Core.Models.ProductSet", "ProductSet")
-                        .WithMany("UserHistories")
-                        .HasForeignKey("IDProductSet")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FoodDiary.Core.Models.User", "User")
                         .WithMany("UserHistories")
                         .HasForeignKey("IDUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FoodDiary.Core.Models.UserHistoryActivities", b =>
+                {
+                    b.HasOne("FoodDiary.Core.Models.Activity", "Activity")
+                        .WithMany("UserHistoryActivities")
+                        .HasForeignKey("ActivityID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FoodDiary.Core.Models.UserHistory", "UserHistory")
+                        .WithMany("UserHistoryActivities")
+                        .HasForeignKey("UserHistoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FoodDiary.Core.Models.UserHistoryProductSets", b =>
+                {
+                    b.HasOne("FoodDiary.Core.Models.ProductSet", "ProductSet")
+                        .WithMany("UserHistoryProductSets")
+                        .HasForeignKey("ProductSetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FoodDiary.Core.Models.UserHistory", "UserHistory")
+                        .WithMany("UserHistoryProductSets")
+                        .HasForeignKey("UserHistoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

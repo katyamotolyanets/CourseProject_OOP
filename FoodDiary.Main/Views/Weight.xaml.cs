@@ -24,7 +24,12 @@ namespace FoodDiary.Main.Views
         public Weight()
         {
             InitializeComponent();
-            DataContext = new WeightViewModel();
+            DataContext = WeightViewModel.LoadViewModel();
+        }
+
+        private void ChangeWeight_Click(object sender, RoutedEventArgs e)
+        {
+            WeightCanvas.Visibility = Visibility.Visible;
         }
     }
 }

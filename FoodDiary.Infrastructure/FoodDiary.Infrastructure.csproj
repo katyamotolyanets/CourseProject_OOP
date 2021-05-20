@@ -266,44 +266,15 @@
     <Compile Include="Configurations\MealTypeConfiguration.cs" />
     <Compile Include="Configurations\ProductConfiguration.cs" />
     <Compile Include="Configurations\ProductSetConfiguration.cs" />
+    <Compile Include="Configurations\ProductSetProductsConfiguration.cs" />
     <Compile Include="Configurations\UserConfiguration.cs" />
+    <Compile Include="Configurations\UserHistoryActivitiesConfiguration.cs" />
     <Compile Include="Configurations\UserHistoryConfiguration.cs" />
+    <Compile Include="Configurations\UserHistoryProductSetsConfiguration.cs" />
     <Compile Include="FoodDiaryContext.cs" />
-    <Compile Include="Migrations\20210320195603_init.cs" />
-    <Compile Include="Migrations\20210320195603_init.designer.cs">
-      <DependentUpon>20210320195603_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210425123002_update.cs" />
-    <Compile Include="Migrations\20210425123002_update.designer.cs">
-      <DependentUpon>20210425123002_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210508110007_addSex.cs" />
-    <Compile Include="Migrations\20210508110007_addSex.designer.cs">
-      <DependentUpon>20210508110007_addSex.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210512112012_addition.cs" />
-    <Compile Include="Migrations\20210512112012_addition.designer.cs">
-      <DependentUpon>20210512112012_addition.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210512181600_updateTables.cs" />
-    <Compile Include="Migrations\20210512181600_updateTables.designer.cs">
-      <DependentUpon>20210512181600_updateTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210512193948_updateTypes.cs" />
-    <Compile Include="Migrations\20210512193948_updateTypes.designer.cs">
-      <DependentUpon>20210512193948_updateTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210512200928_addLifestyles.cs" />
-    <Compile Include="Migrations\20210512200928_addLifestyles.designer.cs">
-      <DependentUpon>20210512200928_addLifestyles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210516104935_addPhotoSource.cs" />
-    <Compile Include="Migrations\20210516104935_addPhotoSource.designer.cs">
-      <DependentUpon>20210516104935_addPhotoSource.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210517110551_addChangeWeight.cs" />
-    <Compile Include="Migrations\20210517110551_addChangeWeight.designer.cs">
-      <DependentUpon>20210517110551_addChangeWeight.cs</DependentUpon>
+    <Compile Include="Migrations\20210519210235_init.cs" />
+    <Compile Include="Migrations\20210519210235_init.designer.cs">
+      <DependentUpon>20210519210235_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\FoodDiaryContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -315,10 +286,13 @@
     <Compile Include="Repositories\HistoryRepository.cs" />
     <Compile Include="Repositories\LifestyleRepository.cs" />
     <Compile Include="Repositories\MealTypesRepositoty.cs" />
+    <Compile Include="Repositories\ProductSetProductsRepository.cs" />
     <Compile Include="Repositories\ProductSetRepository.cs" />
     <Compile Include="Repositories\ProductsRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Configurations\UserLifestyleConfiguration.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Repositories\UserHistoryProductSetsRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -204,9 +204,12 @@
     <Compile Include="Models\ActivityType.cs" />
     <Compile Include="Models\ChangeWeight.cs" />
     <Compile Include="Models\Entity.cs" />
+    <Compile Include="Models\UserHistoryActivities.cs" />
+    <Compile Include="Models\UserHistoryProductSets.cs" />
     <Compile Include="Models\MealType.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductSet.cs" />
+    <Compile Include="Models\ProductSetProducts.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserHistory.cs" />
     <Compile Include="Models\UserLifestyle.cs" />
@@ -219,9 +222,12 @@
     <Compile Include="RepositoryInterfaces\IHistoryRepository.cs" />
     <Compile Include="RepositoryInterfaces\ILifestyleRepository.cs" />
     <Compile Include="RepositoryInterfaces\IMealTypeRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IProductSetProductsRepository.cs" />
     <Compile Include="RepositoryInterfaces\IProductSetRepository.cs" />
     <Compile Include="RepositoryInterfaces\IProductsRepository.cs" />
     <Compile Include="RepositoryInterfaces\IRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IUnitOfWork.cs" />
+    <Compile Include="RepositoryInterfaces\IUserHistoryProductSetsRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

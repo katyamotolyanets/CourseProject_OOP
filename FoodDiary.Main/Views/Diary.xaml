@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              x:Name="DiaryView"
-             d:DesignHeight="680" d:DesignWidth="829">
+             d:DesignHeight="680" d:DesignWidth="850">
     <UserControl.Resources>
         <Style x:Key="Buttons">
             <Setter Property="ItemsControl.Background" Value="Transparent"/>
@@ -18,18 +18,26 @@
             <Setter Property="ItemsControl.Padding" Value="10"/>
         </Style>
     </UserControl.Resources>
-    <Grid Background="Bisque" Width="829">
+    <Grid Background="White" Width="850">
         <Grid Height="100" VerticalAlignment="Top">
-            <DatePicker IsTodayHighlighted="True" Margin="40 -100 0 0" Width="200" SelectedDate="{Binding Date}" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="22"/>
+            <WrapPanel>
+                <DatePicker IsTodayHighlighted="True" Margin="50 0 0 0" Width="200" SelectedDate="{Binding Date}" 
+                        HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="20"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"/>
+                <TextBlock Text="Остаток калорий: " Margin="200 65 0 0" FontFamily="Century Gothic" 
+                           FontSize="20" Foreground="DimGray"/>
+                <TextBlock Text="{Binding CurrentAccount.UserCalories}" Margin="10 65 0 0" FontFamily="Century Gothic" 
+                           FontSize="20" Foreground="DimGray"/>
+            </WrapPanel>
         </Grid>
         <Grid Margin="0 100 0 0">
             <ListView>
-                <Expander FontFamily="Century Gothic" FontSize="25" Width="599" HorizontalAlignment="Center" Margin="115 30 0 0">
+                <Expander Background="#b6e2cc" FontFamily="Century Gothic" FontSize="25" Width="599" HorizontalAlignment="Center" Margin="115 30 0 0">
                     <Expander.Header>
                         <DockPanel>
-                            <TextBlock VerticalAlignment="Center" Text="Завтрак"/>
-                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="83765D9E-2273-4F26-BF9E-3B426AC88F60">
-                                <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="Black" Margin="-15 0" VerticalAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center" Text="Завтрак" Foreground="DimGray"/>
+                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="E1CE989F-83A9-431A-9896-977D27F2093D">
+                                <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="DimGray" Margin="-15 0" VerticalAlignment="Center"/>
                             </Button>
                         </DockPanel>
                     </Expander.Header>
@@ -70,12 +78,12 @@
                         </ListView.View>
                     </ListView>
                 </Expander>
-                <Expander FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="599" HorizontalAlignment="Center" Margin="115 10 0 0">
+                <Expander Background="#b6e2cc" FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="599" HorizontalAlignment="Center" Margin="115 10 0 0">
                     <Expander.Header>
                         <DockPanel>
-                            <TextBlock VerticalAlignment="Center" Text="Обед"/>
-                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="638F50E6-3B50-4431-A1CB-C098B9DA68C5">
-                                <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="Black" Margin="-15 0" VerticalAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center" Text="Обед" Foreground="DimGray"/>
+                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="A96E2250-2554-4085-ABFD-F29F6EA5A93E">
+                                <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="DimGray" Margin="-15 0" VerticalAlignment="Center"/>
                             </Button>
                         </DockPanel>
                     </Expander.Header>
@@ -116,12 +124,12 @@
                         </ListView.View>
                     </ListView>
                 </Expander>
-                <Expander FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="599" HorizontalAlignment="Center" Margin="115 10 0 0">
+                <Expander Background="#b6e2cc" FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="599" HorizontalAlignment="Center" Margin="115 10 0 0">
                     <Expander.Header>
                         <DockPanel>
-                            <TextBlock VerticalAlignment="Center" Text="Ужин"/>
-                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="6854F579-3151-4BDB-B12D-A7B68A9B4498">
-                                <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="Black" Margin="-15 0" VerticalAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center" Text="Ужин" Foreground="DimGray"/>
+                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="42EB21C1-78B7-45D0-BAF7-650D05AEFF2D">
+                                <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="DimGray" Margin="-15 0" VerticalAlignment="Center"/>
                             </Button>
                         </DockPanel>
                     </Expander.Header>
@@ -162,12 +170,12 @@
                         </ListView.View>
                     </ListView>
                 </Expander>
-                <Expander FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="599" HorizontalAlignment="Center" Margin="115 10 0 0" >
+                <Expander Background="#b6e2cc" FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="599" HorizontalAlignment="Center" Margin="115 10 0 0" >
                     <Expander.Header>
                         <DockPanel>
-                            <TextBlock VerticalAlignment="Center" Text="Перекус/другое"/>
-                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="22CF6056-F288-42BF-B11B-CB7FE7ACB5CE">
-                                <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="Black" Margin="-15 0" VerticalAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center" Text="Перекус/другое" Foreground="DimGray"/>
+                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="7CF66BA4-2A76-44D2-967B-614E305CC4D6">
+                                <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="DimGray" Margin="-15 0" VerticalAlignment="Center"/>
                             </Button>
                         </DockPanel>
                     </Expander.Header>
@@ -208,12 +216,12 @@
                         </ListView.View>
                     </ListView>
                 </Expander>
-                <!--<Expander FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="599" HorizontalAlignment="Center" Margin="115 10 0 0" >
+                <Expander Background="#b6e2cc" FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="599" HorizontalAlignment="Center" Margin="115 10 0 0" >
                     <Expander.Header>
                         <DockPanel>
-                            <TextBlock VerticalAlignment="Center" Text="Сон/упражнения"/>
+                            <TextBlock VerticalAlignment="Center" Text="Сон/упражнения" Foreground="DimGray"/>
                             <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" Command="{Binding DataContext.UpdateViewCommand, ElementName=DiaryView}" CommandParameter="Activities">
-                                <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="Black" Margin="-15 0" VerticalAlignment="Center"/>
+                                <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="DimGray" Margin="-15 0" VerticalAlignment="Center"/>
                             </Button>
                         </DockPanel>
                     </Expander.Header>
@@ -253,8 +261,9 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </Expander>-->
+                </Expander>
             </ListView>
+            
         </Grid>
 
         <!--<ListView AlternationCount="2" FontFamily="Century Gothic"
@@ -297,7 +306,7 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button  Margin="50 0 0 0" Style="{StaticResource Buttons}" Command="{Binding DataContext.LinkToEditCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{x:Static languge:Language.edit}">
+                                    <Button  Margin="50 0 0 0" Style="{StaticResource Buttons}" Command="{Binding DataContext.LinkToEditCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="Редактировать">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="5"/>
@@ -310,7 +319,7 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Style="{StaticResource Buttons}" Command="{Binding DataContext.DeleteCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="{x:Static languge:Language.delete}">
+                                    <Button Style="{StaticResource Buttons}" Command="{Binding DataContext.DeleteCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="Удалить">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="5"/>

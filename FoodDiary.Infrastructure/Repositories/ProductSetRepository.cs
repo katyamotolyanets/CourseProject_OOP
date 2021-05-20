@@ -23,7 +23,7 @@ namespace FoodDiary.Infrastructure.Repositories
         }
 
         private IQueryable<ProductSet> MakeInclusions() =>
-            DbSet.Include(x => x.MealType).Include(x => x.Product);
+            DbSet.Include(x => x.MealType);
 
         public void Create(ProductSet productSet)
         {

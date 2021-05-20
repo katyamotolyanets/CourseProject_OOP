@@ -16,6 +16,7 @@ namespace FoodDiary.Infrastructure.Configurations
             builder.HasKey(e => e.ID);
             builder.Property(e => e.ActivityName);
             builder.Property(e => e.ActivityCalories);
+            builder.Property(e => e.IconSource);
         }
     }
 }
