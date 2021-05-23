@@ -10,7 +10,7 @@
         Title="FoodDiary" Height="680" Width="1080" 
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         SizeChanged="MainWindow_SizeChanged"
-        Icon="D:\2 курс\4 сем\OOP\courseproject\food.jpg">
+        Icon="D:\2 курс\4 сем\OOP\courseproject\FoodDiary.Main\Assets\avocado(1).png">
     <Canvas x:Name="myCanvas" >
         <Grid Width="1080">
             <Grid.ColumnDefinitions>

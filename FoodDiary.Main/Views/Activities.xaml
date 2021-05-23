@@ -18,23 +18,30 @@
                          Width="400" materialDesign:HintAssist.Hint="Введите упражнение" materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"/>
             </Border>
         </Grid>
-            <materialDesign:DialogHost BorderBrush="{DynamicResource MaterialDesignDivider}">
-                <materialDesign:DialogHost.DialogContent>
-                    <Grid Width="300" Height="150" HorizontalAlignment="Center">
-                        <StackPanel Orientation="Horizontal" Margin="15">
-                        <TextBlock Foreground="Black" Text="{Binding ActivityType.ActivityName}" Height="50"/>
-                        <TextBox Width="50" Text="{Binding Activity.ActivityTime}" Height="50"
+        <materialDesign:DialogHost BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Width="400" Height="200" HorizontalAlignment="Center">
+                    <StackPanel>
+                        <TextBlock Foreground="Black" Text="Введите продолжительность занятия"
+                                   FontFamily="Century Gothic" HorizontalAlignment="Center"
+                                   Margin="0 25 0 0" FontSize="20"/>
+                        <WrapPanel HorizontalAlignment="Center">
+                            <TextBox Margin="10 20 0 0" Width="50" FontFamily="Century Gothic" Text="{Binding Activity.ActivityTime}"
+                                     Height="25"
                                  materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"/>
-                        <Button Content="Сохранить" Name="act" Click="AddAct">
+                            <TextBlock Margin="7 25 0 0" FontFamily="Century Gothic" Text="мин"/>
+                        </WrapPanel>
+                        <Button Margin="0 30 0 0" Content="Сохранить" Name="act" Click="AddAct"
+                                Width="120" Height="40" HorizontalAlignment="Center"
+                                FontFamily="Century Gothic" FontSize="15">
                             <Button.Resources>
                                 <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#59bd8b"/>
                             </Button.Resources>
                         </Button>
                     </StackPanel>
-                    </Grid>
-                </materialDesign:DialogHost.DialogContent>
-        <Grid Margin="0,70,0,0">
-            <ListView ItemsSource="{Binding ActivityTypes}">
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+                <ListView Margin="0,70,0,0" ItemsSource="{Binding ActivityTypes}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn>
@@ -42,7 +49,7 @@
                                 <DataTemplate>
                                     <WrapPanel Width="850">
                                         <Image Source="{Binding IconSource}" Width="30" Height="30"/>
-                                        <Button Margin="10 0 0 0" x:Name="but" FontSize="20" Click="but_Click"
+                                            <Button Margin="10 0 0 0" Name="but" FontSize="20" Click="but_Click"
                                         BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontFamily="Century Gothic"
                                                 Content="{Binding Path=ActivityName}"/>
                                     </WrapPanel>
@@ -53,8 +60,9 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-        </Grid>
         </materialDesign:DialogHost>
+
+
 
         <!--<Canvas x:Name="ActivityCanvas" Panel.ZIndex="1" Width="200" Height="200" Background="Beige" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Border Name="Mask"

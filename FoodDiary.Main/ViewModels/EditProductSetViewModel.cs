@@ -1,4 +1,5 @@
 ﻿using FoodDiary.Core.Models;
+using FoodDiary.Infrastructure.Repositories;
 using FoodDiary.Main.Commands;
 using System.Windows.Input;
 
@@ -7,15 +8,16 @@ namespace FoodDiary.Main.ViewModels
     public class EditProductSetViewModel : ProductViewModel
     {
         public ICommand EditCommand { get; set; }
-        private ProductSet _productSet { get; set; }
+        private ProductSetProducts _productSetProducts { get; set; }
+        public UnitOfWork UnitOfWork { get; set; }
 
-        public ProductSet ProductSet
+        public ProductSetProducts ProductSetProduct
         {
-            get { return _productSet; }
+            get { return _productSetProducts; }
             set
             {
-                _productSet = value;
-                OnPropertyChanged(nameof(_productSet));
+                _productSetProducts = value;
+                OnPropertyChanged(nameof(ProductSetProduct));
             }
         }
 
@@ -27,18 +29,20 @@ namespace FoodDiary.Main.ViewModels
             set
             {
                 _product = value;
-                OnPropertyChanged(nameof(_product));
+                OnPropertyChanged(nameof(product));
             }
         }
 
         public EditProductSetViewModel()
         {
-            ProductSet = new ProductSet();
+            UnitOfWork = new UnitOfWork();
+            ProductSetProduct = new ProductSetProducts();
             product = new Product();
-
-            ProductSet = LinkToEditCommand.ProductSet;
-            //product = ProductSet.Product;
-            EditCommand = new EditCommand(ProductSet);
+            
+            ProductSetProduct = LinkToEditCommand.ProductSetProduct;
+            product = UnitOfWork.ProductsRepository.Find(ProductSetProduct.ProductID);
+            
+            EditCommand = new EditCommand(ProductSetProduct);
 
         }
     }

@@ -26,5 +26,27 @@ namespace FoodDiary.Infrastructure.Repositories
 
         private IQueryable<ProductSetProducts> MakeInclusions() =>
             DbSet.Include(x => x.Product).Include(x => x.ProductSet).ThenInclude(x => x.MealType);
+
+        public void Create(ProductSetProducts productSetProducts)
+        {
+            DbSet.Add(productSetProducts);
+
+            Context.SaveChanges();
+        }
+
+        public void Edit(ProductSetProducts productSetProducts)
+        {
+            ProductSetProducts ProductSetProducts = DbSet.Find(productSetProducts.ID);
+            Context.Entry(ProductSetProducts).CurrentValues.SetValues(productSetProducts);
+            Context.SaveChanges();
+        }
+
+        public void Delete(ProductSetProducts productSetProducts)
+        {
+            DbSet.Remove(productSetProducts);
+
+            Context.SaveChanges();
+        }
     }
+
 }

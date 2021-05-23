@@ -12,15 +12,14 @@ namespace FoodDiary.Main.Commands
         public ProductSetProducts ProductSetProducts { get; set; }
         public ProductSetProductsRepository productSetProductsRepository = new ProductSetProductsRepository();
         public Product product { get; set; }
-        public Guid mealType { get; set; }
-        public ProductViewModel productViewModel { get; set; }
-        public DiaryViewModel diaryViewModel { get; set; }
-        public User CurrentAccount { get; set; }
+        public ProductSet ProductSet { get; set; }
+        public LinkToAddCommand LinkToAddCommand { get; set; }
+        public ProductViewModel ProductViewModel { get; set; }
 
-        
-        public AddProductCommand(ProductSetProducts productSetProducts)
+        public AddProductCommand(ProductSet productSet, ProductViewModel productViewModel)
         {
-            ProductSetProducts = productSetProducts;
+            ProductSet = productSet;
+            ProductViewModel = productViewModel;
         }
 
         public event EventHandler CanExecuteChanged;
@@ -32,21 +31,16 @@ namespace FoodDiary.Main.Commands
 
         public void Execute(object parameter)
         {
-            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            CurrentAccount = currentAccount.Account;
-            mealType = LinkToAddCommand.MealType;
-            productViewModel = new ProductViewModel();
-
             product = ProductViewModel.product;
-
+            ProductSetProducts = new ProductSetProducts();
             ProductSetProducts.ID = Guid.NewGuid();
-            ProductSetProducts.Product = product;
-            //ProductSetProducts.ProductSet = 
-            //ProductSet.IDProduct = product.ID;
-            //ProductSet.IDType = mealType;
-             
+            ProductSetProducts.ProductID = product.ID;
+            ProductSetProducts.ProductSetID = ProductSet.ID;
+            ProductSetProducts.ProductWeight = ProductViewModel.productSetProducts.ProductWeight;
 
-            productViewModel.UpdateViewCommand.Execute("Filtering");
+            UnitOfWork unitOfWork = new UnitOfWork();
+            unitOfWork.ProductSetProductsRepository.Create(ProductSetProducts);
+            ProductViewModel.UpdateViewCommand.Execute("Diary");
         }
     }
 }

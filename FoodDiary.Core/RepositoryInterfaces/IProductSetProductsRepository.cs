@@ -9,5 +9,8 @@ namespace FoodDiary.Core.RepositoryInterfaces
 {
     public interface IProductSetProductsRepository : IRepository<ProductSetProducts, Guid>
     {
+        void Create(ProductSetProducts productSetProducts);
+        void Edit(ProductSetProducts productSetProducts);
+        void Delete(ProductSetProducts productSetProducts);
     }
 }

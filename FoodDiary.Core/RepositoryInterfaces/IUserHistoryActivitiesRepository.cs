@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace FoodDiary.Core.RepositoryInterfaces
 {
-    public interface IActivityRepository : IRepository<Activity, Guid>
+    public interface IUserHistoryActivitiesRepository : IRepository<UserHistoryActivities, Guid>
     {
-        void Create(Activity activity);
+        void Create(UserHistoryActivities userHistoryActivities);
     }
 }

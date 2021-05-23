@@ -21,9 +21,21 @@ namespace FoodDiary.Infrastructure.Repositories
 
             return query.ToList();
         }
-
+        
         private IQueryable<ProductSet> MakeInclusions() =>
             DbSet.Include(x => x.MealType);
+
+        //public IEnumerable<Product> GetProducts(Guid ProductSetID) 
+        //{
+        //    var query = new List<ProductSetProducts>();
+        //    query = query.Where(q => q.ProductSetID == ProductSetID).ToList();
+        //    var products = new List<Product>();
+        //    foreach(var item in query)
+        //    {
+        //        products.Add(item.Product);
+        //    }
+        //    return products;
+        //}
 
         public void Create(ProductSet productSet)
         {
@@ -39,11 +51,6 @@ namespace FoodDiary.Infrastructure.Repositories
             Context.SaveChanges();
         }
 
-        public void Edit(ProductSet productSet)
-        {
-            ProductSet ProductSet = DbSet.Find(productSet.ID);
-            Context.Entry(ProductSet).CurrentValues.SetValues(productSet);
-            Context.SaveChanges();
-        }
+       
     }
 }

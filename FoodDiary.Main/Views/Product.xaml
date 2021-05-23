@@ -8,14 +8,17 @@
              mc:Ignorable="d" 
              x:Name="ProductControl"
              d:DesignHeight="680" d:DesignWidth="850">
-    <Grid Background="Wheat" Width="850">
-        <ListView Margin="0 20 0 0" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left"  Foreground="Black" HorizontalContentAlignment="Center" FontSize="17" FontFamily="Century Gothic" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+    <Grid Background="White" Width="850">
+        <ListView Margin="0 20 0 0" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left"  Foreground="Black"
+                  HorizontalContentAlignment="Center" FontSize="17" FontFamily="Century Gothic" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            
             <ListViewItem >
-                <ScrollViewer HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center" Foreground="Black" Height="50" Text="{Binding product.NameProduct}" FontSize="25"/>
-                    </StackPanel>
-                </ScrollViewer>
+                <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Foreground="Black" Height="50" Text="{Binding product.NameProduct}" FontSize="25"/>
+                        </StackPanel>
+                </Grid>
             </ListViewItem>
             <ListViewItem HorizontalAlignment="Left" Height="50">
                 <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
@@ -59,7 +62,7 @@
             </ListViewItem>
             <ListViewItem HorizontalAlignment="Left">
                 <TextBox Foreground="Black" Width="200" Height="50" materialDesign:HintAssist.Hint="100 г" 
-                         Text="{Binding productSet.ProductWeight}" materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"></TextBox>
+                         Text="{Binding productSetProducts.ProductWeight, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"></TextBox>
             </ListViewItem>
             <ListViewItem HorizontalAlignment="Center">
                 <Border CornerRadius="15">

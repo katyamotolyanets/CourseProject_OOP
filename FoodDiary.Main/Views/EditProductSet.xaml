@@ -9,7 +9,8 @@
              x:Name="EditControl"
              d:DesignHeight="680" d:DesignWidth="850">
     <Grid Background="White" Width="850">
-        <ListView Width="850" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left"  Foreground="Black" HorizontalContentAlignment="Center" FontSize="17" FontFamily="Century Gothic" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView Width="850" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left"  Foreground="Black" HorizontalContentAlignment="Center"
+                  FontSize="17" FontFamily="Century Gothic" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListViewItem >
                 <ScrollViewer HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" Grid.Row="1">
                     <StackPanel Orientation="Horizontal">
@@ -59,7 +60,7 @@
             </ListViewItem>
             <ListViewItem HorizontalAlignment="Left">
                 <TextBox Foreground="Black" Width="200" Height="50" materialDesign:HintAssist.Hint="100 г" materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"
-                         Text="{Binding ProductSet.ProductWeight}"></TextBox>
+                         Text="{Binding ProductSetProduct.ProductWeight}"></TextBox>
             </ListViewItem>
             <ListViewItem HorizontalAlignment="Center">
                 <Border CornerRadius="15">

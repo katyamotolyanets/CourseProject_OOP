@@ -9,8 +9,8 @@ namespace FoodDiary.Main.Commands
     public class DeleteCommand : ICommand
     {
         public DiaryViewModel diaryViewModel { get; set; }
-        public ProductSet ProductSet { get; set; }
-        public ProductSetRepository ProductSetRepository { get; set; }
+        public ProductSetProducts ProductSetProducts { get; set; }
+        public UnitOfWork UnitOfWork { get; set; }
 
         public DeleteCommand(DiaryViewModel diaryViewModel)
         {
@@ -26,14 +26,12 @@ namespace FoodDiary.Main.Commands
 
         public void Execute(object parameter)
         {
-            ProductSetRepository = new ProductSetRepository();
-            ProductSet = (ProductSet)parameter;
-            ProductSetRepository.Delete(ProductSet);
-            diaryViewModel.GetSets();
-/*            diaryViewModel.GetBreakfasts();
-            diaryViewModel.GetDinners();
-            diaryViewModel.GetLunches();
-            diaryViewModel.GetSnacks();*/
+            UnitOfWork = new UnitOfWork();
+            ProductSetProducts = (ProductSetProducts)parameter;
+            UnitOfWork.ProductSetProductsRepository.Delete(ProductSetProducts);
+            diaryViewModel.BindProductSets();
+            diaryViewModel.GetCaloriesBalance();
+
         }
     }
 }

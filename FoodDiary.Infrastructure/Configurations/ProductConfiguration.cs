@@ -19,6 +19,7 @@ namespace FoodDiary.Infrastructure.Configurations
             builder.Property(e => e.Calories);
             builder.Property(e => e.Proteins);
             builder.Property(e => e.Fats);
+            builder.Property(e => e.IconSource);
             builder.Property(e => e.Carbohydrates);
         }
     }

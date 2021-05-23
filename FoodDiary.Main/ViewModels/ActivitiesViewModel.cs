@@ -61,8 +61,9 @@ namespace FoodDiary.Main.ViewModels
             ActivityTypes = new List<ActivityType>();
             activityTypeRepository = new ActivityTypeRepository();
             GetActivities();
-            LinkToActCommand = new LinkToActCommand();
             ActivityType = new ActivityType();
+            LinkToActCommand = new LinkToActCommand();
+
             ActivityTypesCollectionView = CollectionViewSource.GetDefaultView(ActivityTypes);
             ActivityTypesCollectionView.Filter = FilterActivities;
         }

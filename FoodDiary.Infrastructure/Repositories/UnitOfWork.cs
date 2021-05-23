@@ -23,6 +23,7 @@ namespace FoodDiary.Infrastructure.Repositories
         private IProductSetRepository _productSetRepository;
         private IProductsRepository _productsRepository;
         private IUserHistoryProductSetsRepository _userHistoryProductSetsRepository;
+        private IUserHistoryActivitiesRepository _userHistoryActivitiesRepository;
 
         private FoodDiaryContext Context
         {
@@ -134,6 +135,16 @@ namespace FoodDiary.Infrastructure.Repositories
                 if (_userHistoryProductSetsRepository == null)
                     _userHistoryProductSetsRepository = new UserHistoryProductSetsRepository();
                 return _userHistoryProductSetsRepository;
+            }
+        }
+
+        public IUserHistoryActivitiesRepository UserHistoryActivitiesRepository
+        {
+            get
+            {
+                if (_userHistoryActivitiesRepository == null)
+                    _userHistoryActivitiesRepository = new UserHistoryActivitiesRepository();
+                return _userHistoryActivitiesRepository;
             }
         }
 

@@ -6,9 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using FoodDiary.Infrastructure;
 
 namespace FoodDiary.Main.ViewModels
 {
@@ -38,48 +41,9 @@ namespace FoodDiary.Main.ViewModels
             {
                 _productSets = value;
                 OnPropertyChanged(nameof(ProductSets));
-                RefreshProductSetCollectionView();
-            }
-        }
-
-        private List<ProductSet> _breakfast { get; set; }
-        public List<ProductSet> Breakfasts
-        {
-            get { return _breakfast; }
-            set
-            {
-                _breakfast = value;
-                OnPropertyChanged(nameof(Breakfasts));
-            }
-        }
-        private List<ProductSet> _lunch { get; set; }
-        public List<ProductSet> Lunches
-        {
-            get { return _lunch; }
-            set
-            {
-                _lunch = value;
-                OnPropertyChanged(nameof(Lunches));
-            }
-        }
-        private List<ProductSet> _dinner { get; set; }
-        public List<ProductSet> Dinners
-        {
-            get { return _dinner; }
-            set
-            {
-                _dinner = value;
-                OnPropertyChanged(nameof(Dinners));
-            }
-        }
-        private List<ProductSet> _snack { get; set; }
-        public List<ProductSet> Snacks
-        {
-            get { return _snack; }
-            set
-            {
-                _snack = value;
-                OnPropertyChanged(nameof(Snacks));
+                CheckHistory(Date);
+                if (ProductSetCollectionView != null)
+                    RefreshProductSetCollectionView();
             }
         }
 
@@ -94,34 +58,59 @@ namespace FoodDiary.Main.ViewModels
                 date = value;
                 OnPropertyChanged(nameof(ProductSets));
                 CheckHistory(Date);
+                RefreshProductSetCollectionView();
             }
         }
-        public List<UserHistory> Histories { get; set; }
-        public List<UserHistory> UserHistories { get; set; }
         public UnitOfWork UnitOfWork { get; set; }
         public UserHistory History { get; set; }
         public List<ActivityType> ActivityTypes { get; set; }
+        public List<ProductSetProducts> ProductSetProducts { get; set; }
+        public ProductSetProducts ProductSetProduct { get; private set; }
+        public List<Activity> Activities { get; set; }
+        private int _caloriesBalance { get; set; }
+        public int CaloriesBalance
+        {
+            get { return _caloriesBalance; }
+            set
+            {
+                _caloriesBalance = value;
+                OnPropertyChanged(nameof(CaloriesBalance));
+                //RefreshProductSetCollectionView();
+            }
+        }
+        private int _caloriesLeft { get; set; }
+        public int CaloriesLeft
+        {
+            get { return _caloriesLeft; }
+            set
+            {
+                _caloriesLeft = value;
+                OnPropertyChanged(nameof(CaloriesLeft));
+               // RefreshProductSetCollectionView();
 
+            }
+        }
         public DiaryViewModel()
         {
-            ProductSets = new List<ProductSet>();
-            ProductSet = new ProductSet();
-            CurrentAccount =  SingleCurrentAccount.GetInstance().Account;
             History = new UserHistory();
-            Histories = new List<UserHistory>();
-            UserHistories = new List<UserHistory>();
-
             UnitOfWork = new UnitOfWork();
-
-            Breakfasts = new List<ProductSet>();
-            Lunches = new List<ProductSet>();
-            Dinners = new List<ProductSet>();
-            Snacks = new List<ProductSet>();
+            CurrentAccount = SingleCurrentAccount.GetInstance().Account;
 
             GetHistory(Date);
+
+            CaloriesLeft = 0;
+            CaloriesBalance = (int)CurrentAccount.UserCalories;
+
+            ProductSets = new List<ProductSet>();
+            ProductSetProducts = new List<ProductSetProducts>();
+            ProductSet = new ProductSet();
+            ProductSetProduct = new ProductSetProducts();
+
+            Activities = new List<Activity>();
+
             BindProductSets();
-            GetSets();
-            RefreshMeals();
+            BindActivities();
+            //GetCaloriesBalance();
 
             ActivityTypes = new List<ActivityType>();
        
@@ -129,10 +118,9 @@ namespace FoodDiary.Main.ViewModels
             LinkToAddCommand = new LinkToAddCommand(this);
             LinkToEditCommand = new LinkToEditCommand(this);
             DeleteCommand = new DeleteCommand(this);
-            EditCommand = new EditCommand(ProductSet);
+            EditCommand = new EditCommand(ProductSetProduct);
             RefreshProductSetCollectionView();
             GetActivityTypes();
-            //забиндить продактсеты к этой хистори
         }
         //проверка хистори на этот день, если нет, то создать
         public void CheckHistory(DateTime date)
@@ -146,6 +134,7 @@ namespace FoodDiary.Main.ViewModels
                 history.Date = date;
                 history.ID = Guid.NewGuid();
                 UnitOfWork.HistoryRepository.Create(history);
+                History = history;
                 List<MealType> mealTypes = new List<MealType>();
                 mealTypes = (List<MealType>)UnitOfWork.MealTypesRepository.List();
                 //заполнение четырёх продуктсетов
@@ -173,34 +162,35 @@ namespace FoodDiary.Main.ViewModels
                 
             }
         }
-        public void RefreshMeals()
+
+        public void GetCaloriesBalance()
         {
-            GetBreakfasts();
-            GetLunches();
-            GetDinners();
-            GetSnacks();
+            ProductSetCollectionView.Refresh();
+            ProductSetProducts = (List<ProductSetProducts>)UnitOfWork.ProductSetProductsRepository.List();
+            foreach(ProductSetProducts productSetProducts in ProductSetProducts)
+            {
+                foreach(ProductSet productSet in ProductSets)
+                {
+                    if (productSetProducts.ProductSetID == productSet.ID)
+                    {
+                        CaloriesLeft += (int)(productSetProducts.ProductWeight / 100 * productSetProducts.Product.Calories);
+                    }
+                }
+            }
+            CaloriesBalance = (int)(CurrentAccount.UserCalories - CaloriesLeft);
+
         }
         public void GetActivityTypes()
         {
-            ActivityTypes = (List<ActivityType>)UnitOfWork.ActivityTypeRepository.List(); 
+             ActivityTypes = (List<ActivityType>)UnitOfWork.ActivityTypeRepository.List(); 
         }
 
-        public void GetSets()
-        {
-            List<UserHistoryProductSets> UserHistoryProductSets = new List<UserHistoryProductSets>();
-            UserHistoryProductSets = (List<UserHistoryProductSets>)UnitOfWork.UserHistoryProductSetsRepository.List(x => x.UserHistoryID == History.ID);
-            foreach (UserHistoryProductSets userHistoryProductSet in UserHistoryProductSets)
-            {
-                ProductSets.Add(userHistoryProductSet.ProductSet);
-            }
-        }
-        public void GetHistory(DateTime date) //преобразовать дату 
+        public void GetHistory(DateTime date) 
         {
             CheckHistory(date);
             History = UnitOfWork.HistoryRepository.GetByDate(date);
-/*            Histories = (List<UserHistory>)HistoryRepository.List();
-            UserHistories = Histories.Where(x => x.IDUser == CurrentAccount.ID).ToList();*/
         }
+
         public void BindProductSets()
         {
             List<UserHistoryProductSets> UserHistoryProductSets = new List<UserHistoryProductSets>();
@@ -210,92 +200,67 @@ namespace FoodDiary.Main.ViewModels
 
             foreach (UserHistoryProductSets userHistoryProductSet in UserHistoryProductSets)
             {
-                ProductSets.Add(userHistoryProductSet.ProductSet);// вохможно будет нулл
+                ProductSets.Add(userHistoryProductSet.ProductSet);
             }
-        }
 
-        public void GetBreakfasts()
-        {
-            Breakfasts = (List<ProductSet>)UnitOfWork.ProductSetRepository.List();
-            Breakfasts = ProductSets.Where(x => x.MealType.MealName == "Завтрак").ToList();
-        }
-        public void GetLunches()
-        {
-            Lunches = (List<ProductSet>)UnitOfWork.ProductSetRepository.List();
-            Lunches = ProductSets.Where(x => x.MealType.MealName == "Обед").ToList();
-        }
-        public void GetDinners()
-        {
-            Dinners = (List<ProductSet>)UnitOfWork.ProductSetRepository.List();
-            Dinners = ProductSets.Where(x => x.MealType.MealName == "Ужин").ToList();
-
-        }
-        public void GetSnacks()
-        {
-            Snacks = (List<ProductSet>)UnitOfWork.ProductSetRepository.List();
-            Snacks = ProductSets.Where(x => x.MealType.MealName == "Перекус/другое").ToList();
-        }
-
-        public class DateTimeConverter : IValueConverter
-        {
-            public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+            ProductSetProducts = new List<ProductSetProducts>();
+            
+            foreach (ProductSet productSet in ProductSets)
             {
-                if (value == null)
-                {
-                    throw new NullReferenceException("value can not be null");
-                }
-                DateTime date = (DateTime)value;
-                return date.ToString("MM/dd/yyyy");
-            }
+                ProductSetProduct = new ProductSetProducts();
+                ProductSetProduct.ID = Guid.NewGuid();
+                ProductSetProduct.ProductSet = productSet;
+                ProductSetProducts.Add(ProductSetProduct);
 
-            public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-            {
-                return null;
             }
         }
 
-        public class MealTypeConverter : IValueConverter
+        public void BindActivities()
         {
-            public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-            {
-                MealType mealtype = (MealType)value;
+            List<UserHistoryActivities> UserHistoryActivities = new List<UserHistoryActivities>();
 
-                if (value == null)
-                {
-                    return mealtype;
-                }
-                return mealtype;
-            }
+            UserHistoryActivities = (List<UserHistoryActivities>)UnitOfWork.UserHistoryActivitiesRepository.List(x => x.UserHistoryID == History.ID);
 
-            public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+            Activities = new List<Activity>();
+
+            foreach (UserHistoryActivities userHistoryActivities in UserHistoryActivities)
             {
-                return null;
+                Activities.Add(userHistoryActivities.Activity);
             }
         }
+
+        public IEnumerable<Product> Products { get; set; }
         public void RefreshProductSetCollectionView()
         {
-            ProductSetCollectionView = CollectionViewSource.GetDefaultView(ProductSets);
-            ProductSetCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(ProductSet.MealType), new MealTypeConverter()));
-            ProductSetCollectionView.SortDescriptions.Add(new SortDescription("IDType", ListSortDirection.Descending));
+            using (FoodDiaryContext db = new FoodDiaryContext())
+            {
+                var result = (from history in db.UsersHistories
+                              join historySets in db.UserHistoryProductSets on history.ID equals historySets.UserHistoryID into hist
+                              from h in hist.DefaultIfEmpty()
+                              join sets in db.ProductSets on h.ProductSetID equals sets.ID into set
+                              from s in set.DefaultIfEmpty()
+                              join setsProducts in db.ProductSetProducts on s.ID equals setsProducts.ProductSetID into prodS
+                              from p in prodS.DefaultIfEmpty()
+                              join product in db.Products on p.ProductID equals product.ID into prod
+                              from pr in prod.DefaultIfEmpty()
+                              join mealType in db.MealTypes on s.IDType equals mealType.ID 
+                              select new
+                                {
+                                  ProductSetProducts = p,
+                                  ProductID = pr.ID,
+                                  ProductName = pr.NameProduct,
+                                  ProductSetID = s.ID,
+                                  MealType = s.MealType,
+                                  HistoryID = history.ID,
+                                  Weight = p.ProductWeight
+                              }).Where(x => x.HistoryID == History.ID).ToList();
+                ProductSetCollectionView = CollectionViewSource.GetDefaultView(result);
+                ProductSetCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(("MealType")));
+                ProductSetCollectionView.Refresh();
+               
+            }
             ProductSetCollectionView.Refresh();
+            GetCaloriesBalance();
         }
-
-
-
-
-
-        //private RelayCommand showSnack;
-        //public RelayCommand ShowSnackCommand
-        //{
-        //    get
-        //    {
-        //        return showSnack ?? (showSnack = new RelayCommand(obj =>
-        //        {
-        //            Snacks = (List<ProductSet>)ProductSetRepository.List();
-        //            Snacks = Snacks.Where(x => x.MealType.ID == Guid.Parse("000205a2-e914-4469-853e-90eb8b17210d")).ToList();
-        //        }));
-
-        //    }
-        //}
     }
 }

@@ -9,5 +9,6 @@ namespace FoodDiary.Core.RepositoryInterfaces
 {
     public interface IChangeWeightRepository : IRepository<ChangeWeight, Guid>
     {
+        void Create(ChangeWeight changeWeight);
     }
 }

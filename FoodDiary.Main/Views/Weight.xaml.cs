@@ -1,4 +1,8 @@
-﻿using FoodDiary.Main.ViewModels;
+﻿using FoodDiary.Core.Models;
+using FoodDiary.Infrastructure.Repositories;
+using FoodDiary.Main.States.Accounts;
+using FoodDiary.Main.ViewModels;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +25,53 @@ namespace FoodDiary.Main.Views
     /// </summary>
     public partial class Weight : UserControl
     {
+        public WeightViewModel weightViewModel { get; set; }
+        public UnitOfWork UnitOfWork { get; set; }
+        public ChangeWeight changeWeight { get; set; }
+        public double weightChange { get; set; }
+        public User CurrentAccount { get; private set; }
+
         public Weight()
         {
             InitializeComponent();
             DataContext = WeightViewModel.LoadViewModel();
         }
 
-        private void ChangeWeight_Click(object sender, RoutedEventArgs e)
+        private void weight_Click(object sender, RoutedEventArgs e)
         {
-            WeightCanvas.Visibility = Visibility.Visible;
+            var but = sender as Button;
+            /*but.Command = new LinkToActCommand();
+            but.CommandParameter = but.DataContext;*/
+
+            //but.Command.Execute(but.DataContext);
+            but.Command = DialogHost.OpenDialogCommand;
+
         }
+
+        private void save_Click(object sender, RoutedEventArgs e)
+        {
+            weightViewModel = (WeightViewModel)this.DataContext;
+            UnitOfWork = new UnitOfWork();
+            weightChange = weightViewModel.UserWeightCh;
+            CurrentAccount = SingleCurrentAccount.GetInstance().Account;
+
+            changeWeight = new ChangeWeight();
+            changeWeight.ID = Guid.NewGuid();
+            changeWeight.IDUser = CurrentAccount.ID;
+            changeWeight.Date = DateTime.Now;
+            changeWeight.UserWeight = weightChange;
+
+            UnitOfWork.ChangeWeightRepository.Create(changeWeight);
+
+            weightViewModel.GetChanges();
+            weightViewModel.RefreshWeight();
+            save.Command = DialogHost.CloseDialogCommand;
+
+        }
+
+        //private void ChangeWeight_Click(object sender, RoutedEventArgs e)
+        //{
+        //    WeightCanvas.Visibility = Visibility.Visible;
+        //}
     }
 }

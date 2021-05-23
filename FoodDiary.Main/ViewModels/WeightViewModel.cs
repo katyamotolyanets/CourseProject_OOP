@@ -20,8 +20,8 @@ namespace FoodDiary.Main.ViewModels
         public AccountRepository AccountRepository { get; set; }
         public User CurrentAccount { get; set; }
         public ChangeWeight ChangeWeight { get; set; }
-        private int _lastChange { get; set; }
-        public int LastChange
+        private double _lastChange { get; set; }
+        public double LastChange
         {
             get
             {
@@ -33,8 +33,21 @@ namespace FoodDiary.Main.ViewModels
                 OnPropertyChanged(nameof(LastChange));
             }
         }
-        
-        public int FirstWeight { get; set; }
+
+        private string _last { get; set; }
+        public string Last
+        {
+            get
+            {
+                return _last;
+            }
+            set
+            {
+                _last = value;
+                OnPropertyChanged(nameof(Last));
+            }
+        }
+
         private double _userWeightCh { get; set; }
         public double UserWeightCh
         {
@@ -46,6 +59,8 @@ namespace FoodDiary.Main.ViewModels
             {
                 _userWeightCh = value;
                 OnPropertyChanged(nameof(UserWeightCh));
+                GetChanges();
+                RefreshWeight();
             }
         }
         public ChartValues<double> Values { get; set; }
@@ -69,13 +84,13 @@ namespace FoodDiary.Main.ViewModels
 
             GetInfo();
 
-            LastChange = (int)ChangesWeight.Last().UserWeight;
-            FirstWeight = (int)ChangesWeight.First().UserWeight;
+            LastChange = ChangesWeight.Last().UserWeight;
 
             CurrentAccount.UserWeight = LastChange;
             AccountRepository.Update(CurrentAccount);
             UpdateViewCommand = new UpdateViewCommand(MainWindow.MyMainView);
-
+            RefreshWeight();
+            Last = LastChange.ToString("00.0");
         }
 
         public static WeightViewModel LoadViewModel(Action<Task> onLoaded = null)
@@ -87,7 +102,6 @@ namespace FoodDiary.Main.ViewModels
 
         public async Task GetInfo()
         {
-            
             Values.Clear();
             Values = new ChartValues<double>(ChangesWeight.Select(c => c.UserWeight));
             DateTimes.Clear();
@@ -96,6 +110,13 @@ namespace FoodDiary.Main.ViewModels
         public void GetChanges()
         {
             ChangesWeight = (List<ChangeWeight>)ChangeWeightRepository.List(x => x.IDUser == CurrentAccount.ID);
+        }
+
+        public void RefreshWeight()
+        {
+            LastChange = (int)ChangesWeight.Last().UserWeight;
+            Last = LastChange.ToString("00.0");
+
         }
     }
 }

@@ -14,6 +14,7 @@ namespace FoodDiary.Core.Models
         public float Proteins { get; set; }
         public float Fats { get; set; }
         public float Carbohydrates { get; set; }
+        public string IconSource { get; set; }
         public ICollection<ProductSetProducts> ProductSetProducts { get; set; }
     }
 }

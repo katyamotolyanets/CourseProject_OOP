@@ -29,12 +29,13 @@ namespace FoodDiary.Main.Views
     {
         public static Activity activity { get; set; }
         public UpdateViewCommand UpdateViewCommand { get; set; }
-        public UserHistory history { get; set; }
+        public UserHistoryActivities userHistoryActivities { get; set; }
         public User CurrentAccount { get; private set; }
+        public LinkToActCommand LinkToActCommand { get; set; }
         public ActivitiesViewModel activitiesViewModel { get; set; }
+        public DiaryViewModel diaryViewModel { get; set; }
         public ActivityType activityType = new ActivityType();
-        public ActivityRepository activityRepository = new ActivityRepository();
-        public HistoryRepository historyRepository = new HistoryRepository();
+        public UnitOfWork UnitOfWork { get; set; }
         public Activities()
         {
             InitializeComponent();
@@ -44,31 +45,43 @@ namespace FoodDiary.Main.Views
 
         private void AddAct(object sender, RoutedEventArgs e)
         {
+            UnitOfWork = new UnitOfWork();
             SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
             CurrentAccount = currentAccount.Account;
             activitiesViewModel = (ActivitiesViewModel)this.DataContext;
             activity = new Activity();
             activity = activitiesViewModel.Activity;
-            activityType = LinkToActCommand.activityType;
-            history = new UserHistory();
+            //activityType = LinkToActCommand.activityType;
+            userHistoryActivities = new UserHistoryActivities();
             activity.ID = Guid.NewGuid();
             activity.IDActivityType = activityType.ID;
 
-            activityRepository.Create(activity);
+            UnitOfWork.ActivityRepository.Create(activity);
 
-            history.ID = Guid.NewGuid();
+            diaryViewModel = new DiaryViewModel();
+            userHistoryActivities.UserHistoryID = diaryViewModel.History.ID;
             //history.IDActivity = activity.ID;
-            history.IDUser = CurrentAccount.ID;
+            userHistoryActivities.ActivityID = activity.ID;
 
-            historyRepository.Create(history);
-            act.Command.Execute(DialogHost.CloseDialogCommand);
+            UnitOfWork.UserHistoryActivitiesRepository.Create(userHistoryActivities);
+            act.Command = DialogHost.CloseDialogCommand;
         }
 
         private void but_Click(object sender, RoutedEventArgs e)
         {
-            var btn = sender as Button;
-            //btn.Command.Execute(LinkToActCommand);
+            activitiesViewModel = (ActivitiesViewModel)this.DataContext;
+
+            var but = sender as Button;
+            /*but.Command = new LinkToActCommand();
+            but.CommandParameter = but.DataContext;*/
+
+            //but.Command.Execute(but.DataContext);
+            activityType = (ActivityType)but.DataContext;
+            but.Command = DialogHost.OpenDialogCommand;
+
         }
+
+
 
         //private void ShowCanvas(object sender, RoutedEventArgs e)
         //{

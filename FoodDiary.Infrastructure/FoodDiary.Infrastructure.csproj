@@ -276,6 +276,14 @@
     <Compile Include="Migrations\20210519210235_init.designer.cs">
       <DependentUpon>20210519210235_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210521115640_AddProtoToProduct.cs" />
+    <Compile Include="Migrations\20210521115640_AddProtoToProduct.designer.cs">
+      <DependentUpon>20210521115640_AddProtoToProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210521194736_updateTables.cs" />
+    <Compile Include="Migrations\20210521194736_updateTables.designer.cs">
+      <DependentUpon>20210521194736_updateTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\FoodDiaryContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
@@ -292,6 +300,7 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Configurations\UserLifestyleConfiguration.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Repositories\UserHistoryActivitiesRepository.cs" />
     <Compile Include="Repositories\UserHistoryProductSetsRepository.cs" />
   </ItemGroup>
   <ItemGroup />

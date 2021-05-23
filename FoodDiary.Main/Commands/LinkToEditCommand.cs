@@ -8,7 +8,7 @@ namespace FoodDiary.Main.Commands
     public class LinkToEditCommand : BaseViewModel, ICommand
     {
         DiaryViewModel diaryViewModel { get; set; }
-        public static ProductSet ProductSet { get; set; }
+        public static ProductSetProducts ProductSetProduct { get; set; }
 
         public LinkToEditCommand(DiaryViewModel diaryViewModel)
         {
@@ -24,7 +24,7 @@ namespace FoodDiary.Main.Commands
 
         public void Execute(object parameter)
         {
-            ProductSet = (ProductSet)parameter;
+            ProductSetProduct = (ProductSetProducts)parameter;
 
             diaryViewModel.UpdateViewCommand.Execute("EditProductSet");
         }

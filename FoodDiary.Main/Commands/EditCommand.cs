@@ -7,13 +7,13 @@ namespace FoodDiary.Main.Commands
 {
     public class EditCommand : ICommand
     { 
-        public ProductSet ProductSet { get; set; }
-        public EditCommand(ProductSet productSet)
+        public ProductSetProducts ProductSetProducts { get; set; }
+        public EditCommand(ProductSetProducts ProductSetProducts)
         {
-            ProductSet = productSet;
+            this.ProductSetProducts = ProductSetProducts;
         }
 
-        ProductSetRepository ProductSetRepository = new ProductSetRepository();
+        UnitOfWork UnitOfWork { get; set; }
 
         public event EventHandler CanExecuteChanged;
 
@@ -24,7 +24,8 @@ namespace FoodDiary.Main.Commands
 
         public void Execute(object parameter)
         {
-            ProductSetRepository.Edit(ProductSet);
+            UnitOfWork = new UnitOfWork();
+            UnitOfWork.ProductSetProductsRepository.Edit(ProductSetProducts);
         }
     }
 }

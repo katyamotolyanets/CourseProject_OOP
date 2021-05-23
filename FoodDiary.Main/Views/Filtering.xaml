@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              x:Name="FilteringControl"
              d:DesignHeight="680" d:DesignWidth="850">
-    <Grid Background="Bisque" ScrollViewer.CanContentScroll="True" Width="850">
+    <Grid Background="#dbf0e6" ScrollViewer.CanContentScroll="True" Width="850">
         <Grid Height="70" VerticalAlignment="Top">
             <Button Content="Добавить" Command="{Binding UpdateViewCommand}" CommandParameter="AddNewProduct" Height="30" Width="100" FontSize="15" HorizontalAlignment="Left"
                     Padding="5" Margin="90 20 0 0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontFamily="Century Gothic"/>
@@ -26,8 +26,11 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Command="{Binding DataContext.MediatorCommand, ElementName=FilteringControl}" CommandParameter="{Binding}" Content="{Binding Path=NameProduct}"
+                                    <WrapPanel Width="850">
+                                        <Image Source="{Binding IconSource}" Width="30" Height="30"/>
+                                        <Button Margin="10 0 0 0"  Command="{Binding DataContext.MediatorCommand, ElementName=FilteringControl}" CommandParameter="{Binding}" Content="{Binding Path=NameProduct}"
                                             BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontFamily="Century Gothic"/>
+                                    </WrapPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

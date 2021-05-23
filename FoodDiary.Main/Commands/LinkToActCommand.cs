@@ -12,7 +12,7 @@ namespace FoodDiary.Main.Commands
     {
         public static ActivityType activityType = new ActivityType();
         public LinkToActCommand()
-        {        }
+        { }
 
         public event EventHandler CanExecuteChanged;
 
@@ -24,6 +24,7 @@ namespace FoodDiary.Main.Commands
         public void Execute(object parameter)
         {
             activityType = (ActivityType)parameter;
+            //Execute(DialogHost.OpenDialogCommand);
         }
 
     }

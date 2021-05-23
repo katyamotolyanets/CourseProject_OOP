@@ -227,6 +227,7 @@
     <Compile Include="RepositoryInterfaces\IProductsRepository.cs" />
     <Compile Include="RepositoryInterfaces\IRepository.cs" />
     <Compile Include="RepositoryInterfaces\IUnitOfWork.cs" />
+    <Compile Include="RepositoryInterfaces\IUserHistoryActivitiesRepository.cs" />
     <Compile Include="RepositoryInterfaces\IUserHistoryProductSetsRepository.cs" />
   </ItemGroup>
   <ItemGroup />

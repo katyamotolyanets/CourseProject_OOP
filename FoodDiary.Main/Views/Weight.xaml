@@ -9,21 +9,50 @@
              mc:Ignorable="d" 
              d:DesignHeight="680" d:DesignWidth="850">
     <Grid Background="Beige" Width="850">
-        <Grid>
-            <Button VerticalAlignment="Top" Margin="600 50 0 0" Width="60" Height="60" BorderThickness="0" Background="Transparent" Click="ChangeWeight_Click">
+        <materialDesign:DialogHost BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Width="400" Height="200" HorizontalAlignment="Center">
+                    <Button Width="20" Height="20" Margin="0 3 3 0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top"
+                            HorizontalAlignment="Right" >
+                        <Image Margin="-17 -15 -5 -17" Width="17" Height="17" Source="D:\2 курс\4 сем\OOP\courseproject\FoodDiary.Main\Assets\cross.png"/>
+                    </Button>
+                    <StackPanel>
+                        <TextBlock Text="Каков Ваш вес на данный момент?"
+                                   FontFamily="Century Gothic" HorizontalAlignment="Center"
+                                   Margin="0 30 0 0" FontSize="20"/>
+                        <WrapPanel HorizontalAlignment="Center">
+                            <TextBox Margin="10 20 0 0" Width="50" FontFamily="Century Gothic" Text="{Binding UserWeightCh}"
+                                     Height="25"
+                                 materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"/>
+                            <TextBlock Margin="7 25 0 0" FontFamily="Century Gothic" Text="кг"/>
+                        </WrapPanel>
+                        <Button Margin="0 30 0 0" Content="Сохранить" Name="save" Click="save_Click"
+                                Width="120" Height="40" HorizontalAlignment="Center"
+                                FontFamily="Century Gothic" FontSize="15" Background="#59bd8b">
+                            <Button.Resources>
+                                <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#59bd8b"/>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+            <Grid>
+            <Button VerticalAlignment="Top" Margin="600 50 0 0" Width="60" Height="60" BorderThickness="0" 
+                    Background="Transparent" Click="weight_Click">
                 <materialDesign:PackIcon Margin="-10" Kind="ControlPoint" Width="50" Height="50" Foreground="DimGray"/>
             </Button>
-            
+
             <StackPanel HorizontalAlignment="Center">
                 <TextBlock FontFamily="Century Gothic" FontSize="25" Text="Ваш текущий вес" Foreground="DimGray"
                            Margin="0 50 0 0" HorizontalAlignment="Center" />
                 <WrapPanel HorizontalAlignment="Center">
-                    <TextBlock FontFamily="Century Gothic" FontSize="30" Text="{Binding LastChange, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                    <TextBlock FontFamily="Century Gothic" FontSize="30" Text="{Binding Last, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                            Margin="0 15 0 0" HorizontalAlignment="Center" Foreground="DimGray"/>
                     <TextBlock FontFamily="Century Gothic" FontSize="30" Text="кг" 
                            Margin="5 15 0 0" HorizontalAlignment="Center" Foreground="DimGray"/>
                 </WrapPanel>
-                <Canvas x:Name="WeightCanvas" Panel.ZIndex="2" Width="200" Height="200" Background="Beige" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!--<Canvas x:Name="WeightCanvas" Panel.ZIndex="2" Width="200" Height="200" Background="Beige" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid>
                         <StackPanel>
                             <TextBlock Foreground="Black" Text="Каков Ваш вес на данный момент?" Height="50"/>
@@ -31,26 +60,33 @@
                             <Button Content="Обновить" Command="{Binding UpdateWeightCommand, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding CurrentAccount}"/>
                         </StackPanel>
                     </Grid>
-                </Canvas>
+                </Canvas>-->
             </StackPanel>
-            <Grid Width="400" Panel.ZIndex="1" Height="300" Margin="0 -50 0 0">
-                <lvc:CartesianChart>
-                    <lvc:CartesianChart.Series>
-                        <lvc:LineSeries Stroke="#59bd8b" Fill="#dbf0e6" Title="Изменения вашего веса" Values="{Binding Values}"/>
-                    </lvc:CartesianChart.Series>
-                    <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Labels="{Binding DateTimes}" >
-                            <lvc:Axis.Separator>
-                                <lvc:Separator Step="1"/>
-                            </lvc:Axis.Separator>
-                        </lvc:Axis>
-                    </lvc:CartesianChart.AxisX>
-                    <lvc:CartesianChart.AxisY>
-                        <lvc:Axis Labels="{Binding}"/>
-                    </lvc:CartesianChart.AxisY>
-                </lvc:CartesianChart>
-            </Grid>
         </Grid>
+        </materialDesign:DialogHost>
+
+
+        <Grid Width="400"  Height="300" Margin="0 -50 0 0">
+
+                <lvc:CartesianChart>
+                        <lvc:CartesianChart.Series>
+                            <lvc:LineSeries Stroke="#59bd8b" Fill="#dbf0e6" Title="Изменения вашего веса" Values="{Binding Values}"/>
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Labels="{Binding DateTimes}" >
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator Step="1"/>
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Labels="{Binding}"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                
+
+            </Grid>
+            
         <Grid Margin="200 450 200 70">
             <ListView ItemsSource="{Binding ChangesWeight}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" >
                 <ListView.View>
@@ -65,10 +101,10 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <WrapPanel Margin="250 0 0 0">
-                                        <TextBlock Text="{Binding Path=UserWeight}" Background="Transparent" Foreground="DimGray" FontFamily="Century Gothic"/>
-                                        <TextBlock Margin="5 0 0 0" Text="кг" Foreground="DimGray"/>
-                                    </WrapPanel>
+                                    <StackPanel Margin="250 0 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBlock  Text="{Binding Path=UserWeight}" Background="Transparent" Foreground="DimGray" FontFamily="Century Gothic"/>
+                                        <TextBlock Margin="3 0 0 0" Text="кг" Foreground="DimGray"/>
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -76,5 +112,6 @@
                 </ListView.View>
             </ListView>
         </Grid>
+        
     </Grid>
 </UserControl>
