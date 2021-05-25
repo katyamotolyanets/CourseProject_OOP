@@ -59,6 +59,10 @@ namespace FoodDiary.Main.Commands
             {
                 viewModel.CurrentViewModel = WeightViewModel.LoadViewModel();
             }
+            else if (parameter.ToString() == "Reports")
+            {
+                viewModel.CurrentViewModel = new ReportsViewModel();
+            }
             else if (parameter.ToString() == "Login")
             {
                 viewModel.CurrentViewModel = (new LoginViewModel(new Authenticator(new AuthenticationRepository(new AccountRepository(), new Microsoft.AspNet.Identity.PasswordHasher()), new AccountStore())));

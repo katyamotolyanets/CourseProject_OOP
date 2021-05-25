@@ -37,18 +37,9 @@ namespace FoodDiary.Main.States.Authenticators
         public bool IsLoggedIn => CurrentAccount != null;
         public event Action StateChanged;
 
-        public bool Login(string name, string password)
+        public void Login(string name, string password)
         {
-            bool success = true;
-            try
-            {
-                CurrentAccount = _authenticationRepository.Login(name, password);
-            }
-            catch (Exception)
-            {
-                success = false;
-            }
-            return success;
+            CurrentAccount = _authenticationRepository.Login(name, password);
 
         }
 

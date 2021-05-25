@@ -15,7 +15,7 @@ namespace FoodDiary.Main.States.Authenticators
 
         event Action StateChanged;
         RegistrationResult Register(string username, double weight, double height, int age, string sex, UserLifestyle lifestyle, string password, string confirmPassword, string photo);
-        bool Login(string username, string password);
+        void Login(string username, string password);
         void Logout();
     }
 }

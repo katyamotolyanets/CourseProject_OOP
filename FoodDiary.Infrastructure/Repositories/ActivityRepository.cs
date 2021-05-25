@@ -12,6 +12,8 @@ namespace FoodDiary.Infrastructure.Repositories
 {
     public class ActivityRepository : Repository<Activity>, IActivityRepository
     {
+        UnitOfWork UnitOfWork { get; set; }
+        public UserHistoryActivities UserHistoryActivities { get; set; }
         public Activity Find(Guid id) => MakeInclusions().SingleOrDefault(x => x.ID == id);
 
         public IEnumerable<Activity> List(Expression<Func<Activity, bool>> predicate = null)
@@ -29,6 +31,15 @@ namespace FoodDiary.Infrastructure.Repositories
         {
             DbSet.Add(activity);
 
+            Context.SaveChanges();
+        }
+
+        public void Delete(Activity activity)
+        {
+            UnitOfWork = new UnitOfWork();
+            
+            DbSet.Remove(activity);
+ 
             Context.SaveChanges();
         }
     }

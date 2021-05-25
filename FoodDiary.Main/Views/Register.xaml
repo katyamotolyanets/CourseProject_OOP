@@ -47,6 +47,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" Margin="0,10">
@@ -149,7 +150,7 @@
                 <Button Grid.Row="8" Margin="0,10"
                     HorizontalAlignment="Center"
                     Command="{Binding RegisterCommand}"
-                    Content="Register"
+                    Content="Регистрация"
                     IsDefault="True"
                     Background="#59bd8b"
                     BorderBrush="#59bd8b"
@@ -160,13 +161,13 @@
                     Background="Transparent"
                     Command="{Binding UpdateViewCommand}"
                     CommandParameter="Login"
-                    Content="Already have an account?"
+                    Content="У Вас уже есть аккаунт?"
                     FontSize="14"
                     Foreground="#59bd8b"
                     BorderBrush="#59bd8b"
                     FontFamily="Century Gothic"/>
 
-                <TextBlock Grid.Row="10" Margin="0,10,0,0"
+                <TextBlock Grid.Row="10" Margin="0,15,0,0"
                     HorizontalAlignment="Center"
                     DataContext="{Binding ErrorMessageViewModel}"
                     Foreground="DarkRed"

@@ -10,7 +10,7 @@
              d:DesignHeight="680" d:DesignWidth="850">
     <Grid Background="White" Width="850">
         <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70">
-            <Button Width="200" Height="200" Click="Button_Click" Command="{Binding DataContext.AddPhotoCommand, ElementName=ProfileControl, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            <Button Width="200" Height="200" Click="Button_Click" 
                  x:Name="photoButton" Background="Transparent" BorderBrush="Transparent"
                  HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center">
                 <Grid>

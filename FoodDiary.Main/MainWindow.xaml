@@ -8,6 +8,7 @@
         mc:Ignorable="d"        
         x:Name="MainView"
         Title="FoodDiary" Height="680" Width="1080" 
+        MinHeight="680" MinWidth="1080"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         SizeChanged="MainWindow_SizeChanged"
         Icon="D:\2 курс\4 сем\OOP\courseproject\FoodDiary.Main\Assets\avocado(1).png">
@@ -40,16 +41,16 @@
                             </StackPanel>
                         </Button>
                         <Button Height="50" Padding="0" BorderThickness="0"  HorizontalContentAlignment="Left" Background="WHite"  Command="{Binding DataContext.UpdateViewCommand, ElementName=MainView}" 
-                                CommandParameter="Filtering" Width="230" >
+                                CommandParameter="Reports" Width="230" >
                             <StackPanel Orientation="Horizontal" Width="230">
-                                <materialDesign:PackIcon Kind="Calendar" Width="20" Height="20" Foreground="#59bd8b" Margin="5" VerticalAlignment="Center"/>
-                                <TextBlock Text="Календарь" Margin="10" Foreground="Black" FontFamily="Century Gothic" />
+                                <materialDesign:PackIcon Kind="ChartPie" Width="20" Height="20" Foreground="#59bd8b" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Отчёты" Margin="10" Foreground="Black" FontFamily="Century Gothic" />
                             </StackPanel>
                         </Button>
                         <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite"  Command="{Binding UpdateViewCommand}"
                                 CommandParameter="Weight" Width="230" >
                             <StackPanel Orientation="Horizontal" Width="230" >
-                                <materialDesign:PackIcon Kind="ChartBarStacked" Width="20" Height="20" Foreground="#59bd8b " Margin="5" VerticalAlignment="Center"/>
+                                <materialDesign:PackIcon Kind="ChartLine" Width="20" Height="20" Foreground="#59bd8b " Margin="5" VerticalAlignment="Center"/>
                                 <TextBlock Text="Контроль веса" Margin="10" Foreground="Black" FontFamily="Century Gothic" />
                             </StackPanel>
                         </Button>

@@ -21,6 +21,7 @@ namespace FoodDiary.Main.ViewModels
         public UpdateViewCommand UpdateViewCommand { get; set; }
         public LinkToAddCommand LinkToAddCommand { get; set; }
         public DeleteCommand DeleteCommand { get; set; }
+        public DeleteActCommand DeleteActCommand { get; set; }
         public EditCommand EditCommand { get; set; }
         public LinkToEditCommand LinkToEditCommand { get; set; }
         private ICollectionView _productSetCollectionView { get; set; }
@@ -59,6 +60,7 @@ namespace FoodDiary.Main.ViewModels
                 OnPropertyChanged(nameof(ProductSets));
                 CheckHistory(Date);
                 RefreshProductSetCollectionView();
+                //GetCaloriesBalance();
             }
         }
         public UnitOfWork UnitOfWork { get; set; }
@@ -66,7 +68,16 @@ namespace FoodDiary.Main.ViewModels
         public List<ActivityType> ActivityTypes { get; set; }
         public List<ProductSetProducts> ProductSetProducts { get; set; }
         public ProductSetProducts ProductSetProduct { get; private set; }
-        public List<Activity> Activities { get; set; }
+        private List<Activity> _activities { get; set; }
+        public List<Activity> Activities
+        {
+            get { return _activities; }
+            set
+            {
+                _activities = value;
+                OnPropertyChanged(nameof(Activities));
+            }
+        }
         private int _caloriesBalance { get; set; }
         public int CaloriesBalance
         {
@@ -75,7 +86,6 @@ namespace FoodDiary.Main.ViewModels
             {
                 _caloriesBalance = value;
                 OnPropertyChanged(nameof(CaloriesBalance));
-                //RefreshProductSetCollectionView();
             }
         }
         private int _caloriesLeft { get; set; }
@@ -86,8 +96,17 @@ namespace FoodDiary.Main.ViewModels
             {
                 _caloriesLeft = value;
                 OnPropertyChanged(nameof(CaloriesLeft));
-               // RefreshProductSetCollectionView();
 
+            }
+        }
+        private int _caloriesActivity { get; set; }
+        public int CaloriesActivity
+        {
+            get { return _caloriesActivity; }
+            set
+            {
+                _caloriesActivity = value;
+                OnPropertyChanged(nameof(CaloriesActivity));
             }
         }
         public DiaryViewModel()
@@ -96,10 +115,10 @@ namespace FoodDiary.Main.ViewModels
             UnitOfWork = new UnitOfWork();
             CurrentAccount = SingleCurrentAccount.GetInstance().Account;
 
-            GetHistory(Date);
 
             CaloriesLeft = 0;
             CaloriesBalance = (int)CurrentAccount.UserCalories;
+            CaloriesActivity = 0;
 
             ProductSets = new List<ProductSet>();
             ProductSetProducts = new List<ProductSetProducts>();
@@ -108,9 +127,10 @@ namespace FoodDiary.Main.ViewModels
 
             Activities = new List<Activity>();
 
+            GetHistory(Date);
             BindProductSets();
             BindActivities();
-            //GetCaloriesBalance();
+            RefreshProductSetCollectionView();
 
             ActivityTypes = new List<ActivityType>();
        
@@ -118,6 +138,7 @@ namespace FoodDiary.Main.ViewModels
             LinkToAddCommand = new LinkToAddCommand(this);
             LinkToEditCommand = new LinkToEditCommand(this);
             DeleteCommand = new DeleteCommand(this);
+            DeleteActCommand = new DeleteActCommand(this);
             EditCommand = new EditCommand(ProductSetProduct);
             RefreshProductSetCollectionView();
             GetActivityTypes();
@@ -125,6 +146,7 @@ namespace FoodDiary.Main.ViewModels
         //проверка хистори на этот день, если нет, то создать
         public void CheckHistory(DateTime date)
         {
+
             History = UnitOfWork.HistoryRepository.GetByDate(date);
             if (History == null)
             {
@@ -165,20 +187,39 @@ namespace FoodDiary.Main.ViewModels
 
         public void GetCaloriesBalance()
         {
+            CaloriesLeft = 0;
+            CaloriesBalance = (int)CurrentAccount.UserCalories;
+            CaloriesActivity = 0;
             ProductSetCollectionView.Refresh();
+            GetHistory(Date);
             ProductSetProducts = (List<ProductSetProducts>)UnitOfWork.ProductSetProductsRepository.List();
-            foreach(ProductSetProducts productSetProducts in ProductSetProducts)
+            List<UserHistoryProductSets> UserHistoryProductSets = new List<UserHistoryProductSets>();
+            UserHistoryProductSets = (List<UserHistoryProductSets>)UnitOfWork.UserHistoryProductSetsRepository.List(x => x.UserHistoryID == History.ID);
+            foreach (UserHistoryProductSets userHistoryProductSets in UserHistoryProductSets)
             {
-                foreach(ProductSet productSet in ProductSets)
+                foreach (ProductSetProducts productSetProducts in ProductSetProducts)
                 {
-                    if (productSetProducts.ProductSetID == productSet.ID)
+                    if (productSetProducts.ProductSetID == userHistoryProductSets.ProductSetID && userHistoryProductSets.UserHistoryID == History.ID)
                     {
                         CaloriesLeft += (int)(productSetProducts.ProductWeight / 100 * productSetProducts.Product.Calories);
+                    }                   
+                }
+            }
+
+            List<UserHistoryActivities> UserHistoryActivities = new List<UserHistoryActivities>();
+            UserHistoryActivities = (List<UserHistoryActivities>)UnitOfWork.UserHistoryActivitiesRepository.List(x => x.UserHistoryID == History.ID);
+            BindActivities();
+            foreach (UserHistoryActivities userHistoryActivities in UserHistoryActivities)
+            {
+                foreach (Activity activity in Activities)
+                {
+                    if (activity.ID == userHistoryActivities.ActivityID)
+                    {
+                        CaloriesActivity += (int)(activity.ActivityType.ActivityCalories / 60 * activity.ActivityTime);
                     }
                 }
             }
             CaloriesBalance = (int)(CurrentAccount.UserCalories - CaloriesLeft);
-
         }
         public void GetActivityTypes()
         {
@@ -211,7 +252,6 @@ namespace FoodDiary.Main.ViewModels
                 ProductSetProduct.ID = Guid.NewGuid();
                 ProductSetProduct.ProductSet = productSet;
                 ProductSetProducts.Add(ProductSetProduct);
-
             }
         }
 
@@ -251,11 +291,13 @@ namespace FoodDiary.Main.ViewModels
                                   ProductName = pr.NameProduct,
                                   ProductSetID = s.ID,
                                   MealType = s.MealType,
+                                  MealTypeID = s.MealType.ID,
                                   HistoryID = history.ID,
                                   Weight = p.ProductWeight
                               }).Where(x => x.HistoryID == History.ID).ToList();
                 ProductSetCollectionView = CollectionViewSource.GetDefaultView(result);
                 ProductSetCollectionView.GroupDescriptions.Add(new PropertyGroupDescription(("MealType")));
+                ProductSetCollectionView.SortDescriptions.Add(new SortDescription("MealTypeID", ListSortDirection.Ascending));
                 ProductSetCollectionView.Refresh();
                
             }

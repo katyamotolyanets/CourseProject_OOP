@@ -13,7 +13,7 @@ namespace FoodDiary.Infrastructure.Repositories
         public MealType Find(Guid id) => MakeInclusions().SingleOrDefault(x => x.ID == id);
         public IEnumerable<MealType> List(Expression<Func<MealType, bool>> predicate = null)
         {
-            var query = MakeInclusions().OrderBy(x => x.MealName).AsQueryable();
+            var query = MakeInclusions().OrderBy(x => x.ID).AsQueryable();
             if (predicate != null)
             {
                 query = query.Where(predicate);

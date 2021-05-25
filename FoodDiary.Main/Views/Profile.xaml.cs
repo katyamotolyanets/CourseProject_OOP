@@ -42,8 +42,21 @@ namespace FoodDiary.Main.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            CurrentAccount = profileViewModel.CurrentAccount;
+            accountRepository = new AccountRepository();
+
+            OpenFileDialog ofdPicture = new OpenFileDialog();
+            ofdPicture.Filter =
+                "Image files|*.bmp;*.jpg;*.gif;*.png;*.tif|All files|*.*";
+            ofdPicture.FilterIndex = 1;
+           
+            if (ofdPicture.ShowDialog() == true)
+                imgPicture.Source = new BitmapImage(new Uri(ofdPicture.FileName));
+
+            CurrentAccount.PhotoSource = imgPicture.Source.ToString();
+            accountRepository.Update(profileViewModel.CurrentAccount);
             //photoButton.Command.Execute(AddPhotoCommand);
-            imgPicture.Source = new BitmapImage(new Uri(profileViewModel.CurrentAccount.PhotoSource));
+            
         }
     }
 }

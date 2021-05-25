@@ -17,7 +17,7 @@
         VerticalAlignment="Center"
         Background="White"
         BorderThickness="3"
-        CornerRadius="10" Height="400">
+        CornerRadius="10" Height="420">
         <Border.Effect>
             <DropShadowEffect BlurRadius="10" Color="Gray" />
         </Border.Effect>
@@ -71,7 +71,7 @@
                 <Button Grid.Row="2" Margin="0 15"
                     HorizontalAlignment="Center"
                     Command="{Binding LoginCommand}"
-                    Content="Login"
+                    Content="Войти"
                     FontFamily="Century Gothic"
                     IsDefault="True"
                     Background="#59bd8b"
@@ -82,14 +82,14 @@
                     Background="Transparent"
                     Command="{Binding UpdateViewCommand}"
                     CommandParameter="Register"
-                    Content="Don't have an account?"
+                    Content="У ВАс ещё нет аккаунта?"
                     FontSize="14"
                     FontFamily="Century Gothic"
                     Foreground="#59bd8b" 
                     BorderBrush="#59bd8b"/>
 
                 <TextBlock FontFamily="Century Gothic"
-                    Grid.Row="4" Margin="0 10 0 0"
+                    Grid.Row="4" Margin="0 15 0 0"
                     HorizontalAlignment="Center"
                     DataContext="{Binding ErrorMessageViewModel}"
                     Foreground="DarkRed"

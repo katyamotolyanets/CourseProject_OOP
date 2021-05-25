@@ -13,6 +13,7 @@ namespace FoodDiary.Infrastructure.Repositories
    public class UserHistoryActivitiesRepository : Repository<UserHistoryActivities>, IUserHistoryActivitiesRepository
     {
         public UserHistoryActivities Find(Guid id) => MakeInclusions().SingleOrDefault(x => x.ID == id);
+        public UserHistoryActivities FindActivity(Guid id) => MakeInclusions().SingleOrDefault(x => x.ActivityID == id);
 
         public IEnumerable<UserHistoryActivities> List(Expression<Func<UserHistoryActivities, bool>> predicate = null)
         {
@@ -28,6 +29,12 @@ namespace FoodDiary.Infrastructure.Repositories
         public void Create(UserHistoryActivities userHistoryActivities)
         {
             DbSet.Add(userHistoryActivities);
+
+            Context.SaveChanges();
+        }
+        public void Delete(UserHistoryActivities userHistoryActivities)
+        {
+            DbSet.Remove(userHistoryActivities);
 
             Context.SaveChanges();
         }

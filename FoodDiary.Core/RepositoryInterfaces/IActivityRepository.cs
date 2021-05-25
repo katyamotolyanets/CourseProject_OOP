@@ -10,5 +10,6 @@ namespace FoodDiary.Core.RepositoryInterfaces
     public interface IActivityRepository : IRepository<Activity, Guid>
     {
         void Create(Activity activity);
+        void Delete(Activity activity);
     }
 }

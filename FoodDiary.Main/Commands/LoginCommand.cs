@@ -1,4 +1,5 @@
-﻿using FoodDiary.Main.States.Authenticators;
+﻿using FoodDiary.Core.Exceptions;
+using FoodDiary.Main.States.Authenticators;
 using FoodDiary.Main.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -35,14 +36,24 @@ namespace FoodDiary.Main.Commands
         public void Execute(object parameter)
         {
 
-            //КУДА????
             _loginViewModel.ErrorMessage = string.Empty;
-
-            bool success = _authenticator.Login(_loginViewModel.UserName, _loginViewModel.Password);
-
-            if (success)
-                MainWindow.MyMainView.IsLoggin = true;
+            try
+            {
+                _authenticator.Login(_loginViewModel.UserName, _loginViewModel.Password);
                 updateViewCommand.Execute("Diary");
+            }
+            catch (AccountNotFoundException)
+            {
+                _loginViewModel.ErrorMessage = "Пользователя с таким именем не существует";
+            }
+            catch (InvalidPasswordException)
+            {
+                _loginViewModel.ErrorMessage = "Неверный пароль";
+            }
+            catch (Exception)
+            {
+                _loginViewModel.ErrorMessage = "Не получилось авторизоваться";
+            }
 
         }
 

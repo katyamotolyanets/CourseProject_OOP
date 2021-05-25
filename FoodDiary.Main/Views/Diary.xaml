@@ -15,12 +15,15 @@
             <Setter Property="ItemsControl.BorderBrush" Value="LightGray"/>
             <Setter Property="ItemsControl.BorderThickness" Value="1"/>
             <Setter Property="ItemsControl.FontFamily" Value="Century Gothic"/>
-            <Setter Property="ItemsControl.Padding" Value="10"/>
+            <Setter Property="ItemsControl.Padding" Value="5"/>
         </Style>
-        
+        <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
     </UserControl.Resources>
     <Grid Background="White" Width="850" ScrollViewer.CanContentScroll="True">
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
@@ -42,89 +45,77 @@
                            FontSize="20" Foreground="DimGray"/>
             </StackPanel>
         </Grid>
-        <ListView ScrollViewer.CanContentScroll="True" Grid.Row="1" AlternationCount="2" FontFamily="Century Gothic"
-                ItemsSource="{Binding ProductSetCollectionView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0,0,0,10">
-            <ListView.View>
-                        <GridView>
-                   
-                            <GridViewColumn Width="250"
-                      DisplayMemberBinding="{Binding Path=ProductName, UpdateSourceTrigger=PropertyChanged}"/>
-                            <GridViewColumn Width="150"
-                      DisplayMemberBinding="{Binding Path=Weight, UpdateSourceTrigger=PropertyChanged}"/>
-                            <GridViewColumn>    
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button  Margin="50 0 0 0" Style="{StaticResource Buttons}" Command="{Binding DataContext.LinkToEditCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                 CommandParameter="{Binding ProductSetProducts}" Content="Редактировать">
-                                            <Button.Resources>
-                                                <Style TargetType="Border">
-                                                    <Setter Property="CornerRadius" Value="5"/>
-                                                </Style>
-                                            </Button.Resources>
-                                        </Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Style="{StaticResource Buttons}" Command="{Binding DataContext.DeleteCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                CommandParameter="{Binding ProductSetProducts}" Content="Удалить">
-                                            <Button.Resources>
-                                                <Style TargetType="Border">
-                                                    <Setter Property="CornerRadius" Value="5"/>
-                                                </Style>
-                                            </Button.Resources>
-                                        </Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            
-                        </GridView>
-                    </ListView.View>
-                    <ListView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.ContainerStyle>
-                                <Style TargetType="{x:Type GroupItem}">
-                                  
-                            <Setter Property="Visibility" Value="Visible"/>
-                            <Setter Property="Margin" Value="50,0,50,15"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type GroupItem}">
-                                        <ControlTemplate.Triggers>
-                                            <DataTrigger Binding="{Binding Path=ProductName}" Value="x:Null">
-                                                <Setter Property="Visibility" Value="Collapsed" />
-                                            </DataTrigger>
-                                        </ControlTemplate.Triggers>
-                                        <Expander IsExpanded="False" BorderBrush="Transparent" 
-                                            BorderThickness="0">
-                                                    <Expander.Header>
-                                                        <DockPanel>
-                                                            <TextBlock Foreground="Black" FontSize="18" FontWeight="Bold" Text="{Binding Path=Name.MealName}"/>
-                                                            <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" 
+        <ListBox Margin="0 20 0 0" ItemsSource="{Binding ProductSetCollectionView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Grid.Row="1" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Center">
+            <ListBox.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <Expander Background="#b6e2cc" FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="650"
+                          HorizontalAlignment="Center" Margin="0 10 0 0">
+                                            <Expander.Header>
+                                                <DockPanel>
+                                                    <TextBlock VerticalAlignment="Center" Foreground="DimGray"  Text="{Binding Path=Name.MealName}"/>
+                                                    <Button HorizontalAlignment="Right" Width="40" Height="40" BorderThickness="0" Background="Transparent" 
                                                                     Command="{Binding DataContext.LinkToAddCommand, ElementName=DiaryView}" CommandParameter="{Binding Name}">
-                                                                <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="Black" Margin="-15 0" VerticalAlignment="Center"/>
-                                                            </Button>
-                                                        </DockPanel>
-                                                    </Expander.Header>
-                                                    <Expander.Content>
-                                                <ItemsPresenter x:Name="ItemsPresenter"/>
-                                                    </Expander.Content>
-                                                </Expander>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </GroupStyle.ContainerStyle>
-                        </GroupStyle>
-                    </ListView.GroupStyle>
-                    
-            
-        </ListView>
-            <ListView Grid.Row="2" ScrollViewer.CanContentScroll="True">
-                <Expander Background="#b6e2cc" FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="599"
-                          HorizontalAlignment="Center" Margin="115 10 0 0">
+                                                        <materialDesign:PackIcon Kind="ControlPoint" Width="33" Height="33" Foreground="DimGray" Margin="-15 0" VerticalAlignment="Center"/>
+                                                    </Button>
+                                                </DockPanel>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ListBox.GroupStyle>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Height" Value="50"/>
+                    <Setter Property="Margin" Value="10 0 50 0"/>
+                    <Setter Property="FontSize" Value="15"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Grid>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Margin="5 0 0 0" Width="270" Foreground="DimGray" Text="{Binding Path=ProductName, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" />
+                                            <TextBlock Margin="10 0 0 0" Foreground="DimGray" Text="{Binding Path=Weight, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center"/>
+                                            <TextBlock Margin="2 0 0 0" Text="г" Foreground="DimGray" VerticalAlignment="Center"/>
+                                            <Button Height="40" FontSize="15" Margin="20 0 0 0"  Style="{StaticResource Buttons}" Command="{Binding DataContext.LinkToEditCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                     CommandParameter="{Binding ProductSetProducts}" Foreground="DimGray" Content="Редактировать">
+                                                <Button.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="5"/>
+                                                    </Style>
+                                                </Button.Resources>
+                                            </Button>
+                                        <Button Margin="20 0 0 0" Height="40" Width="80" Foreground="DimGray"
+                                            Style="{StaticResource Buttons}" Command="{Binding DataContext.DeleteActCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                CommandParameter="{Binding}" Content="Удалить">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="5"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                    </StackPanel>
+                                    </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+        <ListView Grid.Row="2" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Expander Background="#b6e2cc" FontFamily="Century Gothic" FontSize="25" IsExpanded="False" Width="650"
+                          HorizontalAlignment="Center" Margin="0 10 0 0">
                         <Expander.Header>
                             <DockPanel>
                                 <TextBlock VerticalAlignment="Center" Text="Сон/упражнения" Foreground="DimGray"/>
@@ -135,38 +126,25 @@
                         </Expander.Header>
                 <ListView ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                               ItemsSource="{Binding DataContext.Activities, Mode=TwoWay, ElementName=DiaryView, UpdateSourceTrigger=PropertyChanged}" 
-                              VerticalAlignment="Center">
-                    
+                              VerticalAlignment="Center" FontFamily="Century Gothic" FontSize="15">
                     <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="200"
                       DisplayMemberBinding="{Binding Path=ActivityType.ActivityName}"/>
-                                    <GridViewColumn Width="25"
+                                    <GridViewColumn Width="30"
                       DisplayMemberBinding="{Binding Path=ActivityTime}"/>
                                     <GridViewColumn>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                        <TextBlock Text=" мин"/>
-                                    </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                     <GridViewColumn>
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button Margin="30 -5 0 0" Style="{StaticResource Buttons}" Command="{Binding DataContext.LinkToEditCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="Редактировать">
-                                                    <Button.Resources>
-                                                        <Style TargetType="Border">
-                                                            <Setter Property="CornerRadius" Value="5"/>
-                                                        </Style>
-                                                    </Button.Resources>
-                                                </Button>
+                                                <TextBlock Margin="2 0 0 0" Text="мин"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button Style="{StaticResource Buttons}" Command="{Binding DataContext.DeleteCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="Удалить">
+                                                <Button Style="{StaticResource Buttons}" Height="40"
+                                                        Command="{Binding DataContext.DeleteActCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding}" Content="Удалить">
                                                     <Button.Resources>
                                                         <Style TargetType="Border">
                                                             <Setter Property="CornerRadius" Value="5"/>
@@ -178,10 +156,11 @@
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>
-                    
                         </ListView>
                     </Expander>
             </ListView>
-        
+        <ListView Grid.Row="3">
+            <TextBlock Text="{Binding CaloriesActivity}" Foreground="Black"/>
+        </ListView>
     </Grid>
 </UserControl>
