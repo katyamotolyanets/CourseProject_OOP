@@ -82,7 +82,7 @@
                     Background="Transparent"
                     Command="{Binding UpdateViewCommand}"
                     CommandParameter="Register"
-                    Content="У ВАс ещё нет аккаунта?"
+                    Content="Eщё нет аккаунта?"
                     FontSize="14"
                     FontFamily="Century Gothic"
                     Foreground="#59bd8b" 

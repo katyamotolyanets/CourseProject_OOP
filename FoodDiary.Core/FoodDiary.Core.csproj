@@ -236,7 +236,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="AllClassesDiagram.cd" />
     <None Include="app.config" />
+    <None Include="ClassDiagramCore.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

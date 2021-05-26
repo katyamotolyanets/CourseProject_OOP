@@ -67,25 +67,22 @@
 
 
         <Grid Width="400"  Height="300" Margin="0 -50 0 0">
-
-                <lvc:CartesianChart>
-                        <lvc:CartesianChart.Series>
-                            <lvc:LineSeries Stroke="#59bd8b" Fill="#dbf0e6" Title="Изменения вашего веса" Values="{Binding Values}"/>
-                        </lvc:CartesianChart.Series>
-                        <lvc:CartesianChart.AxisX>
-                            <lvc:Axis Labels="{Binding DateTimes}" >
-                                <lvc:Axis.Separator>
-                                    <lvc:Separator Step="1"/>
-                                </lvc:Axis.Separator>
-                            </lvc:Axis>
-                        </lvc:CartesianChart.AxisX>
-                        <lvc:CartesianChart.AxisY>
-                            <lvc:Axis Labels="{Binding}"/>
-                        </lvc:CartesianChart.AxisY>
-                    </lvc:CartesianChart>
-                
-
-            </Grid>
+            <lvc:CartesianChart>
+                <lvc:CartesianChart.Series>
+                    <lvc:LineSeries Stroke="#59bd8b" Fill="#dbf0e6" Title="Изменения вашего веса" Values="{Binding Values}"/>
+                </lvc:CartesianChart.Series>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Labels="{Binding DateTimes}" >
+                        <lvc:Axis.Separator>
+                            <lvc:Separator Step="1"/>
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Labels="{Binding}"/>
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
+        </Grid>
             
         <Grid Margin="200 450 200 70">
             <ListView ItemsSource="{Binding ChangesWeight}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" >

@@ -62,7 +62,14 @@
             <ListViewItem Margin="0 20 0 0" HorizontalAlignment="Center">
                 <Border CornerRadius="20">
                     <Button Command="{Binding NewProductCommand}" CommandParameter="{Binding}" Width="150" Height="40" BorderBrush="#59bd8b" 
-                            BorderThickness="0.5" Background="Transparent" materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b" Content="Сохранить" Foreground="Black" FontSize="20"/>
+                            BorderThickness="0.5" Background="Transparent" materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b" 
+                            Content="Сохранить" Foreground="Black" FontSize="20">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </Border>
             </ListViewItem>
         </ListView>

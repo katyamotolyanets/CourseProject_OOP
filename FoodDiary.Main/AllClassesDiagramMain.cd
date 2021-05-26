@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FoodDiary.Main.Commands.AddPhotoCommand" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACACAAQAAEAAAAAAgAAAAYAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\AddPhotoCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.AddProductCommand" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAgACQAQAQEAAAAAAAAAAACAAAAAAAAAAACA=</HashCode>
+      <FileName>Commands\AddProductCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.DeleteActCommand" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAYAAEAAAAAEAAAAgAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Commands\DeleteActCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.DeleteCommand" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACQAYAAEAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\DeleteCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.EditCommand" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACQAQAAEAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\EditCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.LinkToActCommand" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Commands\LinkToActCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.LinkToAddCommand" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAACAAYIQEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\LinkToAddCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.LinkToEditCommand" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACQAYAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\LinkToEditCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.LoginCommand" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAACAAQgAEQAAAgAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\LoginCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.MediatorCommand" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAgACAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\MediatorCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.NewProductCommand" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgACAAQAAEAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\NewProductCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.RegisterCommand" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAACAAQAAEQAAAgAAACAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Commands\RegisterCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.UpdateViewCommand" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\UpdateViewCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.Commands.UpdateWeightCommand" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAACAAQAAEAAAAAAAAggAQAAAAAAAAQAAAA=</HashCode>
+      <FileName>Commands\UpdateWeightCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.States.Accounts.AccountStore" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAACA=</HashCode>
+      <FileName>States\Accounts\AccountStore.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.States.Accounts.SingleCurrentAccount" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>States\Accounts\AccountStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.States.Authenticators.Authenticator" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAIAAAABAQAAAAASAAAAQCA=</HashCode>
+      <FileName>States\Authenticators\Authenticator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.ActivitiesViewModel" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAACAIAABAIAAAVAAAAAAAAAAAMgABgA=</HashCode>
+      <FileName>ViewModels\ActivitiesViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.AddNewProductViewModel" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\AddNewProductViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.BaseViewModel" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.DiaryViewModel" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQAQAAgAAAhEQCEARAEBAAAAAAkAgYABBBACIYAQQCQ=</HashCode>
+      <FileName>ViewModels\DiaryViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.EditProductSetViewModel" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAQAAAAAAAAAAAAAAAgQAAAIAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\EditProductSetViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.FilteringViewModel" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAQAAAAAAAAAAAAAAQAAIAAAAAAQAACAAAAAQU=</HashCode>
+      <FileName>ViewModels\FilteringViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.LoginViewModel" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQQAAAQAAAAAAAAAAAAAAAAAABAAAAACAQIAAACAAAA=</HashCode>
+      <FileName>ViewModels\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.MainViewModel" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAACAAAAAAAEAgAAAAAAAAAAAAAQAAAAAECAAAAAA=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.MessageViewModel" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAIAAAAAA=</HashCode>
+      <FileName>ViewModels\MessageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.ProductViewModel" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAABAAgAAAAAAQAAAAAAAAAAAAAAAAAAAAAgAAgA=</HashCode>
+      <FileName>ViewModels\ProductViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.ProfileViewModel" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAEgAAQAAAAAAAABAAAARLCAAAgGAZAAgAAAACAECAA=</HashCode>
+      <FileName>ViewModels\ProfileViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.RegisterViewModel" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KRQBAAQQBADAFCEAAECCAAAAACAgAgiCAQIAASAAYAA=</HashCode>
+      <FileName>ViewModels\RegisterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.IntConverter" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\RegisterViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.DoubleConverter" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\RegisterViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.ReportsViewModel" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAYIBhQQAAAQIEFAEAAAAgAgQABAAACQQAAQAg=</HashCode>
+      <FileName>ViewModels\ReportsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Main.ViewModels.WeightViewModel" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAMIAEAAAAAAAQQAIAJIAUQIQAAiAAAIAAA=</HashCode>
+      <FileName>ViewModels\WeightViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="FoodDiary.Main.States.Accounts.IAccountStore" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAACA=</HashCode>
+      <FileName>States\Accounts\IAccountStore.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FoodDiary.Main.States.Authenticators.IAuthenticator" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAABAQAAAAASAAAAACA=</HashCode>
+      <FileName>States\Authenticators\IAuthenticator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

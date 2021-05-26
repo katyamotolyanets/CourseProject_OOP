@@ -21,6 +21,11 @@
         <materialDesign:DialogHost BorderBrush="{DynamicResource MaterialDesignDivider}">
             <materialDesign:DialogHost.DialogContent>
                 <Grid Width="400" Height="200" HorizontalAlignment="Center">
+                    <Button Width="20" Height="20" Margin="0 3 3 0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top"
+                            HorizontalAlignment="Right" >
+                        <Image Margin="-17 -15 -5 -17" Width="17" Height="17" Source="D:\2 курс\4 сем\OOP\courseproject\FoodDiary.Main\Assets\cross.png"/>
+                    </Button>
                     <StackPanel>
                         <TextBlock Foreground="Black" Text="Введите продолжительность занятия"
                                    FontFamily="Century Gothic" HorizontalAlignment="Center"
@@ -33,7 +38,7 @@
                         </WrapPanel>
                         <Button Margin="0 30 0 0" Content="Сохранить" Name="act" Click="AddAct"
                                 Width="120" Height="40" HorizontalAlignment="Center"
-                                FontFamily="Century Gothic" FontSize="15">
+                                FontFamily="Century Gothic" FontSize="15" Background="#59bd8b">
                             <Button.Resources>
                                 <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#59bd8b"/>
                             </Button.Resources>

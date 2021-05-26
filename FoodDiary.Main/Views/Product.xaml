@@ -48,10 +48,14 @@
                         <StackPanel Orientation="Vertical" Margin="15">
                             <TextBlock FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
                                    VerticalAlignment="Center" Text="Пищевая"></TextBlock>
-                            <TextBlock FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
+                                <TextBlock FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
                                    VerticalAlignment="Center" Text="ценность" HorizontalAlignment="Center" />
-                            <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
                                    Foreground="Black" FontFamily="Century Gothic"  Text="{Binding product.EnergyValue}" HorizontalAlignment="Center"/>
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="3 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="кДж" HorizontalAlignment="Center"/>
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -60,25 +64,36 @@
                         <StackPanel Orientation="Vertical" Margin="15">
                             <TextBlock Margin="0 5 0 0" FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
                                    VerticalAlignment="Center" Text="Белки" HorizontalAlignment="Center"></TextBlock>
-                            <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
-                                   Foreground="Black" FontFamily="Century Gothic" Text="{Binding product.Proteins}" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="{Binding product.Proteins}" HorizontalAlignment="Center"/>
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="3 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="г" HorizontalAlignment="Center"/>
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                     <Border Height="140" Width="150" Margin="70 0 0 0" BorderBrush="#59bd8b" CornerRadius="15" BorderThickness="3" DockPanel.Dock="Top" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical"  Margin="15">
                             <TextBlock Margin="0 5 0 0" FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
                                    VerticalAlignment="Center" Text="Жиры" HorizontalAlignment="Center"/>
-                            <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
-                                   Foreground="Black" Text="{Binding product.Fats}" FontFamily="Century Gothic"
-                                       HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="{Binding product.Fats}" HorizontalAlignment="Center"/>
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="3 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="г" HorizontalAlignment="Center"/>
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                     <Border Width="150" Margin="70 0 0 0" BorderBrush="#59bd8b" CornerRadius="15" BorderThickness="3" DockPanel.Dock="Right" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical" Margin="15">
                             <TextBlock FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
                                    VerticalAlignment="Center" Text="Углеводы" HorizontalAlignment="Center"/>
-                            <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
                                    Foreground="Black" FontFamily="Century Gothic"  Text="{Binding product.Carbohydrates}" HorizontalAlignment="Center"/>
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="3 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="г" HorizontalAlignment="Center"/>
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -87,9 +102,11 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
                                    VerticalAlignment="Center" Text="Вес" HorizontalAlignment="Center"/>
-                        <TextBox Margin="40 0 0 0" FontFamily="Century Gothic" Foreground="Black" Width="200" Height="50" materialDesign:HintAssist.Hint="100 г" 
+                        <TextBox Margin="40 0 0 0" FontFamily="Century Gothic" Foreground="Black" Width="150" Height="50" materialDesign:HintAssist.Hint="100" 
                          Text="{Binding productSetProducts.ProductWeight, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b" FontSize="25"/>
+                        <TextBlock Margin="3 0 0 0" FontFamily="Century Gothic" Foreground="Black"
+                         Text="г" FontSize="25" VerticalAlignment="Center"/>
                     </StackPanel>
                     <Border Margin="0 20 0 0" CornerRadius="15" Width="200" Height="50">
                         <Button Style="{StaticResource Buttons}" FontFamily="Century Gothic" VerticalAlignment="Center" Command="{Binding DataContext.AddProductCommand, ElementName=ProductControl}"

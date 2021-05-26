@@ -161,7 +161,7 @@
                     Background="Transparent"
                     Command="{Binding UpdateViewCommand}"
                     CommandParameter="Login"
-                    Content="У Вас уже есть аккаунт?"
+                    Content="Уже есть аккаунт?"
                     FontSize="14"
                     Foreground="#59bd8b"
                     BorderBrush="#59bd8b"

@@ -8,6 +8,16 @@
              mc:Ignorable="d" 
              x:Name="ProfileControl"
              d:DesignHeight="680" d:DesignWidth="850">
+    <UserControl.Resources>
+        <Style x:Key="Buttons">
+            <Setter Property="ItemsControl.Background" Value="Transparent"/>
+            <Setter Property="ItemsControl.Foreground" Value="Black"/>
+            <Setter Property="ItemsControl.BorderBrush" Value="#59bd8b"/>
+            <Setter Property="ItemsControl.BorderThickness" Value="2"/>
+            <Setter Property="ItemsControl.FontFamily" Value="Century Gothic"/>
+            <Setter Property="ItemsControl.Padding" Value="5"/>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="White" Width="850">
         <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70">
             <Button Width="200" Height="200" Click="Button_Click" 
@@ -41,7 +51,7 @@
                     <TextBlock FontFamily="Century Gothic" HorizontalAlignment="Center"  FontSize="25"
                            Text="Ваш вес" Foreground="DimGray"/>
                     <TextBlock Margin="40 0 0 0" FontFamily="Century Gothic" HorizontalAlignment="Center"  FontSize="25"
-                           Text="{Binding CurrentAccount.UserWeight}" Foreground="DimGray"/>
+                           Text="{Binding CurrentAccount.UserWeight, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="DimGray"/>
                     <TextBlock Margin="5 0 0 0" FontFamily="Century Gothic" HorizontalAlignment="Center"  FontSize="25"
                            Text="кг" Foreground="DimGray"/>
                 </WrapPanel>
@@ -49,26 +59,50 @@
                     <TextBlock FontFamily="Century Gothic" HorizontalAlignment="Center" FontSize="25"
                            Text="Калории" Foreground="DimGray"/>
                     <TextBlock Margin="35 0 0 0"  FontFamily="Century Gothic" HorizontalAlignment="Center" FontSize="25"
-                           Text="{Binding Calories}" Foreground="DimGray"/>
+                           Text="{Binding Calories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Foreground="DimGray"/>
+                    <Border Margin="40 0 0 0" CornerRadius="15" Width="180">
+                        <Button Style="{StaticResource Buttons}" FontFamily="Century Gothic" VerticalAlignment="Center" 
+                                Command="{Binding DataContext.UpdateCaloriesCommand, ElementName=ProfileControl}"
+                                Content="Пересчитать" Foreground="DimGray" FontSize="20">
+                            <Button.Resources>
+                                <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#59bd8b"/>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Border>
                 </WrapPanel>
                 <WrapPanel>
                     <StackPanel Margin="20 15 0 0">
                         <TextBlock FontFamily="Century Gothic" FontSize="25"
                            Text="Белки" Foreground="DimGray"/>
-                        <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
                            Text="{Binding Proteins}" Foreground="DimGray"/>
+                            <TextBlock Margin="3 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                           Text="г" Foreground="DimGray"/>
+                        </StackPanel>
                     </StackPanel>
                     <StackPanel Margin="70 15 0 0">
                         <TextBlock FontFamily="Century Gothic" FontSize="25"
                            Text="Жиры" Foreground="DimGray"/>
-                        <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
                            Text="{Binding Fats}" Foreground="DimGray"/>
+                            <TextBlock Margin="3 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                           Text="г" Foreground="DimGray"/>
+                        </StackPanel>
                     </StackPanel>
                     <StackPanel Margin="70 15 0 0">
                         <TextBlock FontFamily="Century Gothic" FontSize="25"
                            Text="Углеводы" Foreground="DimGray"/>
-                        <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
                            Text="{Binding Carbohydrates}" Foreground="DimGray"/>
+                            <TextBlock Margin="3 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                           Text="г" Foreground="DimGray"/>
+                        </StackPanel>
                     </StackPanel>
                 </WrapPanel>
             </StackPanel>
@@ -87,20 +121,32 @@
                     <StackPanel Margin="70 15 0 0">
                         <TextBlock FontFamily="Century Gothic" FontSize="25"
                            Text="Белки" Foreground="DimGray"/>
-                        <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
                            Text="{Binding ProteinsL}" Foreground="DimGray"/>
+                            <TextBlock Margin="3 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                           Text="г" Foreground="DimGray"/>
+                        </StackPanel>
                     </StackPanel>
                     <StackPanel Margin="70 15 0 0">
                         <TextBlock FontFamily="Century Gothic" FontSize="25"
                            Text="Жиры" Foreground="DimGray"/>
-                        <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
                            Text="{Binding FatsL}" Foreground="DimGray"/>
+                            <TextBlock Margin="3 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                           Text="г" Foreground="DimGray"/>
+                        </StackPanel>
                     </StackPanel>
                     <StackPanel Margin="70 15 0 0">
                         <TextBlock FontFamily="Century Gothic" FontSize="25"
                            Text="Углеводы" Foreground="DimGray"/>
-                        <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
                            Text="{Binding CarbohydratesL}" Foreground="DimGray"/>
+                            <TextBlock Margin="3 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                           Text="г" Foreground="DimGray"/>
+                        </StackPanel>
                     </StackPanel>
                 </WrapPanel>
             </StackPanel>
@@ -117,20 +163,32 @@
                     <StackPanel Margin="70 15 0 0">
                         <TextBlock FontFamily="Century Gothic" FontSize="25"
                            Text="Белки" Foreground="DimGray"/>
-                        <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
                            Text="{Binding ProteinsG}" Foreground="DimGray"/>
+                            <TextBlock Margin="3 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                           Text="г" Foreground="DimGray"/>
+                        </StackPanel>
                     </StackPanel>
                     <StackPanel Margin="70 15 0 0">
                         <TextBlock FontFamily="Century Gothic" FontSize="25"
                            Text="Жиры" Foreground="DimGray"/>
-                        <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
                            Text="{Binding FatsG}" Foreground="DimGray"/>
+                            <TextBlock Margin="3 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                           Text="г" Foreground="DimGray"/>
+                        </StackPanel>
                     </StackPanel>
                     <StackPanel Margin="70 15 0 0">
                         <TextBlock FontFamily="Century Gothic" FontSize="25"
                            Text="Углеводы" Foreground="DimGray"/>
-                        <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Margin="0 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
                            Text="{Binding CarbohydratesG}" Foreground="DimGray"/>
+                            <TextBlock Margin="3 3 0 0" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="25"
+                           Text="г" Foreground="DimGray"/>
+                        </StackPanel>
                     </StackPanel>
                 </WrapPanel>
             </StackPanel>

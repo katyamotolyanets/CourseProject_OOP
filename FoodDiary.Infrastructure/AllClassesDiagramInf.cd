@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FoodDiary.Infrastructure.Configurations.ActivityConfiguration" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\ActivityConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Configurations.ActivityTypeConfiguration" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\ActivityTypeConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Configurations.ChangeWeightConfiguration" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\ChangeWeightConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Configurations.MealTypeConfiguration" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\MealTypeConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Configurations.ProductConfiguration" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\ProductConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Configurations.ProductSetConfiguration" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\ProductSetConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Configurations.ProductSetProductsConfiguration" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\ProductSetProductsConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Configurations.UserConfiguration" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\UserConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Configurations.UserHistoryActivitiesConfiguration" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\UserHistoryActivitiesConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Configurations.UserHistoryConfiguration" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\UserHistoryConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Configurations.UserHistoryProductSetsConfiguration" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\UserHistoryProductSetsConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Configurations.UserLifestyleConfiguration" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\UserLifestyleConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.AccountRepository" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAIAEAAAAAAAAAAAAo=</HashCode>
+      <FileName>Repositories\AccountRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.ActivityRepository" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAEAAEIgEAAAAAAAAAAAAI=</HashCode>
+      <FileName>Repositories\ActivityRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.ActivityTypeRepository" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Repositories\ActivityTypeRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.AuthenticationRepository" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAQAAAAAAAAAAAABAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Repositories\AuthenticationRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.ChangeWeightRepository" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAIAEAAAAAAAAAAAAI=</HashCode>
+      <FileName>Repositories\ChangeWeightRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.HistoryRepository" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAEAAAAEIAEACAAAAAAAAAAI=</HashCode>
+      <FileName>Repositories\HistoryRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.LifestyleRepository" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Repositories\LifestyleRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.MealTypesRepository" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Repositories\MealTypesRepositoty.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.ProductSetProductsRepository" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAEIAEACAAAAAAAAAAI=</HashCode>
+      <FileName>Repositories\ProductSetProductsRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.ProductSetRepository" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAEIAEAAAAAAAAAAAAI=</HashCode>
+      <FileName>Repositories\ProductSetRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.ProductsRepository" Collapsed="true">
+    <Position X="2.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAIAEAAAAAAAAAAAAI=</HashCode>
+      <FileName>Repositories\ProductsRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.Repository&lt;TEntity&gt;" Collapsed="true">
+    <Position X="4" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.UnitOfWork" Collapsed="true">
+    <Position X="5.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACEAEIAAiAABC1AAgIAAgSgQQAKMkAAAAAQAAAAAAE=</HashCode>
+      <FileName>Repositories\UnitOfWork.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.UserHistoryActivitiesRepository" Collapsed="true">
+    <Position X="7.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAEAAAAEIAEAAAAAAAAAAAAI=</HashCode>
+      <FileName>Repositories\UserHistoryActivitiesRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.Repositories.UserHistoryProductSetsRepository" Collapsed="true">
+    <Position X="9.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAIAEAAAAAAAAAAAAI=</HashCode>
+      <FileName>Repositories\UserHistoryProductSetsRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodDiary.Infrastructure.FoodDiaryContext" Collapsed="true">
+    <Position X="11" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAACAAAQkAQAAAAAABAEAEEAAAAAAAABAAAIAAAEQ=</HashCode>
+      <FileName>FoodDiaryContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

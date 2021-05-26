@@ -15,7 +15,7 @@
     <Canvas x:Name="myCanvas" >
         <Grid Width="1080">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="230*"></ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -26,7 +26,7 @@
                     <Style TargetType="Grid">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsLoggin}" Value="False">
-                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Setter Property="Visibility" Value="Visible"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -63,7 +63,6 @@
                         </Button>
                     </ListView>
                 </StackPanel>
-
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.Background>

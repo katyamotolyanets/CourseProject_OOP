@@ -1,4 +1,5 @@
 ﻿using FoodDiary.Core.Models;
+using FoodDiary.Infrastructure.Repositories;
 using FoodDiary.Main.Commands;
 using FoodDiary.Main.States.Accounts;
 using System;
@@ -168,6 +169,7 @@ namespace FoodDiary.Main.ViewModels
                 OnPropertyChanged(nameof(CarbohydratesG));
             }
         }
+        public UnitOfWork UnitOfWork = new UnitOfWork();
         private double _calories { get; set; }
         public double Calories
         {
@@ -179,18 +181,29 @@ namespace FoodDiary.Main.ViewModels
             {
                 _calories = value;
                 OnPropertyChanged(nameof(Calories));
+                UnitOfWork.AccountRepository.Update(CurrentAccount);
+                GetChanges();
             }
         }
         public AddPhotoCommand AddPhotoCommand { get; set; }
+        public UpdateCaloriesCommand UpdateCaloriesCommand { get; set; }
         public ProfileViewModel()
         {
             SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
             CurrentAccount = currentAccount.Account;
-
+            UpdateCaloriesCommand = new UpdateCaloriesCommand(this);
             Calories = (int)CurrentAccount.UserCalories;
             AddPhotoCommand = new AddPhotoCommand(this);
+
+            GetChanges();
+
+            
+        }
+
+        public void GetChanges()
+        {
             Proteins = (int)((CurrentAccount.UserCalories * 0.2) / 4.134);
-            Fats = (int)((CurrentAccount.UserCalories * 0.3) / 9.22); 
+            Fats = (int)((CurrentAccount.UserCalories * 0.3) / 9.22);
             Carbohydrates = (int)((CurrentAccount.UserCalories * 0.5) / 4.095);
 
             LooseWeight = (int)(CurrentAccount.UserCalories * 0.8);

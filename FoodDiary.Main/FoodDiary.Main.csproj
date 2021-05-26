@@ -249,6 +249,7 @@
     <Compile Include="Commands\MediatorCommand.cs" />
     <Compile Include="Commands\NewProductCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
+    <Compile Include="Commands\UpdateCaloriesCommand.cs" />
     <Compile Include="Commands\UpdateViewCommand.cs" />
     <Compile Include="Commands\UpdateWeightCommand.cs" />
     <Compile Include="Components\BindablePasswordBox.xaml.cs">
@@ -385,6 +386,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="AllClassesDiagramMain.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

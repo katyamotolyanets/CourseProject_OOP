@@ -8,10 +8,27 @@
              mc:Ignorable="d" 
              x:Name="FilteringControl"
              d:DesignHeight="680" d:DesignWidth="850">
-    <Grid Background="#dbf0e6" ScrollViewer.CanContentScroll="True" Width="850">
+    <UserControl.Resources>
+        <Style x:Key="Buttons">
+            <Setter Property="ItemsControl.Background" Value="Transparent"/>
+            <Setter Property="ItemsControl.Foreground" Value="Black"/>
+            <Setter Property="ItemsControl.BorderBrush" Value="#59bd8b"/>
+            <Setter Property="ItemsControl.BorderThickness" Value="2"/>
+            <Setter Property="ItemsControl.FontFamily" Value="Century Gothic"/>
+            <Setter Property="ItemsControl.Padding" Value="10"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="white" ScrollViewer.CanContentScroll="True" Width="850">
         <Grid Height="70" VerticalAlignment="Top">
             <Button Content="Добавить" Command="{Binding UpdateViewCommand}" CommandParameter="AddNewProduct" Height="30" Width="100" FontSize="15" HorizontalAlignment="Left"
-                    Padding="5" Margin="90 20 0 0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontFamily="Century Gothic"/>
+                    Padding="5" Margin="90 20 0 0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontFamily="Century Gothic"
+                     Style="{StaticResource Buttons}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
             <Border CornerRadius="50">
                 <TextBox Text="{Binding ProductsFilter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30"
                          Margin="70 30 0 0" Padding="5" FontFamily="Century Gothic" FontSize="15" HorizontalAlignment="Center" BorderThickness="0"

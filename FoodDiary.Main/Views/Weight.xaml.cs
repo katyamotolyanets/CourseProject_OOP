@@ -65,6 +65,8 @@ namespace FoodDiary.Main.Views
 
             weightViewModel.GetChanges();
             weightViewModel.RefreshWeight();
+            CurrentAccount.UserWeight = weightChange;
+            UnitOfWork.AccountRepository.Update(CurrentAccount);
             save.Command = DialogHost.CloseDialogCommand;
 
         }

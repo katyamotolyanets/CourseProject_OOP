@@ -11,5 +11,7 @@ namespace FoodDiary.Core.RepositoryInterfaces
     {
         User GetByName(string name);
         void Create(User account);
+        void Update(User account);
+
     }
 }
