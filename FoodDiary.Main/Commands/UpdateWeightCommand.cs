@@ -1,4 +1,5 @@
-﻿using FoodDiary.Core.Models;
+﻿using FoodDiary.Core.Exceptions;
+using FoodDiary.Core.Models;
 using FoodDiary.Infrastructure.Repositories;
 using FoodDiary.Main.ViewModels;
 using System;
@@ -31,19 +32,31 @@ namespace FoodDiary.Main.Commands
 
         public void Execute(object parameter)
         {
-            CurrentAccount = (User)parameter;
+            try
+            {
+                double weight = double.Parse(weightViewModel.UserWeightCh.Replace('.', ','));
+                CurrentAccount = (User)parameter;
 
-            changeWeightRepository = new ChangeWeightRepository();
-            weightChange = weightViewModel.UserWeightCh;
+                changeWeightRepository = new ChangeWeightRepository();
+                weightChange = weight;
 
-            changeWeight = new ChangeWeight();
-            changeWeight.ID = Guid.NewGuid();
-            changeWeight.IDUser = CurrentAccount.ID;
-            changeWeight.Date = DateTime.Now;
-            changeWeight.UserWeight = weightChange;
+                changeWeight = new ChangeWeight();
+                changeWeight.ID = Guid.NewGuid();
+                changeWeight.IDUser = CurrentAccount.ID;
+                changeWeight.Date = DateTime.Now;
+                changeWeight.UserWeight = weightChange;
 
-            changeWeightRepository.Create(changeWeight);
-            weightViewModel.UpdateViewCommand.Execute("Weight");
+                changeWeightRepository.Create(changeWeight);
+                weightViewModel.UpdateViewCommand.Execute("Weight");
+            }
+            catch(WrongValueException)
+            {
+                weightViewModel.ErrorMessage = "Вес введён неверно";
+            }
+            catch(Exception)
+            {
+                weightViewModel.ErrorMessage = "Неверные данные";
+            }
         }
     }
 }

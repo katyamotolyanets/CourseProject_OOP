@@ -24,5 +24,12 @@ namespace FoodDiary.Infrastructure.Repositories
 
         private IQueryable<MealType> MakeInclusions() =>
             DbSet;
+
+        public void Create(MealType mealType)
+        {
+            DbSet.Add(mealType);
+
+            Context.SaveChanges();
+        }
     }
 }

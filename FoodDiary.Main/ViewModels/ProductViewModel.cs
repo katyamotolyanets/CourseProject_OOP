@@ -13,9 +13,28 @@ namespace FoodDiary.Main.ViewModels
         public ProductSetProducts productSetProducts { get; set; }
         public UserHistory history { get; set; }
         public ICommand AddProductCommand { get; set; }
-        
+        public MessageViewModel ErrorMessageViewModel { get; set; }
+        private string _weight;
+        public string Weight
+        {
+            get
+            {
+                return _weight;
+            }
+            set
+            {
+                _weight = value;
+                OnPropertyChanged(nameof(Weight));
+            }
+        }
+
+        public string ErrorMessage
+        {
+            set => ErrorMessageViewModel.Message = value;
+        }
         public ProductViewModel()
         {
+            ErrorMessageViewModel = new MessageViewModel();
             product = new Product();
             product = MediatorCommand.product;
             productSetProducts = new ProductSetProducts();

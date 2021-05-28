@@ -25,6 +25,7 @@ namespace FoodDiary.Main.ViewModels
         }
 
         public ICommand UpdateViewCommand { get; set; }
+        public LogoutCommand LogoutCommand { get; set; }
         public User CurrentAccount { get; set; }
 
         public bool _isLoggin { get; set; }
@@ -42,6 +43,7 @@ namespace FoodDiary.Main.ViewModels
         {
             UpdateViewCommand = new UpdateViewCommand(this);
             CheckLoggin();
+            LogoutCommand = new LogoutCommand();
         }
 
         public void CheckLoggin()

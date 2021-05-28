@@ -38,22 +38,24 @@ namespace FoodDiary.Main.Commands
         public void Execute(object parameter)
         {
             _registerViewModel.ErrorMessage = string.Empty;
-
             try
             {
-                if (!Regex.IsMatch(_registerViewModel.Weight.ToString(), @"\d+(\.|\,){0,1}\d{1,2}"))
+                double Weight = double.Parse(_registerViewModel.Weight.Replace('.', ','));
+                double Height = double.Parse(_registerViewModel.Height.Replace('.', ','));
+                int Age = int.Parse(_registerViewModel.Age);
+                if (!Regex.IsMatch(_registerViewModel.Weight, @"^\d{2,3}((\.|\,){0,1}\d{0,2}){0,1}$") || Weight > 200 || Weight < 30)
                 {
-                    throw new WrongValueException(_registerViewModel.Weight);
+                    throw new WrongValueException(Weight);
                 }
-                if (!Regex.IsMatch(_registerViewModel.Height.ToString(), @"\d{3}") && _registerViewModel.Height > 250)
+                if (!Regex.IsMatch(_registerViewModel.Height, @"\d{3}") || Height > 250 || Height < 80)
                 {
-                    throw new WrongValueException(_registerViewModel.Height);
+                    throw new WrongValueException(Height);
                 }
-                if (!Regex.IsMatch(_registerViewModel.Age.ToString(), @"\d{1,2}"))
+                if (!Regex.IsMatch(_registerViewModel.Age, @"^\d{1,2}$") || Age < 5)
                 {
-                    throw new WrongAgeException(_registerViewModel.Age);
+                    throw new WrongAgeException(Age);
                 }
-                if (!Regex.IsMatch(_registerViewModel.UserName, @"[A-Za-z]\w{5,17}"))
+                if (!Regex.IsMatch(_registerViewModel.UserName, @"[A-Za-z]\w{4,17}"))
                 {
                     throw new WrongNameException(_registerViewModel.UserName);
                 }
@@ -63,16 +65,15 @@ namespace FoodDiary.Main.Commands
                 }
                 RegistrationResult registrationResult = _authenticator.Register(
                        _registerViewModel.UserName,
-                       _registerViewModel.Weight,
-                       _registerViewModel.Height,
-                       _registerViewModel.Age,
+                       Weight,
+                       Height,
+                       Age,
                        _registerViewModel.Sex,
                        _registerViewModel.Lifestyle,
                        _registerViewModel.Password,
                        _registerViewModel.ConfirmPassword,
                        _registerViewModel.Photo
                        );
-
                 switch (registrationResult)
                 {
                     case RegistrationResult.Success:
@@ -84,7 +85,6 @@ namespace FoodDiary.Main.Commands
                     case RegistrationResult.NameAlreadyExist:
                         _registerViewModel.ErrorMessage = "Аккаунт с таким именем уже существует";
                         break;
-
                     default:
                         _registerViewModel.ErrorMessage = "Не удалось зарегистрироваться";
                         break;

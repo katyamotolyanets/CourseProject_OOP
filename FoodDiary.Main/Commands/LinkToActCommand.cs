@@ -11,6 +11,7 @@ namespace FoodDiary.Main.Commands
     public class LinkToActCommand : ICommand
     {
         public static ActivityType activityType = new ActivityType();
+        public Guid HistoryID { get; set; }
         public LinkToActCommand()
         { }
 
@@ -24,7 +25,7 @@ namespace FoodDiary.Main.Commands
         public void Execute(object parameter)
         {
             activityType = (ActivityType)parameter;
-            //Execute(DialogHost.OpenDialogCommand);
+            HistoryID = SaveActCommand.HistoryID;
         }
 
     }

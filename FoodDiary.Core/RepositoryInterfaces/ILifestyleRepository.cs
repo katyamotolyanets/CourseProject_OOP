@@ -9,5 +9,6 @@ namespace FoodDiary.Core.RepositoryInterfaces
 {
     public interface ILifestyleRepository : IRepository<UserLifestyle, Guid>
     {
+        void Create(UserLifestyle lifestyle);
     }
 }

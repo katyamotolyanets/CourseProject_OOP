@@ -9,11 +9,11 @@ namespace FoodDiary.Core.Models
     public class Product: Entity<Guid>
     {
         public string NameProduct { get; set; }
-        public float EnergyValue { get; set; }
-        public float Calories { get; set; }
-        public float Proteins { get; set; }
-        public float Fats { get; set; }
-        public float Carbohydrates { get; set; }
+        public double EnergyValue { get; set; }
+        public double Calories { get; set; }
+        public double Proteins { get; set; }
+        public double Fats { get; set; }
+        public double Carbohydrates { get; set; }
         public string IconSource { get; set; }
         public ICollection<ProductSetProducts> ProductSetProducts { get; set; }
     }

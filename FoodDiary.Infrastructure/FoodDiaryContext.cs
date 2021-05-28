@@ -27,6 +27,7 @@ namespace FoodDiary.Infrastructure
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(local);Database=FoodDiary.Db;Integrated Security=True");
+            //optionsBuilder.UseSqlServer(@"Server=tcp:courseworkoop.database.windows.net,1433;Initial Catalog=FoodDiary;Persist Security Info=False;User ID=Averia;Password=A21veria;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             base.OnConfiguring(optionsBuilder);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

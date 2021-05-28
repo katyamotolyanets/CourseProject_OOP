@@ -246,9 +246,11 @@
     <Compile Include="Commands\LinkToAddCommand.cs" />
     <Compile Include="Commands\LinkToEditCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
+    <Compile Include="Commands\LogoutCommand.cs" />
     <Compile Include="Commands\MediatorCommand.cs" />
     <Compile Include="Commands\NewProductCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
+    <Compile Include="Commands\SaveActCommand.cs" />
     <Compile Include="Commands\UpdateCaloriesCommand.cs" />
     <Compile Include="Commands\UpdateViewCommand.cs" />
     <Compile Include="Commands\UpdateWeightCommand.cs" />
@@ -386,7 +388,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="AllClassesDiagramMain.cd" />
+    <None Include="Assets\hand-drawn-delicious-food-background.zip" />
+    <None Include="Assets\seamless-pizza-ingredients.zip" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -396,7 +400,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\FoodDiary.Core\FoodDiary.Core.csproj">
       <Project>{29b9b5b8-c91b-4e67-9366-3038ed45ebce}</Project>
@@ -407,6 +410,78 @@
       <Name>FoodDiary.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\2.jpg" />
+    <Resource Include="Assets\2161676.jpg" />
+    <Resource Include="Assets\2548748.jpg" />
+    <Resource Include="Assets\269.jpg" />
+    <Resource Include="Assets\avocado.png" />
+    <Resource Include="Assets\background.jpg" />
+    <Resource Include="Assets\brain.jpg" />
+    <Resource Include="Assets\cross.png" />
+    <Resource Include="Assets\Exercises\arm.png" />
+    <Resource Include="Assets\Exercises\badminton.png" />
+    <Resource Include="Assets\Exercises\baseball.png" />
+    <Resource Include="Assets\Exercises\basketball.png" />
+    <Resource Include="Assets\Exercises\biathlon.png" />
+    <Resource Include="Assets\Exercises\boxing.png" />
+    <Resource Include="Assets\Exercises\boxing2.png" />
+    <Resource Include="Assets\Exercises\bycicle.png" />
+    <Resource Include="Assets\Exercises\darts.png" />
+    <Resource Include="Assets\Exercises\diving.png" />
+    <Resource Include="Assets\Exercises\dogWalk.png" />
+    <Resource Include="Assets\Exercises\fencing.png" />
+    <Resource Include="Assets\Exercises\figureSkating.png" />
+    <Resource Include="Assets\Exercises\football.png" />
+    <Resource Include="Assets\Exercises\gymnastics.png" />
+    <Resource Include="Assets\Exercises\handball.png" />
+    <Resource Include="Assets\Exercises\hiking.png" />
+    <Resource Include="Assets\Exercises\horseback.png" />
+    <Resource Include="Assets\Exercises\jogging.png" />
+    <Resource Include="Assets\Exercises\karate.png" />
+    <Resource Include="Assets\Exercises\mountain.png" />
+    <Resource Include="Assets\Exercises\nordicWalk.png" />
+    <Resource Include="Assets\Exercises\pilates.png" />
+    <Resource Include="Assets\Exercises\plank.png" />
+    <Resource Include="Assets\Exercises\pullUp.png" />
+    <Resource Include="Assets\Exercises\pushUp.png" />
+    <Resource Include="Assets\Exercises\rollerSkating.png" />
+    <Resource Include="Assets\Exercises\rowing.png" />
+    <Resource Include="Assets\Exercises\sleep.png" />
+    <Resource Include="Assets\Exercises\squat.png" />
+    <Resource Include="Assets\Exercises\stairs.png" />
+    <Resource Include="Assets\Exercises\swimming.png" />
+    <Resource Include="Assets\Exercises\tennis.png" />
+    <Resource Include="Assets\Exercises\twisting.png" />
+    <Resource Include="Assets\Exercises\volleyball.png" />
+    <Resource Include="Assets\Exercises\wAerobics.png" />
+    <Resource Include="Assets\Exercises\walking.png" />
+    <Resource Include="Assets\Exercises\yoga.png" />
+    <Resource Include="Assets\exit.png" />
+    <Resource Include="Assets\healthy.png" />
+    <Resource Include="Assets\Meals\breakfast.png" />
+    <Resource Include="Assets\Meals\dinner.png" />
+    <Resource Include="Assets\Products\appleG.png" />
+    <Resource Include="Assets\Products\appleR.png" />
+    <Resource Include="Assets\Products\banana.png" />
+    <Resource Include="Assets\Products\casserole.png" />
+    <Resource Include="Assets\Products\cheese.png" />
+    <Resource Include="Assets\Products\cheeseCasserole.png" />
+    <Resource Include="Assets\Products\chicken.png" />
+    <Resource Include="Assets\Products\cottageCheese.png" />
+    <Resource Include="Assets\Products\pasta.png" />
+    <Resource Include="Assets\Products\product.png" />
+    <Resource Include="Assets\Products\soupBorsch.png" />
+    <Resource Include="Assets\Products\soupChicken.png" />
+    <Resource Include="Assets\Products\soupMashroom.png" />
+    <Resource Include="Assets\Products\soupSh.png" />
+    <Resource Include="Assets\Products\vareniki.png" />
+    <Resource Include="Assets\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\avocado%282%29.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

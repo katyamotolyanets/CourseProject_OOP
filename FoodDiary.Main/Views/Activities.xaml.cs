@@ -1,4 +1,5 @@
-﻿using FoodDiary.Core.Models;
+﻿using FoodDiary.Core.Exceptions;
+using FoodDiary.Core.Models;
 using FoodDiary.Infrastructure.Repositories;
 using FoodDiary.Main.Commands;
 using FoodDiary.Main.States.Accounts;
@@ -6,6 +7,7 @@ using FoodDiary.Main.ViewModels;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,33 +42,50 @@ namespace FoodDiary.Main.Views
         {
             InitializeComponent();
             DataContext = new ActivitiesViewModel();
-            
         }
 
         private void AddAct(object sender, RoutedEventArgs e)
         {
-            UnitOfWork = new UnitOfWork();
-            SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
-            CurrentAccount = currentAccount.Account;
-            activitiesViewModel = (ActivitiesViewModel)this.DataContext;
-            activity = new Activity();
-            activity = activitiesViewModel.Activity;
-            //activityType = LinkToActCommand.activityType;
-            userHistoryActivities = new UserHistoryActivities();
-            activity.ID = Guid.NewGuid();
-            activity.IDActivityType = activityType.ID;
+            try
+            {
+                UnitOfWork = new UnitOfWork();
+                SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
+                CurrentAccount = currentAccount.Account;
+                activitiesViewModel = (ActivitiesViewModel)this.DataContext;
+                if (!int.TryParse(activitiesViewModel.Time, out int result)) {
+                    throw new Exception();
+                }
+                int time = int.Parse(activitiesViewModel.Time);
 
-            UnitOfWork.ActivityRepository.Create(activity);
+                if (time == 0)
+                {
+                    throw new WrongValueException(activitiesViewModel.Activity.ActivityTime);
+                }
+                activity = new Activity();
+                activity = activitiesViewModel.Activity;
+                userHistoryActivities = new UserHistoryActivities();
+                activity.ID = Guid.NewGuid();
+                activity.IDActivityType = activityType.ID;
+                activity.ActivityTime = time;
 
-            diaryViewModel = new DiaryViewModel();
-            userHistoryActivities.UserHistoryID = diaryViewModel.History.ID;
-            //history.IDActivity = activity.ID;
-            userHistoryActivities.ActivityID = activity.ID;
+                UnitOfWork.ActivityRepository.Create(activity);
 
-            UnitOfWork.UserHistoryActivitiesRepository.Create(userHistoryActivities);
-            act.Command = DialogHost.CloseDialogCommand;
+                userHistoryActivities.UserHistoryID = DiaryViewModel.History.ID;
+                userHistoryActivities.ActivityID = activity.ID;
+
+                UnitOfWork.UserHistoryActivitiesRepository.Create(userHistoryActivities);
+                act.Command = DialogHost.CloseDialogCommand;
+
+            }
+            catch(WrongValueException)
+            {
+                activitiesViewModel.ErrorMessage = "Неверное время";
+            }
+            catch(Exception)
+            {
+                activitiesViewModel.ErrorMessage = "Ошибка ввода";
+            }
         }
-
         private void but_Click(object sender, RoutedEventArgs e)
         {
             activitiesViewModel = (ActivitiesViewModel)this.DataContext;
@@ -80,6 +99,7 @@ namespace FoodDiary.Main.Views
             but.Command = DialogHost.OpenDialogCommand;
 
         }
+
 
 
 

@@ -20,7 +20,6 @@ namespace FoodDiary.Main.ViewModels
                 OnPropertyChanged(nameof(ProductSetProduct));
             }
         }
-
         private Product _product { get; set; }
 
         public Product product
@@ -35,6 +34,7 @@ namespace FoodDiary.Main.ViewModels
 
         public EditProductSetViewModel()
         {
+            ErrorMessageViewModel = new MessageViewModel();
             UnitOfWork = new UnitOfWork();
             ProductSetProduct = new ProductSetProducts();
             product = new Product();
@@ -42,7 +42,7 @@ namespace FoodDiary.Main.ViewModels
             ProductSetProduct = LinkToEditCommand.ProductSetProduct;
             product = UnitOfWork.ProductsRepository.Find(ProductSetProduct.ProductID);
             
-            EditCommand = new EditCommand(ProductSetProduct);
+            EditCommand = new EditCommand(ProductSetProduct, this);
 
         }
     }

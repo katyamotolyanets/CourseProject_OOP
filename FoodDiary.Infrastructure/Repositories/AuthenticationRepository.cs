@@ -69,7 +69,7 @@ namespace FoodDiary.Infrastructure.Repositories
                 string hashedPassword = _passwordHasher.HashPassword(password);
                 Guid guid = new Guid();
                 Guid IDLifestyle = lifestyle.ID;
-                photo = @"D:\2 курс\4 сем\OOP\courseproject\FoodDiary.Main\Assets\user.png";
+                photo = @"..\Assets\user.png";
                 User user = new User()
                 {
                     ID = guid,

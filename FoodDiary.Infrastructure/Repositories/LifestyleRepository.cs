@@ -15,7 +15,7 @@ namespace FoodDiary.Infrastructure.Repositories
 
         public IEnumerable<UserLifestyle> List(Expression<Func<UserLifestyle, bool>> predicate = null)
         {
-            var query = DbSet.AsQueryable();
+            var query = DbSet.OrderBy(x => x.ID).AsQueryable();
             if (predicate != null)
             {
                 query = query.Where(predicate);
@@ -24,5 +24,11 @@ namespace FoodDiary.Infrastructure.Repositories
         }
         private IQueryable<UserLifestyle> MakeInclusions() =>
             DbSet;
+        public void Create(UserLifestyle lifestyle)
+        {
+            DbSet.Add(lifestyle);
+
+            Context.SaveChanges();
+        }
     }
 }

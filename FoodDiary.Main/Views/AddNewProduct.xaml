@@ -10,7 +10,7 @@
              d:DesignHeight="680" d:DesignWidth="850">
     <Grid Background="White" Width="850">
         
-        <ListView Margin="0 40 0 0" Width="850" Height="600" VerticalAlignment="Top" HorizontalAlignment="Left" 
+        <ListView Margin="0 10 0 0" Width="850" Height="680" VerticalAlignment="Top" HorizontalAlignment="Left" 
                   Foreground="Black" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Century Gothic">
             <ListViewItem HorizontalAlignment="Center" Height="50">
                     <StackPanel Orientation="Horizontal">
@@ -27,35 +27,35 @@
             <ListViewItem Margin="70 10 0 0" HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Width="275" VerticalAlignment="Center" Text="Калории"></TextBlock>
-                        <TextBox Width="250" VerticalAlignment="Center" Foreground="Black" Text="{Binding product.Calories}"
+                        <TextBox Width="250" VerticalAlignment="Center" Foreground="Black" Text="{Binding Calories}"
                                  materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"/>
                     </StackPanel>
             </ListViewItem>
             <ListViewItem Margin="70 10 0 0" HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Width="275" VerticalAlignment="Center" Text="Энергетическая ценность"></TextBlock>
-                        <TextBox Width="250" VerticalAlignment="Center" Foreground="Black" Text="{Binding product.EnergyValue}"
+                        <TextBox Width="250" VerticalAlignment="Center" Foreground="Black" Text="{Binding EnergyV}"
                                  materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"/>
                     </StackPanel>
             </ListViewItem>
             <ListViewItem Margin="70 10 0 0"  HorizontalAlignment="Left" >
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Width="275" Text="Белки"></TextBlock>
-                    <TextBox Width="250" Foreground="Black" Text="{Binding product.Proteins}"
+                    <TextBox Width="250" Foreground="Black" Text="{Binding Proteins}"
                              materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"/>
                     </StackPanel>
             </ListViewItem>
             <ListViewItem Margin="70 10 0 0" HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Width="275" Text="Жиры"></TextBlock>
-                        <TextBox Width="250" Foreground="Black" Text="{Binding product.Fats}"
+                        <TextBox Width="250" Foreground="Black" Text="{Binding Fats}"
                                  materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"/>
                     </StackPanel>
             </ListViewItem>
             <ListViewItem Margin="70 10 0 0" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Width="275" Text="Углеводы"></TextBlock>
-                    <TextBox Width="250" Foreground="Black" Text="{Binding product.Carbohydrates}"
+                    <TextBox Width="250" Foreground="Black" Text="{Binding Carbohydrates}"
                              materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"/>
                 </StackPanel>
             </ListViewItem>
@@ -72,6 +72,13 @@
                     </Button>
                 </Border>
             </ListViewItem>
+            <TextBlock Margin="0,10,0,0"
+                    HorizontalAlignment="Center"
+                    DataContext="{Binding ErrorMessageViewModel}"
+                    Foreground="DarkRed"
+                    Text="{Binding Message}"
+                    FontFamily="Century Gothic"
+                    Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </ListView>
     </Grid>
 </UserControl>

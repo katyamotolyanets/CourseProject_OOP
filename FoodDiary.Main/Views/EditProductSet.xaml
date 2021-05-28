@@ -8,67 +8,135 @@
              mc:Ignorable="d" 
              x:Name="EditControl"
              d:DesignHeight="680" d:DesignWidth="850">
+    <UserControl.Resources>
+        <Style x:Key="Buttons">
+            <Setter Property="ItemsControl.Background" Value="Transparent"/>
+            <Setter Property="ItemsControl.Foreground" Value="Black"/>
+            <Setter Property="ItemsControl.BorderBrush" Value="#59bd8b"/>
+            <Setter Property="ItemsControl.BorderThickness" Value="2"/>
+            <Setter Property="ItemsControl.FontFamily" Value="Century Gothic"/>
+            <Setter Property="ItemsControl.Padding" Value="10"/>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="White" Width="850">
-        <ListView Width="850" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left"  Foreground="Black" HorizontalContentAlignment="Center"
-                  FontSize="17" FontFamily="Century Gothic" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListViewItem >
-                <ScrollViewer HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center" Foreground="Black" Height="50" Text="{Binding product.NameProduct}" FontSize="25"/>
+        <Grid Margin="0 40 0 0" VerticalAlignment="Top" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock FontFamily="Century Gothic" VerticalAlignment="Center" 
+                        Foreground="Black" Height="50" Text="{Binding product.NameProduct}" FontSize="25"/>
+                </StackPanel>
+                <StackPanel Margin="0 20 0 0" HorizontalAlignment="Left" Orientation="Horizontal">
+                    <Border Width="150" BorderBrush="#59bd8b" CornerRadius="15" BorderThickness="3" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical" Margin="15">
+                            <TextBlock Margin="0 5 0 0" FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
+                                   VerticalAlignment="Center" Text="Порция" HorizontalAlignment="Center"></TextBlock>
+                            <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic" Text="100 г" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Width="150" Margin="70 0 0 0" BorderBrush="#59bd8b" CornerRadius="15" BorderThickness="3" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical"  Margin="15">
+                            <TextBlock Margin="0 5 0 0" FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
+                                   VerticalAlignment="Center" Text="Калории"></TextBlock>
+                            <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
+                                   Foreground="Black" Text="{Binding product.Calories}" FontFamily="Century Gothic"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Height="140" Width="150" Margin="70 0 0 0" BorderBrush="#59bd8b" CornerRadius="15" BorderThickness="3" DockPanel.Dock="Right" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical" Margin="15">
+                            <TextBlock FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
+                                   VerticalAlignment="Center" Text="Пищевая"></TextBlock>
+                            <TextBlock FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
+                                   VerticalAlignment="Center" Text="ценность" HorizontalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="{Binding product.EnergyValue}" HorizontalAlignment="Center"/>
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="3 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="кДж" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <StackPanel Margin="0 40 0 0" HorizontalAlignment="Left" Orientation="Horizontal">
+                    <Border Width="150" BorderBrush="#59bd8b" CornerRadius="15" BorderThickness="3" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical" Margin="15">
+                            <TextBlock Margin="0 5 0 0" FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
+                                   VerticalAlignment="Center" Text="Белки" HorizontalAlignment="Center"></TextBlock>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="{Binding product.Proteins}" HorizontalAlignment="Center"/>
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="3 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="г" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Height="140" Width="150" Margin="70 0 0 0" BorderBrush="#59bd8b" CornerRadius="15" BorderThickness="3" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical"  Margin="15">
+                            <TextBlock Margin="0 5 0 0" FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
+                                   VerticalAlignment="Center" Text="Жиры" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="{Binding product.Fats}" HorizontalAlignment="Center"/>
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="3 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="г" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Width="150" Margin="70 0 0 0" BorderBrush="#59bd8b" CornerRadius="15" BorderThickness="3" DockPanel.Dock="Right" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical" Margin="15">
+                            <TextBlock FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
+                                   VerticalAlignment="Center" Text="Углеводы" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="{Binding product.Carbohydrates}" HorizontalAlignment="Center"/>
+                                <TextBlock FontSize="25" VerticalAlignment="Center" Margin="3 15 0 0"
+                                   Foreground="Black" FontFamily="Century Gothic"  Text="г" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Margin="0 40 0 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
+                                   VerticalAlignment="Center" Text="Вес" HorizontalAlignment="Center"/>
+                        <TextBox Margin="40 0 0 0" FontFamily="Century Gothic" Foreground="Black" Width="100" Height="50" materialDesign:HintAssist.Hint="100" 
+                         Text="{Binding Weight, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b" FontSize="25">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                                    <Setter Property="materialDesign:ValidationAssist.UsePopup" Value="True" />
+                                    <Setter Property="materialDesign:ValidationAssist.PopupPlacement" Value="Bottom" />
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                        <TextBlock Margin="3 0 0 0" FontFamily="Century Gothic" Foreground="Black"
+                         Text="г" FontSize="25" VerticalAlignment="Center"/>
                     </StackPanel>
-                </ScrollViewer>
-            </ListViewItem>
-            <ListViewItem HorizontalAlignment="Left" Height="50">
-                <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Width="100" VerticalAlignment="Center" Text="Калории"></TextBlock>
-                        <TextBlock VerticalAlignment="Center" Foreground="Black" Text="{Binding product.Calories}"/>
-                    </StackPanel>
-                </ScrollViewer>
-            </ListViewItem>
-            <ListViewItem HorizontalAlignment="Left" Height="50">
-                <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Width="250" VerticalAlignment="Center" Text="Энергетическая ценность"></TextBlock>
-                        <TextBlock VerticalAlignment="Center" Foreground="Black" Text="{Binding product.EnergyValue}"/>
-                    </StackPanel>
-                </ScrollViewer>
-            </ListViewItem>
-            <ListViewItem HorizontalAlignment="Left" Height="50">
-                <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Width="100" VerticalAlignment="Center" Text="Белки"></TextBlock>
-                        <TextBlock VerticalAlignment="Center" Foreground="Black" Text="{Binding product.Proteins}"/>
-                    </StackPanel>
-                </ScrollViewer>
-            </ListViewItem>
-            <ListViewItem HorizontalAlignment="Left" Height="50">
-                <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Width="100" VerticalAlignment="Center" Text="Жиры"></TextBlock>
-                        <TextBlock VerticalAlignment="Center" Foreground="Black" Text="{Binding product.Fats}"/>
-                    </StackPanel>
-                </ScrollViewer>
-            </ListViewItem>
-            <ListViewItem HorizontalAlignment="Left" Height="50">
-                <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Width="100" VerticalAlignment="Center" Text="Углеводы"></TextBlock>
-                        <TextBlock VerticalAlignment="Center" Foreground="Black" Text="{Binding product.Carbohydrates}"/>
-                    </StackPanel>
-                </ScrollViewer>
-            </ListViewItem>
-            <ListViewItem HorizontalAlignment="Left">
-                <TextBox Foreground="Black" Width="200" Height="50" materialDesign:HintAssist.Hint="100 г" materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b"
-                         Text="{Binding ProductSetProduct.ProductWeight}"></TextBox>
-            </ListViewItem>
-            <ListViewItem HorizontalAlignment="Center">
-                <Border CornerRadius="15">
-                    <Button Command="{Binding DataContext.EditCommand, ElementName=EditControl}" 
-                            CommandParameter="{Binding}" BorderBrush="Black" BorderThickness="0.1" Background="Transparent" 
-                            Content="Сохранить" Foreground="Black" FontSize="20"/>
-                </Border>
-            </ListViewItem>
-        </ListView>
+                    <Border Margin="0 20 0 0" CornerRadius="15" Width="200" Height="50">
+                        <Button Style="{StaticResource Buttons}" FontFamily="Century Gothic" VerticalAlignment="Center" Command="{Binding DataContext.EditCommand, ElementName=EditControl}"
+                                CommandParameter="{Binding}" Content="Сохранить"
+                                Foreground="Black" FontSize="25">
+                            <Button.Resources>
+                                <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#59bd8b"/>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Border>
+                    <TextBlock Margin="0,15,0,0"
+                    HorizontalAlignment="Center"
+                    DataContext="{Binding ErrorMessageViewModel}"
+                    Foreground="DarkRed"
+                    Text="{Binding Message}"
+                    FontFamily="Century Gothic"
+                    Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </UserControl>

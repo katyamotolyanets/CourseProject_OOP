@@ -9,5 +9,6 @@ namespace FoodDiary.Core.RepositoryInterfaces
 {
     public interface IActivityTypeRepository : IRepository<ActivityType, Guid>
     {
+        void Create(ActivityType activityType);
     }
 }

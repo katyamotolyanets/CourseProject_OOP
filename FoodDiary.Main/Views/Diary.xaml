@@ -93,8 +93,8 @@
                                                 </Button.Resources>
                                             </Button>
                                         <Button Margin="20 0 0 0" Height="40" Width="80" Foreground="DimGray"
-                                            Style="{StaticResource Buttons}" Command="{Binding DataContext.DeleteActCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                CommandParameter="{Binding}" Content="Удалить">
+                                            Style="{StaticResource Buttons}" Command="{Binding DataContext.DeleteCommand, ElementName=DiaryView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                CommandParameter="{Binding ProductSetProducts}" Content="Удалить">
                                             <Button.Resources>
                                                 <Style TargetType="Border">
                                                     <Setter Property="CornerRadius" Value="5"/>
@@ -170,7 +170,7 @@
         <ListView Margin="0 10 0 0" HorizontalAlignment="Center" Grid.Row="3">
             <Border Width="480" Height="60" BorderBrush="#b6e2cc" CornerRadius="15" BorderThickness="3" DockPanel.Dock="Top" HorizontalAlignment="Center">
                 <StackPanel Margin="15 0 0 0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock FontFamily="Century Gothic" FontSize="25" Foreground="DimGray" Text="Сожённые калории"/>
+                    <TextBlock FontFamily="Century Gothic" FontSize="25" Foreground="DimGray" Text="Сожжённые калории"/>
                     <TextBlock Text="{Binding CaloriesActivity}" Foreground="DimGray" Margin="100 0 0 0"
                                FontFamily="Century Gothic" FontSize="25"/>
                 </StackPanel>

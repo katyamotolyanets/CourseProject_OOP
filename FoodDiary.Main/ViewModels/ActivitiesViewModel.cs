@@ -14,6 +14,7 @@ namespace FoodDiary.Main.ViewModels
 {
     public class ActivitiesViewModel : BaseViewModel
     {
+        public string Time { get; set; }
         public List<ActivityType> ActivityTypes { get; set; }
         public LinkToActCommand LinkToActCommand { get; set; }
         public ActivityTypeRepository activityTypeRepository { get; set; }
@@ -55,9 +56,17 @@ namespace FoodDiary.Main.ViewModels
                 OnPropertyChanged(nameof(ActivityType));
             }
         }
+        public MessageViewModel ErrorMessageViewModel { get; set; }
+        public string ErrorMessage
+        {
+            set => ErrorMessageViewModel.Message = value;
+        }
+        public bool CanSave => Activity.ActivityTime != 0;
         public ActivitiesViewModel()
         {
+            ErrorMessageViewModel = new MessageViewModel();
             Activity = new Activity();
+            
             ActivityTypes = new List<ActivityType>();
             activityTypeRepository = new ActivityTypeRepository();
             GetActivities();
@@ -82,7 +91,6 @@ namespace FoodDiary.Main.ViewModels
         {
             ActivityTypes = (List<ActivityType>)activityTypeRepository.List();
         }
-
 
     }
 }

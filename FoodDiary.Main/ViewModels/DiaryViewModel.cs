@@ -60,11 +60,10 @@ namespace FoodDiary.Main.ViewModels
                 OnPropertyChanged(nameof(ProductSets));
                 CheckHistory(Date);
                 RefreshProductSetCollectionView();
-                //GetCaloriesBalance();
             }
         }
         public UnitOfWork UnitOfWork { get; set; }
-        public UserHistory History { get; set; }
+        public static UserHistory History { get; set; }
         public List<ActivityType> ActivityTypes { get; set; }
         public List<ProductSetProducts> ProductSetProducts { get; set; }
         public ProductSetProducts ProductSetProduct { get; private set; }
@@ -139,14 +138,11 @@ namespace FoodDiary.Main.ViewModels
             LinkToEditCommand = new LinkToEditCommand(this);
             DeleteCommand = new DeleteCommand(this);
             DeleteActCommand = new DeleteActCommand(this);
-            EditCommand = new EditCommand(ProductSetProduct);
             RefreshProductSetCollectionView();
             GetActivityTypes();
         }
-        //проверка хистори на этот день, если нет, то создать
         public void CheckHistory(DateTime date)
         {
-
             History = UnitOfWork.HistoryRepository.GetByDate(date);
             if (History == null)
             {
@@ -159,9 +155,7 @@ namespace FoodDiary.Main.ViewModels
                 History = history;
                 List<MealType> mealTypes = new List<MealType>();
                 mealTypes = (List<MealType>)UnitOfWork.MealTypesRepository.List();
-                //заполнение четырёх продуктсетов
                 List<ProductSet> productSets = new List<ProductSet>();
-
                 foreach (MealType mealType in mealTypes)
                 {
                     ProductSet productSet = new ProductSet();
@@ -170,11 +164,9 @@ namespace FoodDiary.Main.ViewModels
                     UnitOfWork.ProductSetRepository.Create(productSet);
                     productSets.Add(productSet);
                 }
-                //заполнение промежуточной бд
                 foreach(ProductSet ProductSet in productSets)
                 {
                     UserHistoryProductSets userHistoryProductSets = new UserHistoryProductSets();
-
                     userHistoryProductSets.ID = Guid.NewGuid();
                     userHistoryProductSets.UserHistoryID = history.ID;
                     userHistoryProductSets.ProductSetID = ProductSet.ID;
@@ -205,7 +197,6 @@ namespace FoodDiary.Main.ViewModels
                     }                   
                 }
             }
-
             List<UserHistoryActivities> UserHistoryActivities = new List<UserHistoryActivities>();
             UserHistoryActivities = (List<UserHistoryActivities>)UnitOfWork.UserHistoryActivitiesRepository.List(x => x.UserHistoryID == History.ID);
             BindActivities();
@@ -225,13 +216,11 @@ namespace FoodDiary.Main.ViewModels
         {
              ActivityTypes = (List<ActivityType>)UnitOfWork.ActivityTypeRepository.List(); 
         }
-
         public void GetHistory(DateTime date) 
         {
             CheckHistory(date);
             History = UnitOfWork.HistoryRepository.GetByDate(date);
         }
-
         public void BindProductSets()
         {
             List<UserHistoryProductSets> UserHistoryProductSets = new List<UserHistoryProductSets>();

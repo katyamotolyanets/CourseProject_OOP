@@ -185,15 +185,45 @@ namespace FoodDiary.Main.ViewModels
                 GetChanges();
             }
         }
+        private string _change { get; set; }
+        public string Change
+        {
+            get
+            {
+                return _change;
+            }
+            set
+            {
+                _change = value;
+                OnPropertyChanged(nameof(Change));
+            }
+        }
+        private double _changeW { get; set; }
+        public double ChangeW
+        {
+            get
+            {
+                return _changeW;
+            }
+            set
+            {
+                _changeW = value;
+                OnPropertyChanged(nameof(ChangeW));
+            }
+        }
         public AddPhotoCommand AddPhotoCommand { get; set; }
         public UpdateCaloriesCommand UpdateCaloriesCommand { get; set; }
+        public List<ChangeWeight> changeWeights { get; set; }
         public ProfileViewModel()
         {
+            UnitOfWork = new UnitOfWork();
             SingleCurrentAccount currentAccount = SingleCurrentAccount.GetInstance();
             CurrentAccount = currentAccount.Account;
             UpdateCaloriesCommand = new UpdateCaloriesCommand(this);
             Calories = (int)CurrentAccount.UserCalories;
             AddPhotoCommand = new AddPhotoCommand(this);
+            changeWeights = new List<ChangeWeight>();
+            changeWeights = (List<ChangeWeight>)UnitOfWork.ChangeWeightRepository.List(x => x.IDUser == CurrentAccount.ID);
 
             GetChanges();
 
@@ -202,7 +232,7 @@ namespace FoodDiary.Main.ViewModels
 
         public void GetChanges()
         {
-            Proteins = (int)((CurrentAccount.UserCalories * 0.2) / 4.134);
+            Proteins = (int)((CurrentAccount.UserCalories * 0.2) / 4.134); 
             Fats = (int)((CurrentAccount.UserCalories * 0.3) / 9.22);
             Carbohydrates = (int)((CurrentAccount.UserCalories * 0.5) / 4.095);
 
@@ -215,6 +245,23 @@ namespace FoodDiary.Main.ViewModels
             ProteinsG = (int)((GainWeight * 0.2) / 4.134);
             FatsG = (int)((GainWeight * 0.3) / 9.22);
             CarbohydratesG = (int)((GainWeight * 0.5) / 4.095);
+
+            changeWeights = (List<ChangeWeight>)UnitOfWork.ChangeWeightRepository.List(x => x.IDUser == CurrentAccount.ID);
+
+            ChangeW = changeWeights.First().UserWeight - changeWeights.Last().UserWeight;
+            if (ChangeW > 0)
+            {
+                Change = "Вы сбросили";
+            }
+            else if (ChangeW < 0)
+            {
+                ChangeW = -ChangeW;
+                Change = "Вы поправились на";
+            }
+            else
+            {
+                Change = "Ваш вес не изменился!";
+            }
         }
     }
 }

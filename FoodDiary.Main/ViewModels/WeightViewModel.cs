@@ -15,7 +15,19 @@ namespace FoodDiary.Main.ViewModels
 {
     public class WeightViewModel : BaseViewModel
     {
-        public List<ChangeWeight> ChangesWeight { get; set; }
+        public List<ChangeWeight> _changesWeight { get; set; }
+
+        public List<ChangeWeight> ChangesWeight {
+            get
+            {
+                return _changesWeight;
+            }
+            set
+            {
+                _changesWeight = value;
+                OnPropertyChanged(nameof(ChangesWeight));
+            }
+        }
         public ChangeWeightRepository ChangeWeightRepository { get; set; }
         public AccountRepository AccountRepository { get; set; }
         public User CurrentAccount { get; set; }
@@ -48,8 +60,8 @@ namespace FoodDiary.Main.ViewModels
             }
         }
 
-        private double _userWeightCh { get; set; }
-        public double UserWeightCh
+        private string _userWeightCh { get; set; }
+        public string UserWeightCh
         {
             get
             {
@@ -63,12 +75,46 @@ namespace FoodDiary.Main.ViewModels
                 RefreshWeight();
             }
         }
-        public ChartValues<double> Values { get; set; }
-        public ObservableCollection<string> DateTimes { get; set; }
+        public ChartValues<double> _values { get; set; }
+        public ChartValues<double> Values {
+            get
+            {
+                return _values;
+            }
+            set
+            {
+                _values = value;
+                OnPropertyChanged(nameof(Values));
+                GetChanges();
+                RefreshWeight();
+            }
+        }
+        public ObservableCollection<string> _dateTimes { get; set; }
+
+        public ObservableCollection<string> DateTimes {
+            get
+            {
+                return _dateTimes;
+            }
+            set
+            {
+                _dateTimes = value;
+                OnPropertyChanged(nameof(DateTimes));
+                GetChanges();
+                RefreshWeight();
+            }
+        }
         public UpdateWeightCommand UpdateWeightCommand { get; set; }
         public UpdateViewCommand UpdateViewCommand { get; set; }
+        public MessageViewModel ErrorMessageViewModel { get; set; }
+
+        public string ErrorMessage
+        {
+            set => ErrorMessageViewModel.Message = value;
+        }
         public WeightViewModel()
         {
+            ErrorMessageViewModel = new MessageViewModel();
             CurrentAccount = SingleCurrentAccount.GetInstance().Account;
 
             ChangesWeight = new List<ChangeWeight>();
@@ -114,7 +160,7 @@ namespace FoodDiary.Main.ViewModels
 
         public void RefreshWeight()
         {
-            LastChange = (int)ChangesWeight.Last().UserWeight;
+            LastChange = ChangesWeight.Last().UserWeight;
             Last = LastChange.ToString("00.0");
 
         }

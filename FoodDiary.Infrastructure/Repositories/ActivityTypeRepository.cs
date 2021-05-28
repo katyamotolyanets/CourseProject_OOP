@@ -25,5 +25,12 @@ namespace FoodDiary.Infrastructure.Repositories
         }
         private IQueryable<ActivityType> MakeInclusions() =>
             DbSet.Include(x => x.Activities);
+
+        public void Create(ActivityType activityType)
+        {
+            DbSet.Add(activityType);
+
+            Context.SaveChanges();
+        }
     }
 }

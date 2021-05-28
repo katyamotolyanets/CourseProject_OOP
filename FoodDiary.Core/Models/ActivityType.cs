@@ -9,7 +9,7 @@ namespace FoodDiary.Core.Models
     public class ActivityType : Entity<Guid>
     {
         public string ActivityName { get; set; }
-        public float ActivityCalories { get; set; }
+        public double ActivityCalories { get; set; }
         public string IconSource { get; set; }
         public ICollection<Activity> Activities { get; set; }
     }

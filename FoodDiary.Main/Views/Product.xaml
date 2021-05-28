@@ -102,9 +102,16 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock FontFamily="Century Gothic" Foreground="Black" FontSize="25" 
                                    VerticalAlignment="Center" Text="Вес" HorizontalAlignment="Center"/>
-                        <TextBox Margin="40 0 0 0" FontFamily="Century Gothic" Foreground="Black" Width="150" Height="50" materialDesign:HintAssist.Hint="100" 
-                         Text="{Binding productSetProducts.ProductWeight, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                             materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b" FontSize="25"/>
+                        <TextBox Margin="40 0 0 0" FontFamily="Century Gothic" Foreground="Black" Width="100" Height="50" materialDesign:HintAssist.Hint="100" 
+                         Text="{Binding Weight, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             materialDesign:TextFieldAssist.UnderlineBrush="#59bd8b" FontSize="25">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                                    <Setter Property="materialDesign:ValidationAssist.UsePopup" Value="True" />
+                                    <Setter Property="materialDesign:ValidationAssist.PopupPlacement" Value="Bottom" />
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
                         <TextBlock Margin="3 0 0 0" FontFamily="Century Gothic" Foreground="Black"
                          Text="г" FontSize="25" VerticalAlignment="Center"/>
                     </StackPanel>
@@ -120,6 +127,13 @@
                             </Button.Resources>
                         </Button>
                     </Border>
+                    <TextBlock Margin="0,15,0,0"
+                    HorizontalAlignment="Center"
+                    DataContext="{Binding ErrorMessageViewModel}"
+                    Foreground="DarkRed"
+                    Text="{Binding Message}"
+                    FontFamily="Century Gothic"
+                    Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </StackPanel>
             </StackPanel>
         </Grid>

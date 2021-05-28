@@ -1,4 +1,5 @@
-﻿using FoodDiary.Core.Models;
+﻿using FoodDiary.Core.Exceptions;
+using FoodDiary.Core.Models;
 using FoodDiary.Infrastructure.Repositories;
 using FoodDiary.Main.States.Accounts;
 using FoodDiary.Main.ViewModels;
@@ -50,30 +51,39 @@ namespace FoodDiary.Main.Views
 
         private void save_Click(object sender, RoutedEventArgs e)
         {
-            weightViewModel = (WeightViewModel)this.DataContext;
-            UnitOfWork = new UnitOfWork();
-            weightChange = weightViewModel.UserWeightCh;
-            CurrentAccount = SingleCurrentAccount.GetInstance().Account;
+            try
+            {
+                weightViewModel = (WeightViewModel)this.DataContext;
+                double weight = double.Parse(weightViewModel.UserWeightCh.Replace('.', ','));
 
-            changeWeight = new ChangeWeight();
-            changeWeight.ID = Guid.NewGuid();
-            changeWeight.IDUser = CurrentAccount.ID;
-            changeWeight.Date = DateTime.Now;
-            changeWeight.UserWeight = weightChange;
+                UnitOfWork = new UnitOfWork();
+                weightChange = weight;
+                CurrentAccount = SingleCurrentAccount.GetInstance().Account;
 
-            UnitOfWork.ChangeWeightRepository.Create(changeWeight);
+                changeWeight = new ChangeWeight();
+                changeWeight.ID = Guid.NewGuid();
+                changeWeight.IDUser = CurrentAccount.ID;
+                changeWeight.Date = DateTime.Now;
+                changeWeight.UserWeight = weightChange;
 
-            weightViewModel.GetChanges();
-            weightViewModel.RefreshWeight();
-            CurrentAccount.UserWeight = weightChange;
-            UnitOfWork.AccountRepository.Update(CurrentAccount);
-            save.Command = DialogHost.CloseDialogCommand;
+                UnitOfWork.ChangeWeightRepository.Create(changeWeight);
+
+                weightViewModel.GetChanges();
+                weightViewModel.RefreshWeight();
+                CurrentAccount.UserWeight = weightChange;
+                UnitOfWork.AccountRepository.Update(CurrentAccount);
+                save.Command = DialogHost.CloseDialogCommand;
+            }
+            catch (WrongValueException)
+            {
+                weightViewModel.ErrorMessage = "Вес введён неверно";
+            }
+            catch(Exception)
+            {
+                weightViewModel.ErrorMessage = "Неверные данные";
+            }
 
         }
 
-        //private void ChangeWeight_Click(object sender, RoutedEventArgs e)
-        //{
-        //    WeightCanvas.Visibility = Visibility.Visible;
-        //}
     }
 }

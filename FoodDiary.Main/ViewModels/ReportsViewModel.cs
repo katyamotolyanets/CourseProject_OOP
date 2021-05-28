@@ -13,7 +13,6 @@ namespace FoodDiary.Main.ViewModels
     public class ReportsViewModel : BaseViewModel
     {
         public UnitOfWork UnitOfWork { get; set; }
-        //public DiaryViewModel DiaryViewModel { get; set; }
         public DateTime date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
         public DateTime Date
         {
@@ -26,46 +25,7 @@ namespace FoodDiary.Main.ViewModels
                 GetSets();
             }
         }
-        //private List<ProductSetProducts> _breakfast { get; set; }
-        //public List<ProductSetProducts> Breakfast
-        //{
-        //    get { return _breakfast; }
-        //    set
-        //    {
-        //        _breakfast = value;
-        //        OnPropertyChanged(nameof(Breakfast));
-        //    }
-        //}
-        //private List<ProductSetProducts> _lunch { get; set; }
-        //public List<ProductSetProducts> Lunch
-        //{
-        //    get { return _lunch; }
-        //    set
-        //    {
-        //        _lunch = value;
-        //        OnPropertyChanged(nameof(Lunch));
-        //    }
-        //}
-        //private List<ProductSetProducts> _dinner { get; set; }
-        //public List<ProductSetProducts> Dinner
-        //{
-        //    get { return _dinner; }
-        //    set
-        //    {
-        //        _dinner = value;
-        //        OnPropertyChanged(nameof(Dinner));
-        //    }
-        //}
-        //private List<ProductSetProducts> _snack { get; set; }
-        //public List<ProductSetProducts> Snack
-        //{
-        //    get { return _snack; }
-        //    set
-        //    {
-        //        _snack = value;
-        //        OnPropertyChanged(nameof(Snack));
-        //    }
-        //}
+     
         private ChartValues<int> _breakfastCal { get; set; }
         public ChartValues<int> BreakfastCal
         {

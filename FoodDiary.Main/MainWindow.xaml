@@ -9,9 +9,9 @@
         x:Name="MainView"
         Title="FoodDiary" Height="680" Width="1080" 
         MinHeight="680" MinWidth="1080"
-        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         SizeChanged="MainWindow_SizeChanged"
-        Icon="D:\2 курс\4 сем\OOP\courseproject\FoodDiary.Main\Assets\avocado(1).png">
+        Icon="Assets\avocado(2).png">
     <Canvas x:Name="myCanvas" >
         <Grid Width="1080">
             <Grid.ColumnDefinitions>
@@ -32,7 +32,7 @@
                     </Style>
                 </Grid.Style>
                 <StackPanel Width="230">
-                    <Image Source="D:\2 курс\4 сем\OOP\courseproject\FoodDiary.Main\Assets\avocado.png" Width="150" Margin="0 20 0 20" />
+                    <Image Source="Assets\avocado.png" Width="150" Margin="0 20 0 20" />
                     <ListView Margin="0" BorderBrush="White" Foreground="#FF313131" FontFamily="Century Gothic" FontSize="18" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
                         <Button Height="50" Padding="0" HorizontalContentAlignment="Left" BorderThickness="0"  Background="WHite" Command="{Binding UpdateViewCommand}" CommandParameter="Diary" Width="230">
                             <StackPanel Orientation="Horizontal" Width="230" >
@@ -61,12 +61,18 @@
                                 <TextBlock Text="Профиль" Margin="10" Foreground="Black" FontFamily="Century Gothic" />
                             </StackPanel>
                         </Button>
+                        <Button Command="{Binding LogoutCommand}" BorderBrush="Transparent" Background="Transparent" Margin="10 115 0 0" >
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Assets\exit.png" />
+                                <TextBlock Margin="5 0 0 0" Text="Выйти" FontSize="19" FontFamily="Century Gothic" />
+                            </StackPanel>
+                        </Button>
                     </ListView>
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.Background>
-                    <ImageBrush ImageSource="D:\2 курс\4 сем\OOP\courseproject\FoodDiary.Main\Assets\2548748.jpg"/>
+                    <ImageBrush ImageSource="Assets\2548748.jpg"/>
                 </Grid.Background>
                 <ContentControl Content="{Binding CurrentViewModel, Mode=TwoWay}"/>
             </Grid>

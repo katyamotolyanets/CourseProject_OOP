@@ -30,8 +30,8 @@ namespace FoodDiary.Main.ViewModels
             }
         }
 
-        private double _weight;
-        public double Weight
+        private string _weight;
+        public string Weight
         {
             get
             {
@@ -45,8 +45,8 @@ namespace FoodDiary.Main.ViewModels
             }
         }
 
-        private double _height;
-        public double Height
+        private string _height;
+        public string Height
         {
             get
             {
@@ -60,8 +60,8 @@ namespace FoodDiary.Main.ViewModels
             }
         }
 
-        private int _age;
-        public int Age
+        private string _age;
+        public string Age
         {
             get
             {
@@ -105,8 +105,8 @@ namespace FoodDiary.Main.ViewModels
             }
         }
 
-        private float _calories;
-        public float Calories
+        private double _calories;
+        public double Calories
         {
             get
             {
@@ -164,9 +164,9 @@ namespace FoodDiary.Main.ViewModels
             }
         }
         public bool CanRegister => !string.IsNullOrEmpty(UserName) &&
-            !string.IsNullOrEmpty(Convert.ToString(Weight)) &&
-            !string.IsNullOrEmpty(Convert.ToString(Height)) &&
-            !string.IsNullOrEmpty(Convert.ToString(Age)) &&
+            !string.IsNullOrEmpty(Weight) &&
+            !string.IsNullOrEmpty(Height) &&
+            !string.IsNullOrEmpty(Age) && 
             !string.IsNullOrEmpty(Sex) &&
             !string.IsNullOrEmpty(Convert.ToString(Lifestyle)) &&
             !string.IsNullOrEmpty(Password) &&
@@ -208,6 +208,7 @@ namespace FoodDiary.Main.ViewModels
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+
             return value;
         }
 
